@@ -50,10 +50,9 @@ export function Header() {
       <div className="page-container flex h-full items-center gap-6">
         <a
           href={href("hero")}
-          aria-label={tA11y("logo")}
           className="font-mono text-mono font-medium tracking-[0.08em] text-text"
         >
-          SS_
+          SS_<span className="sr-only"> — {tA11y("logo")}</span>
         </a>
 
         <nav aria-label={t("label")} className="ml-auto hidden lg:block">

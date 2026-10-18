@@ -3,7 +3,7 @@
 import dynamic from "next/dynamic";
 import { useLocale, useTranslations } from "next-intl";
 import { AnimatePresence, motion } from "motion/react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { LazyMount } from "@/components/LazyMount";
 import type { Placed } from "@/components/pet-builder/PetStage";
 import { PartPicker, type PickerTab } from "@/components/pet-builder/PartPicker";
@@ -35,7 +35,15 @@ export function GamePlayground() {
   const [announce, setAnnounce] = useState("");
 
   const partFor = (slot: string) => parts.find((p) => p.slot === slot && p.element === build[slot])!;
-  const elementTitle = (id: string) => elements.find((e) => e.id === id)!.title[locale];
+  // Element names come from the dictionary (Air / Fire / Water), the same terms as the case study and Showroom.
+  const elementTitle = (id: string) => t(`elements.${id as "AIR" | "FIRE" | "WATER"}`);
+  // Pending Randomize steps: cancelled by Reset, a manual choice, another Randomize and unmount (QA D-04).
+  const timers = useRef<number[]>([]);
+  const cancelPending = () => {
+    timers.current.forEach(clearTimeout);
+    timers.current = [];
+  };
+  useEffect(() => cancelPending, []);
   const acc = accessories.find((a) => a.id === accessory) ?? null;
   const rarity = (r: string) => t(`rarity${r as "RARE" | "EPIC" | "LEGENDARY"}`);
 
@@ -89,6 +97,7 @@ export function GamePlayground() {
   ];
 
   const choose = (tab: PickerTab, value: string) => {
+    cancelPending();
     if (tab.id === "ACCESSORY") setAccessory(value || null);
     else setBuild((b) => ({ ...b, [tab.id]: value }));
     setAnnounce(t("selected", { slot: tab.label, option: tab.options.find((o) => o.value === value)!.label }));
@@ -98,18 +107,22 @@ export function GamePlayground() {
     const next = Object.fromEntries(slots.map((s) => [s.id, pick(parts.filter((p) => p.slot === s.id)).element]));
     const nextAcc = pick([null, ...accessories.map((a) => a.id)]);
     // DESIGN_SYSTEM.md 8.2: parts land one after another, stagger 60ms (≤ 6 steps).
-    slots.forEach((s, i) => setTimeout(() => setBuild((b) => ({ ...b, [s.id]: next[s.id] })), reduced ? 0 : i * 60));
-    setTimeout(() => setAccessory(nextAcc), reduced ? 0 : slots.length * 60);
+    cancelPending();
+    timers.current = [
+      ...slots.map((s, i) => window.setTimeout(() => setBuild((b) => ({ ...b, [s.id]: next[s.id] })), reduced ? 0 : i * 60)),
+      window.setTimeout(() => setAccessory(nextAcc), reduced ? 0 : slots.length * 60),
+    ];
     setAnnounce(
       elements
         .map((e) => ({ e, n: slots.filter((s) => next[s.id] === e.id).length }))
         .filter((c) => c.n > 0)
-        .map((c) => t("elementCount", { element: c.e.title[locale], count: c.n }))
+        .map((c) => t("elementCount", { element: elementTitle(c.e.id), count: c.n }))
         .join(" · "),
     );
   };
 
   const reset = () => {
+    cancelPending();
     setBuild(DEFAULT_BUILD);
     setAccessory(null);
     setAnnounce(t("elementCount", { element: elementTitle("AIR"), count: slots.length }));
@@ -133,7 +146,7 @@ export function GamePlayground() {
               <LazyMount
                 className="absolute inset-0"
                 // eslint-disable-next-line @next/next/no-img-element -- poster until three.js arrives
-                fallback={<img src={POSTER} alt="" className="size-full object-contain p-8" />}
+                fallback={<img src={POSTER} alt="" loading="lazy" decoding="async" className="size-full object-contain p-8" />}
               >
                 <PetStage
                   parts={placed}
@@ -145,7 +158,7 @@ export function GamePlayground() {
               </LazyMount>
             ) : (
               // eslint-disable-next-line @next/next/no-img-element -- static sample pet
-              <img src={POSTER} alt={elementTitle("AIR")} className="size-full object-contain p-8" />
+              <img src={POSTER} alt={elementTitle("AIR")} loading="lazy" decoding="async" className="size-full object-contain p-8" />
             )}
           </div>
           {!show3D && webgl !== null && <p className="mt-3 text-small text-pet-ink-2">{t("posterNote")}</p>}

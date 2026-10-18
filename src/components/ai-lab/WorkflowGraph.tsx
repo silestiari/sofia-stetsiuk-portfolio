@@ -194,14 +194,16 @@ export function WorkflowGraph({ projectTitles }: { projectTitles: Record<string,
                     </button>
                   ))}
                 </div>
-                <ul id="ai-role-panel" role="tabpanel" aria-labelledby={`ai-role-${role}`} className="mt-3 grid gap-1 text-small">
-                  {node[role][locale].map((x) => (
-                    <li key={x} className="flex gap-2">
-                      <span aria-hidden="true" className="font-mono text-qa-accent">{role === "human" ? "◇" : "⟶"}</span>
-                      {x}
-                    </li>
-                  ))}
-                </ul>
+                <div id="ai-role-panel" role="tabpanel" aria-labelledby={`ai-role-${role}`} className="mt-3">
+                  <ul className="grid gap-1 text-small">
+                    {node[role][locale].map((x) => (
+                      <li key={x} className="flex gap-2">
+                        <span aria-hidden="true" className="font-mono text-qa-accent">{role === "human" ? "◇" : "⟶"}</span>
+                        {x}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
 
                 <h4 className="hud text-mono-xs mt-5 text-text-3">{t("examples")}</h4>
                 <ul className="mt-2 grid gap-3">

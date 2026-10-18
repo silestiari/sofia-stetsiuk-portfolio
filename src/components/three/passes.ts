@@ -3,7 +3,7 @@
 import { useGLTF } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import { useEffect, useMemo } from "react";
-import { Material, Mesh, MeshBasicMaterial, MeshStandardMaterial, type Object3D } from "three";
+import { BoxGeometry, Group, Material, Mesh, MeshBasicMaterial, MeshStandardMaterial, type Object3D, type WebGLRenderer } from "three";
 
 /** RENDER PASS stages (DESIGN_SYSTEM.md 1.1). "debug" = wireframe + bounding boxes, drawn by the scene. */
 export type Pass = "wire" | "debug" | "clay" | "shaded" | "beauty";
@@ -44,4 +44,26 @@ export function usePass({ originals }: { root: Object3D; originals: Map<Mesh, Ma
     applyPass(originals, pass);
     invalidate();
   }, [originals, pass, invalidate]);
+}
+
+const warmed = new WeakSet<WebGLRenderer>();
+
+/**
+ * Compiles the wire/clay programs in the background right after the scene is up, so the first pass switch
+ * doesn't stall on shader compilation (≈ 1 s on software WebGL, perf report). Once per renderer.
+ */
+export function useWarmPasses() {
+  const gl = useThree((s) => s.gl);
+  const scene = useThree((s) => s.scene);
+  const camera = useThree((s) => s.camera);
+  useEffect(() => {
+    if (warmed.has(gl)) return;
+    warmed.add(gl);
+    const geo = new BoxGeometry();
+    const probe = new Group();
+    probe.add(new Mesh(geo, wire), new Mesh(geo, clay));
+    const run = () => gl.compileAsync(probe, camera, scene).finally(() => geo.dispose());
+    const id = window.requestIdleCallback ? window.requestIdleCallback(run) : window.setTimeout(run, 300);
+    return () => (window.cancelIdleCallback ?? window.clearTimeout)(id);
+  }, [gl, scene, camera]);
 }

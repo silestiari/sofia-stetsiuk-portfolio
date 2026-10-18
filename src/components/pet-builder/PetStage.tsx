@@ -1,10 +1,11 @@
 "use client";
 
-import { ContactShadows, OrbitControls } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { Suspense, useLayoutEffect, useRef } from "react";
 import type { Group } from "three";
 import { useModel } from "@/components/three/passes";
+import { BlobShadow } from "@/components/three/BlobShadow";
 import { StudioLights } from "@/components/three/StudioLights";
 import { ThreeCanvas } from "@/components/three/ThreeCanvas";
 
@@ -27,10 +28,11 @@ function Part({ file, at, reduced }: { file: string; at: Vec3; reduced: boolean 
   const ref = useRef<Group>(null);
   const s = useRef({ x: reduced ? 0 : 1, v: 0 });
 
-  useFrame((_, dt) => {
+  useFrame(({ invalidate }, dt) => {
     const g = ref.current;
     const st = s.current;
     if (!g || (st.x === 0 && st.v === 0)) return;
+    invalidate(); // keeps the demand loop (touch / reduced motion) running until the part has landed
     const h = Math.min(dt, 1 / 30);
     st.v += ((-K * st.x - C * st.v) / M) * h;
     st.x += st.v * h;
@@ -48,12 +50,12 @@ function Part({ file, at, reduced }: { file: string; at: Vec3; reduced: boolean 
   );
 }
 
-function Pet({ parts, reduced }: { parts: Placed[]; reduced: boolean }) {
+function Pet({ parts, reduced, still }: { parts: Placed[]; reduced: boolean; still: boolean }) {
   const ref = useRef<Group>(null);
   const camera = useThree((s) => s.camera);
   useLayoutEffect(() => camera.lookAt(0, 0.48, 0), [camera]);
   useFrame((_, dt) => {
-    if (!reduced && ref.current) ref.current.rotation.y += (dt * Math.PI * 2) / 24;
+    if (!still && ref.current) ref.current.rotation.y += (dt * Math.PI * 2) / 24;
   });
   return (
     <group ref={ref} rotation-y={-0.5}>
@@ -82,19 +84,22 @@ export default function PetStage({
   label: string;
   onContextLost: () => void;
 }) {
+  // Touch / reduced motion: render on demand only (part drops invalidate themselves), no idle spin.
+  const still = reduced || !draggable;
   return (
     <ThreeCanvas
       role="img"
       aria-label={label}
       className={`size-full ${draggable ? "cursor-grab active:cursor-grabbing" : ""}`}
-      frameloop={reduced ? "demand" : "always"}
+      frameloop={still ? "demand" : "always"}
+      maxDpr={draggable ? 1.75 : 1.5}
       camera={{ position: [0, 0.75, 2.6], fov: 35 }}
       onContextLost={onContextLost}
       style={draggable ? undefined : { pointerEvents: "none" }}
     >
       <StudioLights envIntensity={0.7} />
-      <Pet parts={parts} reduced={reduced} />
-      <ContactShadows position={[0, 0.001, 0]} scale={2} blur={2.5} opacity={0.35} far={1.2} color="#3A2E40" />
+      <Pet parts={parts} reduced={reduced} still={still} />
+      <BlobShadow size={1.1} opacity={0.3} color="#3A2E40" />
       {draggable && (
         <OrbitControls
           makeDefault

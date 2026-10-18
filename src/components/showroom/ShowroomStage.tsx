@@ -1,6 +1,6 @@
 "use client";
 
-import { ContactShadows, Grid, OrbitControls, useGLTF, useProgress } from "@react-three/drei";
+import { Grid, OrbitControls, useGLTF, useProgress } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
 import { useTranslations } from "next-intl";
 import {
@@ -16,7 +16,8 @@ import {
 } from "react";
 import { Box3, MathUtils, PerspectiveCamera, Sphere, Vector3, type Group } from "three";
 import type { Model3D } from "@/content/types";
-import { envIntensity, useModel, usePass, type Pass } from "@/components/three/passes";
+import { envIntensity, useModel, usePass, useWarmPasses, type Pass } from "@/components/three/passes";
+import { BlobShadow } from "@/components/three/BlobShadow";
 import { StudioLights } from "@/components/three/StudioLights";
 import { ThreeCanvas } from "@/components/three/ThreeCanvas";
 
@@ -90,6 +91,7 @@ function Scene({
   const zoom = useRef(1);
   const tween = useRef<Vector3 | null>(null);
   const pop = useRef({ x: 1, v: 0 });
+  useWarmPasses();
 
   // Distance that keeps the whole bounding sphere inside the narrower of the two FOVs.
   const base = useMemo(() => {
@@ -190,11 +192,7 @@ function Scene({
               fadeStrength={1.5}
             />
           )}
-          {/* Mounted once with constant props: drei re-creates (and never disposes) its render targets when
-              `scale` changes, so the per-model size goes on the parent group instead. */}
-          <group scale={fit.footprint * 2.6} visible={pass === "beauty"}>
-            <ContactShadows position={[0, 0.002, 0]} scale={1} blur={2.4} opacity={0.55} far={(fit.radius * 2) / (fit.footprint * 2.6)} />
-          </group>
+          {pass === "beauty" && <BlobShadow size={fit.footprint * 2.4} opacity={0.6} />}
         </group>
       )}
       <OrbitControls

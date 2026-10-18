@@ -15,6 +15,8 @@ const scrollThrough = (page: Page) =>
 
 for (const path of pages)
   test(`axe: no violations on ${path} (planted demo defect excluded)`, async ({ page }) => {
+    // home scrolls through every 3D section (software WebGL in CI): ~40 s
+    test.slow(!path.includes("/projects/"));
     await page.goto(path);
     await scrollThrough(page);
     const { violations } = await new AxeBuilder({ page }).exclude("[data-qa-demo-defect]").analyze();

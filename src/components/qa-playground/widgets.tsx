@@ -105,7 +105,7 @@ export function CheckoutWidget(p: WidgetProps<"checkout">) {
         </span>
       </div>
       <div {...target(p, "orders-list")} className={ring(p)}>
-        <h4 className="hud text-mono-xs text-text-3">{t("orders")}</h4>
+        <h3 className="hud text-mono-xs text-text-3">{t("orders")}</h3>
         {orders.length === 0 ? (
           <p className="mt-2 text-small text-text-2">{t("noOrders")}</p>
         ) : (

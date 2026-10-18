@@ -49,6 +49,8 @@ export async function generateMetadata({ params }: LayoutProps<"/[locale]">): Pr
       alternateLocale,
       url: `/${locale}`,
     },
+    // og:image comes from ./opengraph-image.tsx
+    twitter: { card: "summary_large_image" },
   };
 }
 

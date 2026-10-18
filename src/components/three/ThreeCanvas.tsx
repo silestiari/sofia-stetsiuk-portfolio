@@ -10,12 +10,15 @@ import { useEffect, useRef, useState } from "react";
 export function ThreeCanvas({
   frameloop = "demand",
   onContextLost,
+  maxDpr = 1.75,
   className = "",
   children,
   ...props
 }: Omit<CanvasProps, "frameloop" | "dpr"> & {
   frameloop?: "always" | "demand";
   onContextLost?: () => void;
+  /** 1.5 for touch devices (perf report P2-8) */
+  maxDpr?: number;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [inView, setInView] = useState(true);
@@ -33,7 +36,7 @@ export function ThreeCanvas({
       <Canvas
         {...props}
         frameloop={inView ? frameloop : "never"}
-        dpr={[1, 1.75]}
+        dpr={[1, maxDpr]}
         gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
         onCreated={({ gl }) => {
           gl.domElement.addEventListener("webglcontextlost", (e) => {

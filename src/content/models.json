@@ -9,8 +9,8 @@
       "ru": "Питомец Cotton Cloud"
     },
     "description": {
-      "en": "AIR-element pet assembled from six procedurally generated parts of the Build Your Pet parts library.",
-      "ru": "Питомец стихии AIR, собранный из шести процедурно сгенерированных частей библиотеки Build Your Pet."
+      "en": "Air-element pet assembled from six procedurally generated parts of the Build Your Pet parts library.",
+      "ru": "Питомец стихии «Воздух», собранный из шести процедурно сгенерированных частей библиотеки Build Your Pet."
     },
     "source": "../питомцы/blender/assets/petforge_parts_v2.blend",
     "triangles": 14796,
@@ -29,8 +29,8 @@
       "ru": "Гибрид Bunny Dragon"
     },
     "description": {
-      "en": "Hybrid pet mixing AIR, FIRE, WOOD and STONE parts (combo HYBRID_BUNNY_DRAGON from build_all.py).",
-      "ru": "Гибридный питомец из частей AIR, FIRE, WOOD и STONE (комбинация HYBRID_BUNNY_DRAGON из build_all.py)."
+      "en": "Hybrid pet mixing Air, Fire, Wood and Stone parts (the HYBRID_BUNNY_DRAGON combo from build_all.py).",
+      "ru": "Гибридный питомец из частей стихий «Воздух», «Огонь», «Дерево» и «Камень» (комбинация HYBRID_BUNNY_DRAGON из build_all.py)."
     },
     "source": "../питомцы/blender/assets/petforge_parts_v2.blend",
     "triangles": 14798,

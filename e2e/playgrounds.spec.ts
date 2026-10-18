@@ -62,12 +62,12 @@ test("Pet Builder: choosing a part, Randomize and Reset update the composition",
   await page.goto("/en#game-playground");
   const section = page.locator("#game-playground");
   const composition = section.locator("section[aria-labelledby=pet-composition]");
-  await expect(composition).toContainText("Cotton Cloud × 6");
+  await expect(composition).toContainText("Air × 6");
 
   await section.getByRole("tab", { name: "Head" }).click();
-  await section.getByRole("radiogroup", { name: "Options for Head" }).getByRole("radio", { name: "Strawberry Dragon" }).click();
-  await expect(composition).toContainText("Strawberry Dragon × 1");
-  await expect(composition).toContainText("Cotton Cloud × 5");
+  await section.getByRole("radiogroup", { name: "Options for Head" }).getByRole("radio", { name: "Fire" }).click();
+  await expect(composition).toContainText("Fire × 1");
+  await expect(composition).toContainText("Air × 5");
 
   await section.getByRole("tab", { name: "Accessory" }).click();
   await section.getByRole("radio", { name: "Epic" }).click();
@@ -78,7 +78,7 @@ test("Pet Builder: choosing a part, Randomize and Reset update the composition",
   await page.waitForTimeout(600); // Randomize lands parts with a 60 ms stagger; let it finish (see next test)
 
   await section.getByRole("button", { name: "Reset" }).click();
-  await expect(composition).toContainText("Cotton Cloud × 6");
+  await expect(composition).toContainText("Air × 6");
   await expect(composition).toContainText("None");
 });
 
@@ -90,7 +90,7 @@ test("Pet Builder: Reset clicked right after Randomize is not overwritten by the
     await section.getByRole("button", { name: "Randomize" }).click();
     await section.getByRole("button", { name: "Reset" }).click();
     await page.waitForTimeout(600);
-    await expect(composition).toContainText("Cotton Cloud × 6");
+    await expect(composition).toContainText("Air × 6");
     await expect(composition).toContainText("None");
   }
 });

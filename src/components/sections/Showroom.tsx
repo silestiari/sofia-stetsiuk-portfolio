@@ -18,12 +18,21 @@ import { useWebGLSupport } from "@/hooks/useWebGLSupport";
 
 const Poster = ({ src, alt }: { src: string; alt: string }) => (
   // eslint-disable-next-line @next/next/no-img-element -- pre-sized webp poster from public/posters
-  <img src={src} alt={alt} width={1024} height={1024} className="absolute inset-0 size-full object-contain p-6" />
+  <img
+    src={src}
+    alt={alt}
+    width={1024}
+    height={1024}
+    loading="lazy"
+    decoding="async"
+    className="absolute inset-0 size-full object-contain p-6"
+  />
 );
 
 const ShowroomStage = dynamic(() => import("@/components/showroom/ShowroomStage"), { ssr: false });
 
 const projectSlugs = [...new Set(models.map((m) => m.projectSlug))];
+const thumb = (poster: string) => poster.replace("/posters/", "/posters/thumbs/");
 const fileName = (path: string) => path.split(/[\\/]/).pop()?.split("#")[0] ?? path;
 
 /** DESIGN_SYSTEM.md 4.9 / 5.3. Posters on mobile, without WebGL and with reduced motion — same pickers. */
@@ -100,15 +109,15 @@ export function Showroom() {
     <SectionShell id="showroom" title={t("title")}>
       <p className="mt-6 max-w-prose text-lead text-text-2">{t("intro")}</p>
 
-      <div className="mt-10 grid gap-6 lg:grid-cols-12" role="group" aria-describedby={hintId} onKeyDown={onKeyDown}>
+      <div className="mt-8 grid gap-6 lg:grid-cols-12" role="group" aria-describedby={hintId} onKeyDown={onKeyDown}>
         <p id={hintId} className="sr-only">
           {t("keyboardHint")}
         </p>
 
         {/* stage */}
-        <div className="lg:col-span-9">
+        <div className="relative lg:col-span-9">
           <div
-            className={`relative aspect-[4/5] overflow-hidden rounded-game border border-line md:aspect-[16/10] ${
+            className={`relative aspect-[4/5] overflow-hidden rounded-game border border-line md:aspect-auto md:h-[min(72vh,640px)] ${
               backdrop === "studio" && live
                 ? "bg-[radial-gradient(ellipse_at_center,var(--color-surface-2)_0%,var(--color-bg)_80%)]"
                 : "bg-[radial-gradient(ellipse_at_center,var(--color-surface-1)_0%,var(--color-bg)_75%)]"
@@ -132,10 +141,7 @@ export function Showroom() {
               <Poster src={model.poster} alt={t("posterAlt", { title })} />
             )}
 
-            <div className="pointer-events-none absolute inset-x-0 top-0 flex flex-wrap items-start justify-between gap-3 p-4">
-              <span className="hud text-mono-xs text-text-2">
-                {title} · {projectTitle(model.projectSlug)}
-              </span>
+            <div className="pointer-events-none absolute inset-x-0 top-0 flex flex-wrap items-start justify-end gap-3 p-4">
               {live && !failed && (
                 <Segmented
                   className="pointer-events-auto bg-bg/70"
@@ -196,6 +202,18 @@ export function Showroom() {
           {!live && webgl !== null && (
             <p className="hud mt-3 text-mono-xs text-text-2">{webgl && !lost ? t("staticNotice") : tErr("webglUnavailable")}</p>
           )}
+          {/* caption: below the stage on mobile, over its top-left corner from md (section fits a 900px screen) */}
+          <div className="mt-6 max-w-3xl md:pointer-events-none md:absolute md:top-4 md:left-4 md:mt-0 md:max-w-[22rem]">
+            <h3 className="text-h3 font-semibold">{title}</h3>
+            <p className="hud mt-1 text-mono-xs text-text-2">
+              {t("fromProject", { project: projectTitle(model.projectSlug) })} · {t("triangles", { count: model.triangles.toLocaleString(locale) })} ·{" "}
+              {t("sizeKB", { size: Math.round(model.sizeKB) })} · {t("source")}: {fileName(model.source)}
+            </p>
+            <p className="mt-2 text-small text-text-2">{model.description[locale]}</p>
+            <Button variant="ghost" href={`/projects/${model.projectSlug}`} className="md:pointer-events-auto">
+              {t("caseLink", { project: projectTitle(model.projectSlug) })}
+            </Button>
+          </div>
         </div>
 
         {/* pickers */}
@@ -221,7 +239,7 @@ export function Showroom() {
                 }`}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element -- 48px thumbnail of the poster */}
-                <img src={m.poster} alt="" width={48} height={48} loading="lazy" className="size-12 shrink-0 rounded-qa bg-surface-2 object-contain" />
+                <img src={thumb(m.poster)} alt="" width={48} height={48} loading="lazy" decoding="async" className="size-12 shrink-0 rounded-qa bg-surface-2 object-contain" />
                 <span className="min-w-0">
                   <span className="block truncate text-small font-semibold text-text">
                     <span aria-hidden="true" className="mr-1 text-qa-accent">{m.id === model.id ? "●" : "○"}</span>
@@ -233,19 +251,6 @@ export function Showroom() {
             ))}
           </div>
         </div>
-      </div>
-
-      {/* caption */}
-      <div className="mt-6 max-w-3xl">
-        <h3 className="text-h3 font-semibold">{title}</h3>
-        <p className="hud mt-1 text-mono-xs text-text-2">
-          {t("fromProject", { project: projectTitle(model.projectSlug) })} · {t("triangles", { count: model.triangles.toLocaleString(locale) })} ·{" "}
-          {t("sizeKB", { size: Math.round(model.sizeKB) })} · {t("source")}: {fileName(model.source)}
-        </p>
-        <p className="mt-3 text-text-2">{model.description[locale]}</p>
-        <Button variant="ghost" href={`/projects/${model.projectSlug}`} className="mt-2">
-          {t("caseLink", { project: projectTitle(model.projectSlug) })}
-        </Button>
       </div>
 
       <p className="sr-only" aria-live="polite">

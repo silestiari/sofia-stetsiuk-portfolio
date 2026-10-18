@@ -16,6 +16,8 @@ test("case page: switcher keeps the path and the anchor", async ({ page }) => {
 
 test("home: switcher keeps the section in view", async ({ page }) => {
   await page.goto("/ru#skills");
+  // the idle-loaded hero canvas can nudge the scroll after load; click once the page is settled
+  await page.waitForLoadState("networkidle");
   await expect(page.locator('header a[hreflang="en"]:visible')).toHaveAttribute("href", "/en#skills");
   await switchTo(page, "en");
   await expect(page).toHaveURL(/\/en#skills$/);

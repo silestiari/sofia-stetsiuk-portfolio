@@ -46,7 +46,6 @@ export function LanguageSwitcher({ activeId, className = "" }: { activeId?: stri
             locale={l}
             lang={l}
             hrefLang={l}
-            aria-label={t(l)}
             aria-current={current ? "true" : undefined}
             onClick={(e) => {
               if (current) e.preventDefault();
@@ -85,7 +84,11 @@ export function LanguageSwitcher({ activeId, className = "" }: { activeId?: stri
                 </motion.span>
               </>
             )}
-            <span className="relative">{l}</span>
+            <span className="relative">
+              {l}
+              {/* visible code first, so voice control ("click EN") matches the accessible name */}
+              <span className="sr-only normal-case"> — {t(l)}</span>
+            </span>
           </Link>
         );
       })}
