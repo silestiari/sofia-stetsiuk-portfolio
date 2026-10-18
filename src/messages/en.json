@@ -282,6 +282,13 @@
         "tier4": "{count}/6 {element} parts: element ability unlocked",
         "tier6": "{count}/6 {element} parts: element ability upgraded",
         "none": "Put 2 parts of one element together to unlock a set bonus"
+      },
+      "elements": {
+        "FIRE": "Fire",
+        "STONE": "Stone",
+        "WOOD": "Wood",
+        "AIR": "Air",
+        "WATER": "Water"
       }
     },
     "contact": {

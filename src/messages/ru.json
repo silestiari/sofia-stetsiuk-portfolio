@@ -207,11 +207,11 @@
       "fieldPreconditions": "Предусловия",
       "fieldNotes": "Примечания",
       "widgets": {
-        "checkout": "Checkout",
-        "cart": "Cart",
-        "inventory-list": "Inventory",
-        "registration-form": "Sign-up",
-        "item-card": "Item card"
+        "checkout": "Оформление заказа",
+        "cart": "Корзина",
+        "inventory-list": "Инвентарь",
+        "registration-form": "Регистрация",
+        "item-card": "Карточка предмета"
       },
       "bugType": {
         "functional": "Функциональный",
@@ -238,7 +238,7 @@
       "used": "Использовано: {name}",
       "inventoryEmpty": "Инвентарь пуст",
       "inspectHint": "Режим инспекции включён: кликните по элементу, чтобы увидеть, что получают вспомогательные технологии.",
-      "inspectInfo": "role: — · name: — · focusable: no",
+      "inspectInfo": "роль: — · имя: — · фокус: нет",
       "register": "Зарегистрироваться",
       "registered": "Вы в игре!",
       "errNickname": "Никнейм — от 3 до 16 символов",
@@ -282,6 +282,13 @@
         "tier4": "{count}/6 частей стихии {element}: открыта способность стихии",
         "tier6": "{count}/6 частей стихии {element}: способность стихии усилена",
         "none": "Соберите 2 части одной стихии, чтобы открыть бонус"
+      },
+      "elements": {
+        "FIRE": "Огонь",
+        "STONE": "Камень",
+        "WOOD": "Дерево",
+        "AIR": "Воздух",
+        "WATER": "Вода"
       }
     },
     "contact": {

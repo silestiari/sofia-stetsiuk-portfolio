@@ -127,7 +127,7 @@ export const projects: Project[] = [
       { value: "48", label: { en: "Axe accessibility checks", ru: "проверок доступности Axe" } },
       { value: "321", label: { en: "internal links returning HTTP 200", ru: "внутренняя ссылка отвечает HTTP 200" } },
       { value: "192", label: { en: "page × viewport combinations", ru: "комбинации страница × экран" } },
-      { value: "91–92 / 99", label: { en: "Lighthouse mobile / desktop", ru: "Lighthouse mobile / desktop" }, note: labData },
+      { value: "91–92 / 99", label: { en: "Lighthouse mobile / desktop", ru: "Lighthouse: мобильные / десктоп" }, note: labData },
     ],
     media: mediaFor("grand-mall-batumi"),
     links: [
@@ -206,7 +206,7 @@ export const projects: Project[] = [
       { value: "46/46", label: { en: "E2E smoke tests passing", ru: "E2E smoke-тестов проходят" } },
       { value: "165", label: { en: "page loads in the route × language × width matrix", ru: "загрузок в матрице маршрут × язык × ширина" } },
       { value: "0", label: { en: "axe violations", ru: "нарушений axe" } },
-      { value: "93 / 100 / 100", label: { en: "Lighthouse mobile: Performance / A11y / Best Practices", ru: "Lighthouse mobile: Performance / A11y / Best Practices" }, note: { en: "Lighthouse lab data; SEO 69 due to intentional noindex", ru: "Lab-данные Lighthouse; SEO 69 из-за намеренного noindex" } },
+      { value: "93 / 100 / 100", label: { en: "Lighthouse mobile: Performance / A11y / Best Practices", ru: "Lighthouse, мобильные: производительность / доступность / рекомендации" }, note: { en: "Lighthouse lab data; SEO 69 due to intentional noindex", ru: "Lab-данные Lighthouse; SEO 69 из-за намеренного noindex" } },
     ],
     media: mediaFor("metrocity"),
     links: [],
@@ -278,8 +278,8 @@ export const projects: Project[] = [
       },
     ),
     metrics: [
-      { value: "91–93", label: { en: "Lighthouse mobile Performance", ru: "Lighthouse mobile Performance" }, note: labData },
-      { value: "100", label: { en: "Lighthouse Accessibility in all three languages", ru: "Lighthouse Accessibility на всех трёх языках" }, note: labData },
+      { value: "91–93", label: { en: "Lighthouse mobile Performance", ru: "Lighthouse: производительность на мобильных" }, note: labData },
+      { value: "100", label: { en: "Lighthouse Accessibility in all three languages", ru: "Lighthouse: доступность на всех трёх языках" }, note: labData },
       { value: "20+", label: { en: "items in the manual QA checklist", ru: "пунктов в ручном QA-чек-листе" } },
       { value: "0", label: { en: "layout overflows across 18 runs", ru: "переполнений вёрстки в 18 прогонах" } },
     ],
@@ -380,7 +380,7 @@ export const projects: Project[] = [
       en: "My own game, built with a multi-agent team under my direction: game concept and task framing in staged prompts, design decisions, and quality checks of every stage.",
       ru: "Моя игра, собранная мультиагентной командой под моим руководством: концепция и постановка задач поэтапными промптами, дизайн-решения и проверка качества каждого этапа.",
     },
-    tech: ["Luau", "Rojo 7.7.1", "Roblox Studio MCP", "Blender 5.2 (Python)", "Blender MCP", "Codex", "Claude Code", "Python test runners", "Remotion 4", "FFmpeg"],
+    tech: ["Luau", "Rojo 7.7.1", "Roblox Studio MCP", "Blender 5.2 (Python)", "Blender MCP", "Codex", "Claude Code", "Python", "Remotion 4", "FFmpeg"],
     features: {
       en: [
         "MVP loop: 12 passengers, Coffee / Cola / Meal orders, carrying and delivery, score, patience, 300-second rounds",
@@ -537,7 +537,7 @@ export const projects: Project[] = [
       en: "My own game, built with an 11-agent team under my direction: game concept and task framing in a master prompt, design and balance decisions, and quality checks.",
       ru: "Моя игра, собранная командой из 11 агентов под моим руководством: концепция и постановка задач в мастер-промпте, решения по дизайну и балансу, проверка качества.",
     },
-    tech: ["Luau", "Rojo 7.7.1", "Lune 0.11", "Blender (Python generators)", "Claude Code"],
+    tech: ["Luau", "Rojo 7.7.1", "Lune 0.11", "Blender (Python)", "Claude Code"],
     features: {
       en: [
         "A pet is built from 6 parts: head, body, front paws, hind paws, tail and back",

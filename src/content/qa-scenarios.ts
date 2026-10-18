@@ -131,7 +131,7 @@ export const qaScenarios: QaScenario[] = [
       },
       steps: {
         en: ["Open the Checkout widget.", "Double-click \"Place order\" quickly (two clicks within ~0.5 s).", "Wait for the request to finish and check \"My orders\" and the balance."],
-        ru: ["Открыть виджет Checkout.", "Быстро дважды кликнуть «Оформить заказ» (два клика за ~0,5 с).", "Дождаться ответа и проверить «Мои заказы» и баланс."],
+        ru: ["Открыть виджет «Оформление заказа».", "Быстро дважды кликнуть «Оформить заказ» (два клика за ~0,5 с).", "Дождаться ответа и проверить «Мои заказы» и баланс."],
       },
       expected: {
         en: "One order is created. The button is disabled with a loading state after the first click. Balance: 1100 gems.",
@@ -177,7 +177,7 @@ export const qaScenarios: QaScenario[] = [
       },
       steps: {
         en: ["Open the Cart widget.", "Enter \"LOOT10\" in the Promo code field.", "Click \"Apply\".", "Compare Discount and Total with the subtotal."],
-        ru: ["Открыть виджет Cart.", "Ввести «LOOT10» в поле «Промокод».", "Нажать «Применить».", "Сравнить «Скидку» и «Итого» с подытогом."],
+        ru: ["Открыть виджет «Корзина».", "Ввести «LOOT10» в поле «Промокод».", "Нажать «Применить».", "Сравнить «Скидку» и «Итого» с подытогом."],
       },
       expected: {
         en: "Discount: −120 gems (10%). Total: 1080 gems.",
@@ -223,7 +223,7 @@ export const qaScenarios: QaScenario[] = [
       },
       steps: {
         en: ["Open the Inventory widget.", "Press Tab repeatedly through the item rows.", "Try to focus the trash icon next to \"Ember Sword\" and press Enter."],
-        ru: ["Открыть виджет Inventory.", "Нажимать Tab, проходя по строкам предметов.", "Попытаться сфокусировать иконку корзины у «Огненного меча» и нажать Enter."],
+        ru: ["Открыть виджет «Инвентарь».", "Нажимать Tab, проходя по строкам предметов.", "Попытаться сфокусировать иконку корзины у «Огненного меча» и нажать Enter."],
       },
       expected: {
         en: "The trash icon receives visible focus, is announced as \"Remove Ember Sword, button\", and Enter/Space removes the item.",
@@ -333,7 +333,7 @@ export const qaScenarios: QaScenario[] = [
       },
       steps: {
         en: ["Open the Item card widget.", "Switch the card language to RU.", "Look at the primary button label."],
-        ru: ["Открыть виджет Item card.", "Переключить язык карточки на RU.", "Посмотреть на подпись основной кнопки."],
+        ru: ["Открыть виджет «Карточка предмета».", "Переключить язык карточки на RU.", "Посмотреть на подпись основной кнопки."],
       },
       expected: {
         en: "The full label \"Добавить в инвентарь\" is visible (button grows or text wraps).",
