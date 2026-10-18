@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import { notFound } from "next/navigation";
 import { getLocale, getTranslations } from "next-intl/server";
 import { MediaItem, mediaIn } from "@/components/project/MediaItem";
+import { ModelShowcase } from "@/components/sections/Showroom";
+import { models } from "@/content/models";
 import { ProjectInspector, variantOf } from "@/components/project/ProjectInspector";
 import { HudLabel } from "@/components/ui/HudLabel";
 import { getProject, projects } from "@/content/projects";
@@ -52,6 +54,7 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
 
   const locale = await getLocale();
   const media = mediaIn(project.media, locale);
+  const shown3d = models.filter((m) => m.projectSlug === project.slug);
   const t = await getTranslations("project");
   const muted = "text-text-2";
   const link = "text-qa-accent";
@@ -139,9 +142,11 @@ export default async function ProjectPage({ params }: PageProps<"/[locale]/proje
             </ul>,
           )}
 
+        {shown3d.length > 0 && block("models", t("models"), <ModelShowcase models={shown3d} />)}
+
         <nav
           aria-label={t("caseStudy")}
-          className={`mt-24 flex flex-col justify-between gap-4 border-t pt-8 md:flex-row ${"border-line"}`}
+          className="mt-24 flex flex-col justify-between gap-4 border-t border-line pt-8 md:flex-row"
         >
           <Link href={`/projects/${prev.slug}`} rel="prev" className={`inline-flex min-h-11 items-center gap-2 font-bold ${link} hover:underline`}>
             <span aria-hidden="true">←</span> {t("prev", { title: prev.title[locale] })}

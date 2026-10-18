@@ -21,20 +21,32 @@ const Poster = ({ src, alt }: { src: string; alt: string }) => (
 
 const ShowroomStage = dynamic(() => import("@/components/showroom/ShowroomStage"), { ssr: false });
 
-const groups = [...new Set(models.map((m) => m.group))];
 const card = (poster: string) => poster.replace("/posters/", "/posters/thumbs/");
 const fileName = (path: string) => path.split(/[\\/]/).pop()?.split("#")[0] ?? path;
 const setScrollLock = (on: boolean) => {
   document.documentElement.style.overflow = on ? "hidden" : "";
 };
 
+/** Home section: the Build Your Own Pet models. */
+export function Showroom() {
+  const t = useTranslations("sections.showroom");
+  return (
+    <SectionShell id="showroom" title={t("title")}>
+      <p className="mt-6 max-w-prose text-lead text-text-2">{t("intro")}</p>
+      <ModelShowcase models={models.filter((m) => m.projectSlug === "build-your-pet")} />
+    </SectionShell>
+  );
+}
+
 /**
  * 3D showcase: a grid of glowing model cards; any card opens the model in a <dialog showModal> where it can be
  * rotated, zoomed and switched between render passes. Without WebGL the dialog shows the large poster.
+ * Also used on case pages (Woodcutter vs Zombies).
  */
-export function Showroom() {
+export function ModelShowcase({ models }: { models: Model3D[] }) {
   const t = useTranslations("sections.showroom");
   const locale = useLocale();
+  const groups = [...new Set(models.map((m) => m.group))];
   const [group, setGroup] = useState("all");
   const [open, setOpen] = useState<Model3D | null>(null);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -57,16 +69,16 @@ export function Showroom() {
   useEffect(() => () => setScrollLock(false), []);
 
   return (
-    <SectionShell id="showroom" title={t("title")}>
-      <p className="mt-6 max-w-prose text-lead text-text-2">{t("intro")}</p>
-
-      <Segmented
-        className="mt-8"
-        label={t("groupLabel")}
-        options={[{ value: "all", label: t("allGroups") }, ...groups.map((g) => ({ value: g, label: groupLabel(g) }))]}
-        value={group}
-        onChange={setGroup}
-      />
+    <>
+      {groups.length > 1 && (
+        <Segmented
+          className="mt-8"
+          label={t("groupLabel")}
+          options={[{ value: "all", label: t("allGroups") }, ...groups.map((g) => ({ value: g, label: groupLabel(g) }))]}
+          value={group}
+          onChange={setGroup}
+        />
+      )}
 
       <p className="hud mt-6 text-mono-xs text-qa-accent">↗ {t("clickHint")}</p>
 
@@ -117,7 +129,7 @@ export function Showroom() {
       >
         {open && <Viewer model={open} onClose={() => dialog.current?.close()} />}
       </dialog>
-    </SectionShell>
+    </>
   );
 }
 

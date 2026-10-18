@@ -115,6 +115,7 @@
         "dragon": "Bubble Lagoon",
         "buildings": "Buildings",
         "trees": "Trees",
+        "woodcutter": "Woodcutter vs Zombies",
         "bushes": "Bushes"
       },
       "passShaded": "Shaded",
@@ -248,6 +249,7 @@
     "aiWorkflow": "AI workflow",
     "metrics": "QA in numbers",
     "media": "Media",
+    "models": "3D models",
     "links": "Links",
     "platform": "Platform",
     "notConfirmed": "Not confirmed",

@@ -724,5 +724,131 @@
     "decimated": false,
     "animations": [],
     "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 1 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "wc-chest",
+    "projectSlug": "woodcutter-vs-zombies",
+    "group": "woodcutter",
+    "file": "/models/wc-chest.glb",
+    "poster": "/posters/wc-chest.webp",
+    "title": {
+      "en": "Chest",
+      "ru": "Сундук"
+    },
+    "description": {
+      "en": "Iron-bound chest with gold trim and a glowing lock.",
+      "ru": "Окованный сундук с золотой отделкой и светящимся замком."
+    },
+    "source": "../woodcutter/woodcutter/blender/chest.fbx",
+    "triangles": 8360,
+    "sizeKB": 64.4,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m; original PBR materials incl. emission; poster with bloom"
+  },
+  {
+    "id": "wc-treasure-chest",
+    "projectSlug": "woodcutter-vs-zombies",
+    "group": "woodcutter",
+    "file": "/models/wc-treasure-chest.glb",
+    "poster": "/posters/wc-treasure-chest.webp",
+    "title": {
+      "en": "Treasure Chest",
+      "ru": "Сундук с сокровищами"
+    },
+    "description": {
+      "en": "Open chest full of coins and glowing gems.",
+      "ru": "Открытый сундук, полный монет и светящихся самоцветов."
+    },
+    "source": "../woodcutter/woodcutter/blender/treasureChest.fbx",
+    "triangles": 24928,
+    "sizeKB": 192.9,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m; original PBR materials incl. emission; poster with bloom"
+  },
+  {
+    "id": "wc-mimic",
+    "projectSlug": "woodcutter-vs-zombies",
+    "group": "woodcutter",
+    "file": "/models/wc-mimic.glb",
+    "poster": "/posters/wc-mimic.webp",
+    "title": {
+      "en": "Mimic",
+      "ru": "Мимик"
+    },
+    "description": {
+      "en": "A chest that bites: teeth, tongue and glowing eyes.",
+      "ru": "Сундук, который кусается: зубы, язык и светящиеся глаза."
+    },
+    "source": "../woodcutter/woodcutter/blender/mimic.fbx",
+    "triangles": 23068,
+    "sizeKB": 93.2,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m; original PBR materials incl. emission; poster with bloom"
+  },
+  {
+    "id": "wc-shop-weapons",
+    "projectSlug": "woodcutter-vs-zombies",
+    "group": "woodcutter",
+    "file": "/models/wc-shop-weapons.glb",
+    "poster": "/posters/wc-shop-weapons.webp",
+    "title": {
+      "en": "Weapons Shop",
+      "ru": "Оружейная лавка"
+    },
+    "description": {
+      "en": "Dark-fantasy shop building where players buy weapons.",
+      "ru": "Здание магазина в стиле dark fantasy, где игроки покупают оружие."
+    },
+    "source": "../woodcutter/woodcutter/blender/shopWeapons.fbx",
+    "triangles": 46684,
+    "sizeKB": 324.0,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m; original PBR materials incl. emission; poster with bloom"
+  },
+  {
+    "id": "wc-gold-axe",
+    "projectSlug": "woodcutter-vs-zombies",
+    "group": "woodcutter",
+    "file": "/models/wc-gold-axe.glb",
+    "poster": "/posters/wc-gold-axe.webp",
+    "title": {
+      "en": "Gold Axe",
+      "ru": "Золотой топор"
+    },
+    "description": {
+      "en": "One of the axes the lumberjack upgrades to.",
+      "ru": "Один из топоров, до которых лесоруб прокачивается."
+    },
+    "source": "../woodcutter/woodcutter/blender/goldAxe.fbx",
+    "triangles": 15588,
+    "sizeKB": 45.3,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m; original PBR materials incl. emission; poster with bloom"
+  },
+  {
+    "id": "wc-zombie-outfit",
+    "projectSlug": "woodcutter-vs-zombies",
+    "group": "woodcutter",
+    "file": "/models/wc-zombie-outfit.glb",
+    "poster": "/posters/wc-zombie-outfit.webp",
+    "title": {
+      "en": "Zombie",
+      "ru": "Зомби"
+    },
+    "description": {
+      "en": "Zombie from the night waves that attack the castle.",
+      "ru": "Зомби из ночных волн, которые атакуют замок."
+    },
+    "source": "../woodcutter/woodcutter/blender/zombieOutfit.fbx",
+    "triangles": 38776,
+    "sizeKB": 248.3,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m; original PBR materials incl. emission; poster with bloom"
   }
 ]
