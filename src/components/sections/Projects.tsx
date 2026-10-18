@@ -5,10 +5,9 @@ import { HudLabel } from "@/components/ui/HudLabel";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { projects, projectsDisclaimer } from "@/content/projects";
 
-const groups: { id: InspectorVariant; key: "groupWeb" | "groupRoblox" | "groupPet" }[] = [
+const groups: { id: InspectorVariant; key: "groupWeb" | "groupRoblox" }[] = [
   { id: "web", key: "groupWeb" },
   { id: "roblox", key: "groupRoblox" },
-  { id: "pet", key: "groupPet" },
 ];
 
 export function Projects() {

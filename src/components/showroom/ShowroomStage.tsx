@@ -18,6 +18,7 @@ import { Box3, MathUtils, PerspectiveCamera, Sphere, Vector3, type Group } from 
 import type { Model3D } from "@/content/types";
 import { envIntensity, useModel, usePass, useWarmPasses, type Pass } from "@/components/three/passes";
 import { BlobShadow } from "@/components/three/BlobShadow";
+import { Bloom } from "@/components/three/Bloom";
 import { StudioLights } from "@/components/three/StudioLights";
 import { ThreeCanvas } from "@/components/three/ThreeCanvas";
 
@@ -288,6 +289,7 @@ export default function ShowroomStage({
           engaged={engaged}
           onError={onError}
         />
+        <Bloom />
       </ThreeCanvas>
       <LoadingOverlay />
     </div>

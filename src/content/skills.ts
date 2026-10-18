@@ -19,7 +19,7 @@ export interface SkillGroup {
   skills: Skill[];
 }
 
-const web: Slug[] = ["grand-mall-batumi", "metrocity", "sakhli"];
+const web: Slug[] = ["grand-mall-batumi", "sakhli"];
 const roblox: Slug[] = ["woodcutter-vs-zombies", "cabin-chaos", "pillars", "build-your-pet"];
 
 export const skillGroups: SkillGroup[] = [
@@ -39,10 +39,10 @@ export const skillGroups: SkillGroup[] = [
       {
         id: "bug-reports",
         label: { en: "Bug reports & defect reproduction", ru: "Баг-репорты и воспроизведение дефектов" },
-        projects: ["metrocity", "build-your-pet"],
+        projects: ["build-your-pet"],
         how: {
-          en: "English bug reports for Multicart; defects F-1/F-2 in Metro City and BUG-1…4 in Petforge logged, fixed and re-tested.",
-          ru: "Баг-репорты на английском для Multicart; дефекты F-1/F-2 в Metro City и BUG-1…4 в Petforge — заведены, исправлены и перепроверены.",
+          en: "English bug reports for Multicart; BUG-1…4 in Build Your Own Pet logged, fixed and re-tested.",
+          ru: "Баг-репорты на английском для Multicart; BUG-1…4 в «Собери своего питомца» — заведены, исправлены и перепроверены.",
         },
       },
       {
@@ -50,17 +50,17 @@ export const skillGroups: SkillGroup[] = [
         label: { en: "Test scenarios & user journeys", ru: "Тест-сценарии и пользовательские пути" },
         projects: ["grand-mall-batumi", "build-your-pet"],
         how: {
-          en: "11 critical journeys in Grand Mall; a 21-case QA matrix in Petforge.",
-          ru: "11 ключевых сценариев в Grand Mall; QA-матрица на 21 кейс в Petforge.",
+          en: "11 critical journeys in Grand Mall; a 21-case QA matrix in Build Your Own Pet.",
+          ru: "11 ключевых сценариев в Grand Mall; QA-матрица на 21 кейс в «Собери своего питомца».",
         },
       },
       {
         id: "regression",
         label: { en: "Regression & re-testing", ru: "Регресс и перепроверка" },
-        projects: ["metrocity", "cabin-chaos"],
+        projects: ["cabin-chaos"],
         how: {
-          en: "Metro City smoke suite re-run after fixes (44/46 → 46/46); Cabin Chaos suites re-run, latest result 6 suites PASS.",
-          ru: "Smoke-набор Metro City перезапущен после исправлений (44/46 → 46/46); наборы Cabin Chaos перезапускаются, последний итог — 6 наборов PASS.",
+          en: "Cabin Chaos suites re-run after fixes, latest result 6 suites PASS.",
+          ru: "Наборы Cabin Chaos перезапускаются после исправлений, последний итог — 6 наборов PASS.",
         },
       },
       {
@@ -77,8 +77,8 @@ export const skillGroups: SkillGroup[] = [
         label: { en: "Localization testing", ru: "Тестирование локализации" },
         projects: [...web, "cabin-chaos"],
         how: {
-          en: "Overflow checks for RU/KA text on three websites; 207 localization checks in Cabin Chaos.",
-          ru: "Проверки переполнения RU/KA-текстов на трёх сайтах; 207 проверок локализации в Cabin Chaos.",
+          en: "Overflow checks for RU/KA text on both websites; 207 localization checks in Cabin Chaos.",
+          ru: "Проверки переполнения RU/KA-текстов на обоих сайтах; 207 проверок локализации в Cabin Chaos.",
         },
       },
       {
@@ -86,17 +86,17 @@ export const skillGroups: SkillGroup[] = [
         label: { en: "Game testing in Roblox Studio", ru: "Тестирование игр в Roblox Studio" },
         projects: roblox,
         how: {
-          en: "In-game SelfTests (Woodcutter, PILLARS on 13 maps), Python suites in Cabin Chaos, Lune tests in Petforge.",
-          ru: "Внутриигровые SelfTest (Woodcutter, PILLARS на 13 картах), Python-наборы в Cabin Chaos, тесты Lune в Petforge.",
+          en: "In-game SelfTests (Woodcutter, PILLARS on 13 maps), Python suites in Cabin Chaos, Lune tests in Build Your Own Pet.",
+          ru: "Внутриигровые SelfTest (Woodcutter, PILLARS на 13 картах), Python-наборы в Cabin Chaos, тесты Lune в «Собери своего питомца».",
         },
       },
       {
         id: "playwright",
         label: { en: "Test automation with Playwright", ru: "Автотесты на Playwright" },
-        projects: ["grand-mall-batumi", "metrocity"],
+        projects: ["grand-mall-batumi"],
         how: {
-          en: "AI-assisted E2E suites: 11 journeys in Grand Mall, a 46-test smoke run in Metro City.",
-          ru: "E2E-наборы, написанные с AI: 11 сценариев в Grand Mall, smoke-прогон на 46 тестов в Metro City.",
+          en: "AI-assisted E2E suites: 11 journeys in Grand Mall.",
+          ru: "E2E-наборы, написанные с AI: 11 сценариев в Grand Mall.",
         },
       },
       {
@@ -104,8 +104,8 @@ export const skillGroups: SkillGroup[] = [
         label: { en: "Performance audits (Lighthouse)", ru: "Аудит производительности (Lighthouse)" },
         projects: web,
         how: {
-          en: "Lighthouse lab runs on all three websites; Grand Mall mobile LCP reduced from 3.9–4.5 s to 3.3–3.5 s.",
-          ru: "Lab-прогоны Lighthouse на всех трёх сайтах; LCP Grand Mall на мобильных снижен с 3,9–4,5 с до 3,3–3,5 с.",
+          en: "Lighthouse lab runs on both websites; Grand Mall mobile LCP reduced from 3.9–4.5 s to 3.3–3.5 s.",
+          ru: "Lab-прогоны Lighthouse на обоих сайтах; LCP Grand Mall на мобильных снижен с 3,9–4,5 с до 3,3–3,5 с.",
         },
       },
       {
@@ -125,8 +125,8 @@ export const skillGroups: SkillGroup[] = [
         label: { en: "Core loops & progression", ru: "Игровые циклы и прогрессия" },
         projects: roblox,
         how: {
-          en: "Chop → upgrade → build → defend in Woodcutter; parts → pet → PvP from level 15 in Petforge.",
-          ru: "Рубка → прокачка → стройка → оборона в Woodcutter; части → питомец → PvP с 15 уровня в Petforge.",
+          en: "Chop → upgrade → build → defend in Woodcutter; parts → pet → PvP from level 15 in Build Your Own Pet.",
+          ru: "Рубка → прокачка → стройка → оборона в Woodcutter; части → питомец → PvP с 15 уровня в «Собери своего питомца».",
         },
       },
       {
@@ -143,8 +143,8 @@ export const skillGroups: SkillGroup[] = [
         label: { en: "Balancing", ru: "Баланс" },
         projects: ["cabin-chaos", "build-your-pet"],
         how: {
-          en: "A drink-balance test suite in Cabin Chaos; a game-data balance spreadsheet in Petforge.",
-          ru: "Набор тестов баланса напитков в Cabin Chaos; таблица баланса игровых данных в Petforge.",
+          en: "A drink-balance test suite in Cabin Chaos; a game-data balance spreadsheet in Build Your Own Pet.",
+          ru: "Набор тестов баланса напитков в Cabin Chaos; таблица баланса игровых данных в «Собери своего питомца».",
         },
       },
       {
@@ -212,8 +212,8 @@ export const skillGroups: SkillGroup[] = [
         label: { en: "Blender & Python scripting", ru: "Blender и Python-скрипты" },
         projects: ["woodcutter-vs-zombies", "cabin-chaos", "build-your-pet"],
         how: {
-          en: "A Blender scene and FBX assets in Woodcutter; generate_*.py scripts for Cabin Chaos assets and Petforge parts.",
-          ru: "Сцена Blender и FBX-ассеты в Woodcutter; скрипты generate_*.py для ассетов Cabin Chaos и частей Petforge.",
+          en: "A Blender scene and FBX assets in Woodcutter; generate_*.py scripts for Cabin Chaos assets and Build Your Own Pet parts.",
+          ru: "Сцена Blender и FBX-ассеты в Woodcutter; скрипты generate_*.py для ассетов Cabin Chaos и частей «Собери своего питомца».",
         },
       },
       {
@@ -242,8 +242,8 @@ export const skillGroups: SkillGroup[] = [
         label: { en: "Claude Code", ru: "Claude Code" },
         projects: [...web, ...roblox],
         how: {
-          en: "Main development environment for all seven projects.",
-          ru: "Основная среда разработки во всех семи проектах.",
+          en: "Main development environment for all six projects.",
+          ru: "Основная среда разработки во всех шести проектах.",
         },
       },
       {
@@ -260,8 +260,8 @@ export const skillGroups: SkillGroup[] = [
         label: { en: "Multi-agent workflows", ru: "Мультиагентная разработка" },
         projects: [...web, ...roblox],
         how: {
-          en: "From 3 agents in Woodcutter to 14 in Metro City, with roles and file-ownership rules.",
-          ru: "От 3 агентов в Woodcutter до 14 в Metro City — с ролями и правилами владения файлами.",
+          en: "From 3 agents in Woodcutter to 18 in Cabin Chaos (7 Codex + 11 Claude Code), with roles and file-ownership rules.",
+          ru: "От 3 агентов в Woodcutter до 18 в Cabin Chaos (7 Codex + 11 Claude Code) — с ролями и правилами владения файлами.",
         },
       },
       {
@@ -278,8 +278,8 @@ export const skillGroups: SkillGroup[] = [
         label: { en: "Staged prompts & task specs", ru: "Поэтапные промпты и ТЗ" },
         projects: ["cabin-chaos", "build-your-pet"],
         how: {
-          en: "Prompt24–Prompt30 stages in Cabin Chaos; a master prompt with per-agent task files in Petforge.",
-          ru: "Этапы Prompt24–Prompt30 в Cabin Chaos; мастер-промпт и задания для каждого агента в Petforge.",
+          en: "Prompt24–Prompt30 stages in Cabin Chaos; a master prompt with per-agent task files in Build Your Own Pet.",
+          ru: "Этапы Prompt24–Prompt30 в Cabin Chaos; мастер-промпт и задания для каждого агента в «Собери своего питомца».",
         },
       },
       {

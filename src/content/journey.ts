@@ -51,18 +51,18 @@ export const journey: JourneyStage[] = [
     label: { en: "WEB", ru: "ВЕБ" },
     title: { en: "Web projects", ru: "Веб-проекты" },
     text: {
-      en: "Three multilingual websites where QA was built into the process from day one: Playwright journeys, accessibility checks, viewport matrices and Lighthouse audits.",
-      ru: "Три многоязычных сайта, где тестирование было частью процесса с первого дня: сценарии Playwright, проверки доступности, матрицы экранов и аудиты Lighthouse.",
+      en: "Two multilingual websites where QA was built into the process from day one: Playwright journeys, accessibility checks, viewport matrices and Lighthouse audits.",
+      ru: "Два многоязычных сайта, где тестирование было частью процесса с первого дня: сценарии Playwright, проверки доступности, матрицы экранов и аудиты Lighthouse.",
     },
-    projects: ["grand-mall-batumi", "metrocity", "sakhli"],
+    projects: ["grand-mall-batumi", "sakhli"],
   },
   {
     id: "roblox",
     label: { en: "ROBLOX", ru: "ROBLOX" },
     title: { en: "Roblox games", ru: "Игры на Roblox" },
     text: {
-      en: "Four games in Roblox Studio — a tycoon, a co-op party game, multiplayer hide-and-seek and a pet builder. One is released, the rest are in development.",
-      ru: "Четыре игры в Roblox Studio — тайкун, кооперативная party-игра, мультиплеерные прятки и конструктор питомцев. Одна выпущена, остальные в разработке.",
+      en: "Four games in Roblox Studio — a tycoon, a co-op party game, multiplayer hide-and-seek and a pet builder. All four are released.",
+      ru: "Четыре игры в Roblox Studio — тайкун, кооперативная party-игра, мультиплеерные прятки и конструктор питомцев. Все четыре выпущены.",
     },
     projects: ["woodcutter-vs-zombies", "cabin-chaos", "pillars", "build-your-pet"],
   },
@@ -71,8 +71,8 @@ export const journey: JourneyStage[] = [
     label: { en: "3D ASSETS", ru: "3D-АССЕТЫ" },
     title: { en: "Blender and game assets", ru: "Blender и игровые ассеты" },
     text: {
-      en: "Blender is part of every game pipeline — and in Cabin Chaos and Petforge Arena, Python scripts generate whole asset kits and pet parts.",
-      ru: "Blender есть в пайплайне каждой игры, а в Cabin Chaos и Petforge Arena Python-скрипты генерируют целые наборы ассетов и части питомцев.",
+      en: "Blender is part of every game pipeline — and in Cabin Chaos and Build Your Own Pet, Python scripts generate whole asset kits and pet parts.",
+      ru: "Blender есть в пайплайне каждой игры, а в Cabin Chaos и «Собери своего питомца» Python-скрипты генерируют целые наборы ассетов и части питомцев.",
     },
     projects: ["woodcutter-vs-zombies", "cabin-chaos", "build-your-pet"],
   },
@@ -84,7 +84,7 @@ export const journey: JourneyStage[] = [
       en: "I learned to run teams of AI agents: roles, file ownership, staged prompts, MCP connections to Blender and Roblox Studio. The agents write code — I own the tasks and the quality bar.",
       ru: "Я научилась управлять командами AI-агентов: роли, владение файлами, поэтапные промпты, MCP-подключения к Blender и Roblox Studio. Код пишут агенты — задачи и планка качества на мне.",
     },
-    projects: ["cabin-chaos", "metrocity", "grand-mall-batumi", "build-your-pet"],
+    projects: ["cabin-chaos", "grand-mall-batumi", "build-your-pet"],
   },
   {
     id: "next",

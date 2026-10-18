@@ -42,7 +42,7 @@ export function Header() {
     <header className="site-header sticky top-0 z-(--z-header) h-(--header-h)">
       <a
         href="#content"
-        className="fixed top-2 left-2 z-(--z-skip) -translate-y-[200%] rounded-qa-panel bg-qa-accent-fill px-4 py-3 text-small font-bold text-white focus-visible:translate-y-0"
+        className="fixed top-2 left-2 z-(--z-skip) -translate-y-[200%] rounded-qa-panel bg-qa-accent-fill px-4 py-3 text-small font-bold text-on-accent focus-visible:translate-y-0"
       >
         {tA11y("skipToContent")}
       </a>

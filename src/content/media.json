@@ -2,6 +2,32 @@
   "grand-mall-batumi": [
     {
       "type": "image",
+      "src": "/media/grand-mall-batumi/home-desktop-en.webp",
+      "alt": {
+        "en": "Grand Mall Batumi home page: hero with the mall facade and the headline",
+        "ru": "Главная страница Grand Mall Batumi: первый экран с фасадом ТЦ и заголовком"
+      },
+      "width": 1440,
+      "height": 900,
+      "locale": "en",
+      "source": "https://grand-mall-three.vercel.app/en",
+      "notes": "Live site, top of the home page, 1440x900. The hero image is the mall's architectural render."
+    },
+    {
+      "type": "image",
+      "src": "/media/grand-mall-batumi/home-desktop-ru.webp",
+      "alt": {
+        "en": "Grand Mall Batumi home page: hero with the mall facade and the headline",
+        "ru": "Главная страница Grand Mall Batumi: первый экран с фасадом ТЦ и заголовком"
+      },
+      "width": 1440,
+      "height": 900,
+      "locale": "ru",
+      "source": "https://grand-mall-three.vercel.app/ru",
+      "notes": "Live site, top of the home page, 1440x900. The hero image is the mall's architectural render."
+    },
+    {
+      "type": "image",
       "src": "/media/grand-mall-batumi/map-desktop.webp",
       "width": 1440,
       "height": 900,
@@ -61,57 +87,20 @@
       "notes": "Contains a small strip of the hero facade, which is an architectural render (per docs/claude-handoff.md), not a photo; rights to that render are not confirmed. The interface dominates. Desktop home and store screenshots were rejected because brand/stock photos dominate there."
     }
   ],
-  "metrocity": [
-    {
-      "type": "image",
-      "src": "/media/metrocity/home-desktop.webp",
-      "width": 1440,
-      "height": 900,
-      "alt": {
-        "en": "Metro City demo homepage: header, New Boulevard promenade photo with credit, headline and calls to action",
-        "ru": "Главная демо-сайта Metro City: шапка, фото променада New Boulevard с подписью автора, заголовок и кнопки"
-      },
-      "source": "C:\\Users\\tolik\\Documents\\metrocity\\qa-artifacts\\design4\\en-home-1440-fold.jpg",
-      "notes": "Hero photo: Yulia Kondratyeva, CC BY 3.0 (credit visible in the screenshot; see metrocity/docs/image-credits.md). Keep the credit visible if cropped. Metro City logo use was reported as permitted by the owner (2026-10-15)."
-    },
-    {
-      "type": "image",
-      "src": "/media/metrocity/stores-desktop.webp",
-      "width": 1440,
-      "height": 900,
-      "alt": {
-        "en": "Metro City stores directory with search, category chips and a per-store verification status",
-        "ru": "Каталог магазинов Metro City: поиск, чипы категорий и статус проверки у каждого магазина"
-      },
-      "source": "C:\\Users\\tolik\\Documents\\metrocity\\qa-artifacts\\final-en-stores-1440.png",
-      "notes": "Interface only. Shows the honest 'Not confirmed' status per tenant."
-    },
-    {
-      "type": "image",
-      "src": "/media/metrocity/hours-desktop-ka.webp",
-      "width": 1440,
-      "height": 900,
-      "alt": {
-        "en": "Georgian Metro City page section with opening hours, address and directions buttons in the brand colours",
-        "ru": "Грузинская секция сайта Metro City с часами работы, адресом и кнопками маршрута в цветах бренда"
-      },
-      "source": "C:\\Users\\tolik\\Documents\\metrocity\\qa-artifacts\\final-ka-today-1440.jpg",
-      "notes": "Interface and drawn ribbon placeholder only."
-    },
-    {
-      "type": "image",
-      "src": "/media/metrocity/home-mobile-ka.webp",
-      "width": 390,
-      "height": 844,
-      "alt": {
-        "en": "Georgian mobile homepage of the Metro City demo at 390 px",
-        "ru": "Грузинская мобильная главная демо-сайта Metro City, ширина 390 px"
-      },
-      "source": "C:\\Users\\tolik\\Documents\\metrocity\\qa-artifacts\\design4\\ka-home-390-fold.jpg",
-      "notes": "Same CC BY 3.0 photo (Yulia Kondratyeva), credit visible."
-    }
-  ],
   "sakhli": [
+    {
+      "type": "video",
+      "src": "/media/sakhli/pond-koi.mp4",
+      "poster": "/media/sakhli/pond-koi-poster.webp",
+      "alt": {
+        "en": "Interactive koi pond: the fish swim away from the cursor and a click sends ripples across the water",
+        "ru": "Интерактивный пруд с карпами кои: рыбки уплывают от курсора, а клик пускает круги по воде"
+      },
+      "width": 1200,
+      "height": 436,
+      "source": "components/pond-sim.ts, recorded from the existing production build (next start)",
+      "notes": "10 s, no audio, H.264. Canvas 2D simulation, no dependencies."
+    },
     {
       "type": "image",
       "src": "/media/sakhli/hero-desktop-ka.webp",
@@ -128,66 +117,196 @@
   "woodcutter-vs-zombies": [
     {
       "type": "image",
-      "src": "/media/woodcutter-vs-zombies/loading-castle.webp",
+      "src": "/media/woodcutter-vs-zombies/cover-1-en.webp",
+      "alt": {
+        "en": "Woodcutter vs Zombies promo art: “Chop, build, survive!”",
+        "ru": "Промо-арт Woodcutter vs Zombies: «Chop, build, survive!»"
+      },
       "width": 1600,
       "height": 900,
-      "alt": {
-        "en": "Woodcutter vs Zombies loading screen: a dark-fantasy stone castle with glowing green windows, towers and lanterns under a full moon",
-        "ru": "Экран загрузки «Лесоруб против зомби»: каменный замок в стиле dark fantasy с зелёными окнами, башнями и фонарями под полной луной"
-      },
-      "source": "C:\\Users\\tolik\\Documents\\woodcutter\\woodcutter\\blender\\loading\\_full_castle.png",
-      "notes": "Blender render used as an in-game loading screen, not a gameplay screenshot."
+      "locale": "en",
+      "source": "~/Downloads (ChatGPT images, 15-17 Oct 2026)",
+      "notes": "Promo thumbnail (AI-generated key art), text in the image language."
     },
     {
       "type": "image",
-      "src": "/media/woodcutter-vs-zombies/loading-zombies.webp",
+      "src": "/media/woodcutter-vs-zombies/cover-2-en.webp",
+      "alt": {
+        "en": "Woodcutter vs Zombies promo art: “Fight off zombies”",
+        "ru": "Промо-арт Woodcutter vs Zombies: «Fight off zombies»"
+      },
       "width": 1600,
       "height": 900,
-      "alt": {
-        "en": "Woodcutter vs Zombies loading screen: a zombie horde with a skeleton archer behind spiked iron gates covered in ivy",
-        "ru": "Экран загрузки «Лесоруб против зомби»: орда зомби и скелет-лучник за железными воротами с пиками и плющом"
-      },
-      "source": "C:\\Users\\tolik\\Documents\\woodcutter\\woodcutter\\blender\\loading\\_full_zombies.png",
-      "notes": "Blender render (loading screen)."
+      "locale": "en",
+      "source": "~/Downloads (ChatGPT images, 15-17 Oct 2026)",
+      "notes": "Promo thumbnail (AI-generated key art), text in the image language."
     },
     {
       "type": "image",
-      "src": "/media/woodcutter-vs-zombies/loading-dragon.webp",
+      "src": "/media/woodcutter-vs-zombies/cover-3-en.webp",
+      "alt": {
+        "en": "Woodcutter vs Zombies promo art: “Build your fort”",
+        "ru": "Промо-арт Woodcutter vs Zombies: «Build your fort»"
+      },
       "width": 1600,
       "height": 900,
-      "alt": {
-        "en": "Woodcutter vs Zombies loading screen: the flying dragon boss over a watchtower and a pine forest at night",
-        "ru": "Экран загрузки «Лесоруб против зомби»: летающий дракон-босс над сторожевой башней и сосновым лесом ночью"
-      },
-      "source": "C:\\Users\\tolik\\Documents\\woodcutter\\woodcutter\\blender\\loading\\_full_dragon.png",
-      "notes": "Blender render (loading screen). Dark image; check contrast on the page."
+      "locale": "en",
+      "source": "~/Downloads (ChatGPT images, 15-17 Oct 2026)",
+      "notes": "Promo thumbnail (AI-generated key art), text in the image language."
     },
     {
       "type": "image",
-      "src": "/media/woodcutter-vs-zombies/loading-center.webp",
+      "src": "/media/woodcutter-vs-zombies/cover-4-en.webp",
+      "alt": {
+        "en": "Woodcutter vs Zombies promo art: “Upgrade your gear”",
+        "ru": "Промо-арт Woodcutter vs Zombies: «Upgrade your gear»"
+      },
       "width": 1600,
       "height": 900,
-      "alt": {
-        "en": "Woodcutter vs Zombies loading screen: three gothic stone shop stalls in the map centre lit by lanterns",
-        "ru": "Экран загрузки «Лесоруб против зомби»: три готические каменные лавки в центре карты, освещённые фонарями"
-      },
-      "source": "C:\\Users\\tolik\\Documents\\woodcutter\\woodcutter\\blender\\loading\\_full_center.png",
-      "notes": "Blender render (loading screen)."
+      "locale": "en",
+      "source": "~/Downloads (ChatGPT images, 15-17 Oct 2026)",
+      "notes": "Promo thumbnail (AI-generated key art), text in the image language."
     },
     {
       "type": "image",
-      "src": "/media/woodcutter-vs-zombies/characters-preview.webp",
-      "width": 1600,
-      "height": 800,
+      "src": "/media/woodcutter-vs-zombies/cover-1-ru.webp",
       "alt": {
-        "en": "Blender model sheet of Woodcutter vs Zombies enemies and defenders: zombies, skeleton archer, jumper and knight archers",
-        "ru": "Лист моделей Blender для «Лесоруба против зомби»: зомби, скелет-лучник, прыгун и рыцари-лучники"
+        "en": "Woodcutter vs Zombies promo art (Russian): “Отбивайся от зомби”",
+        "ru": "Промо-арт «Лесоруб против зомби»: «Отбивайся от зомби»"
       },
-      "source": "C:\\Users\\tolik\\Documents\\woodcutter\\woodcutter\\blender\\preview_zombies_knights.png",
-      "notes": "Blender viewport preview, not an in-game shot."
+      "width": 1600,
+      "height": 900,
+      "locale": "ru",
+      "source": "~/Downloads (ChatGPT images, 15-17 Oct 2026)",
+      "notes": "Promo thumbnail (AI-generated key art), text in the image language."
+    },
+    {
+      "type": "image",
+      "src": "/media/woodcutter-vs-zombies/cover-2-ru.webp",
+      "alt": {
+        "en": "Woodcutter vs Zombies promo art (Russian): “Строй свой замок”",
+        "ru": "Промо-арт «Лесоруб против зомби»: «Строй свой замок»"
+      },
+      "width": 1600,
+      "height": 900,
+      "locale": "ru",
+      "source": "~/Downloads (ChatGPT images, 15-17 Oct 2026)",
+      "notes": "Promo thumbnail (AI-generated key art), text in the image language."
+    },
+    {
+      "type": "image",
+      "src": "/media/woodcutter-vs-zombies/cover-3-ru.webp",
+      "alt": {
+        "en": "Woodcutter vs Zombies promo art (Russian): “Улучшай предметы”",
+        "ru": "Промо-арт «Лесоруб против зомби»: «Улучшай предметы»"
+      },
+      "width": 1600,
+      "height": 900,
+      "locale": "ru",
+      "source": "~/Downloads (ChatGPT images, 15-17 Oct 2026)",
+      "notes": "Promo thumbnail (AI-generated key art), text in the image language."
+    },
+    {
+      "type": "image",
+      "src": "/media/woodcutter-vs-zombies/cover-4-ru.webp",
+      "alt": {
+        "en": "Woodcutter vs Zombies promo art (Russian): “Исследуй мрачный мир”",
+        "ru": "Промо-арт «Лесоруб против зомби»: «Исследуй мрачный мир»"
+      },
+      "width": 1600,
+      "height": 900,
+      "locale": "ru",
+      "source": "~/Downloads (ChatGPT images, 15-17 Oct 2026)",
+      "notes": "Promo thumbnail (AI-generated key art), text in the image language."
+    },
+    {
+      "type": "image",
+      "src": "/media/woodcutter-vs-zombies/render-dragon.webp",
+      "alt": {
+        "en": "Woodcutter vs Zombies model, Blender render: night dragon boss with red membrane wings",
+        "ru": "Модель из «Лесоруба против зомби», рендер Blender: ночной дракон-босс с красными перепончатыми крыльями"
+      },
+      "width": 1600,
+      "height": 900,
+      "source": "C:/Users/tolik/Documents/woodcutter/woodcutter/blender/dragon.fbx",
+      "notes": "Studio render (EEVEE, key + violet rim light, bloom) of the game's FBX model, made for the portfolio."
+    },
+    {
+      "type": "image",
+      "src": "/media/woodcutter-vs-zombies/render-fire-knight.webp",
+      "alt": {
+        "en": "Woodcutter vs Zombies model, Blender render: fire knight with a burning helmet and a crossbow",
+        "ru": "Модель из «Лесоруба против зомби», рендер Blender: огненный рыцарь с горящим шлемом и арбалетом"
+      },
+      "width": 1600,
+      "height": 900,
+      "source": "C:/Users/tolik/Documents/woodcutter/woodcutter/blender/knightFire.fbx",
+      "notes": "Studio render (EEVEE, key + violet rim light, bloom) of the game's FBX model, made for the portfolio."
+    },
+    {
+      "type": "image",
+      "src": "/media/woodcutter-vs-zombies/render-gargoyle.webp",
+      "alt": {
+        "en": "Woodcutter vs Zombies model, Blender render: gargoyle with glowing red eyes on a gothic pedestal",
+        "ru": "Модель из «Лесоруба против зомби», рендер Blender: горгулья со светящимися красными глазами на готическом постаменте"
+      },
+      "width": 1600,
+      "height": 900,
+      "source": "C:/Users/tolik/Documents/woodcutter/woodcutter/blender/gargoyle.fbx",
+      "notes": "Studio render (EEVEE, key + violet rim light, bloom) of the game's FBX model, made for the portfolio."
+    },
+    {
+      "type": "image",
+      "src": "/media/woodcutter-vs-zombies/render-treasure-chest.webp",
+      "alt": {
+        "en": "Woodcutter vs Zombies model, Blender render: treasure chest full of coins and glowing gems",
+        "ru": "Модель из «Лесоруба против зомби», рендер Blender: сундук с монетами и светящимися самоцветами"
+      },
+      "width": 1600,
+      "height": 900,
+      "source": "C:/Users/tolik/Documents/woodcutter/woodcutter/blender/treasureChest.fbx",
+      "notes": "Studio render (EEVEE, key + violet rim light, bloom) of the game's FBX model, made for the portfolio."
+    },
+    {
+      "type": "image",
+      "src": "/media/woodcutter-vs-zombies/render-angel.webp",
+      "alt": {
+        "en": "Woodcutter vs Zombies model, Blender render: dark angel statue on a pedestal",
+        "ru": "Модель из «Лесоруба против зомби», рендер Blender: статуя тёмного ангела на постаменте"
+      },
+      "width": 1600,
+      "height": 900,
+      "source": "C:/Users/tolik/Documents/woodcutter/woodcutter/blender/angel.fbx",
+      "notes": "Studio render (EEVEE, key + violet rim light, bloom) of the game's FBX model, made for the portfolio."
     }
   ],
   "cabin-chaos": [
+    {
+      "type": "image",
+      "src": "/media/cabin-chaos/cover-en.webp",
+      "alt": {
+        "en": "Cabin Chaos promo art: flight attendants, a robot and monsters causing chaos in the cabin",
+        "ru": "Промо-арт Cabin Chaos: бортпроводники, робот и монстры устраивают хаос в салоне"
+      },
+      "width": 1600,
+      "height": 900,
+      "locale": "en",
+      "source": "~/Downloads (ChatGPT images, 15-17 Oct 2026)",
+      "notes": "Promo thumbnail (AI-generated key art), text in the image language."
+    },
+    {
+      "type": "image",
+      "src": "/media/cabin-chaos/cover-ru.webp",
+      "alt": {
+        "en": "Cabin Chaos promo art with the Russian title",
+        "ru": "Промо-арт «Хаос в кабине»: бортпроводники, робот и монстры в салоне"
+      },
+      "width": 1600,
+      "height": 900,
+      "locale": "ru",
+      "source": "~/Downloads (ChatGPT images, 15-17 Oct 2026)",
+      "notes": "Promo thumbnail (AI-generated key art), text in the image language."
+    },
     {
       "type": "video",
       "src": "/media/cabin-chaos/gameplay.mp4",
@@ -237,44 +356,86 @@
       },
       "source": "C:\\Users\\tolik\\Documents\\CabinChaos-Codex-Starter\\CabinChaos-Codex-Starter\\assets\\video\\CabinChaos_gameplay.mp4",
       "notes": "Frame at 27 s of the gameplay video."
-    },
-    {
-      "type": "image",
-      "src": "/media/cabin-chaos/sleepy-monster-model.webp",
-      "width": 800,
-      "height": 800,
-      "alt": {
-        "en": "Blender render of the Sleepy Monster passenger model from Cabin Chaos: a mint-and-lilac chunky cartoon creature",
-        "ru": "Рендер Blender модели пассажира Sleepy Monster из Cabin Chaos: пухлое мультяшное существо мятно-сиреневого цвета"
-      },
-      "source": "C:\\Users\\tolik\\Documents\\CabinChaos-Codex-Starter\\CabinChaos-Codex-Starter\\assets\\special_passengers\\SleepyMonster_preview.png",
-      "notes": "Asset preview, generated by a Blender Python script."
     }
   ],
   "pillars": [
     {
       "type": "image",
-      "src": "/media/pillars/thumbnail-1-en.webp",
+      "src": "/media/pillars/cover-1-en.webp",
+      "alt": {
+        "en": "PILLARS promo art: “Hide. Hunt. Build.” — Roblox characters among coloured block pillars",
+        "ru": "Промо-арт «Столбы»: «Прячься. Ищи. Строй.» — персонажи Roblox среди цветных столбов из блоков"
+      },
       "width": 1600,
       "height": 900,
-      "alt": {
-        "en": "PILLARS: Hide & Stack promo art: colourful block pillars on a grassy isometric island, a crowned yellow pillar as the tallest and a player searching with a magnifying glass",
-        "ru": "Промо-арт PILLARS: Hide & Stack: разноцветные столбы из блоков на травяном изометрическом острове, самый высокий жёлтый столб с короной и игрок с лупой в поисках блоков"
-      },
-      "source": "C:Users\tolikDocumentsPILLARSassetspromo\\thumbnail_1_en.png",
-      "notes": "Promo thumbnail (EN text). Image text mentions 13 maps (confirmed) and 2-8 players (lobby gates 2/4/6/8 confirmed); not repeated in alt."
+      "locale": "en",
+      "source": "~/Downloads (ChatGPT images, 15-17 Oct 2026)",
+      "notes": "Promo thumbnail (AI-generated key art), text in the image language."
     },
     {
       "type": "image",
-      "src": "/media/pillars/thumbnail-2-en.webp",
+      "src": "/media/pillars/cover-2-en.webp",
+      "alt": {
+        "en": "PILLARS promo art: “Find. Steal. Win.” — Roblox characters among coloured block pillars",
+        "ru": "Промо-арт «Столбы»: «Найди. Укради. Победи.» — персонажи Roblox среди цветных столбов из блоков"
+      },
       "width": 1600,
       "height": 900,
+      "locale": "en",
+      "source": "~/Downloads (ChatGPT images, 15-17 Oct 2026)",
+      "notes": "Promo thumbnail (AI-generated key art), text in the image language."
+    },
+    {
+      "type": "image",
+      "src": "/media/pillars/cover-3-en.webp",
       "alt": {
-        "en": "PILLARS gameplay in three steps: 1. Hide your blocks, 2. Find other colours, 3. Build the tallest pillar",
-        "ru": "Игровой цикл PILLARS в трёх шагах: 1. Спрячь свои блоки, 2. Найди чужие цвета, 3. Построй самый высокий столб"
+        "en": "PILLARS promo art: “Stack to the top!” — Roblox characters among coloured block pillars",
+        "ru": "Промо-арт «Столбы»: «Строй до вершины!» — персонажи Roblox среди цветных столбов из блоков"
       },
-      "source": "C:Users\tolikDocumentsPILLARSassetspromo\\thumbnail_2_en.png",
-      "notes": "Promo thumbnail explaining the core loop (EN text)."
+      "width": 1600,
+      "height": 900,
+      "locale": "en",
+      "source": "~/Downloads (ChatGPT images, 15-17 Oct 2026)",
+      "notes": "Promo thumbnail (AI-generated key art), text in the image language."
+    },
+    {
+      "type": "image",
+      "src": "/media/pillars/cover-1-ru.webp",
+      "alt": {
+        "en": "PILLARS promo art: “Hide. Hunt. Build.” — Roblox characters among coloured block pillars",
+        "ru": "Промо-арт «Столбы»: «Прячься. Ищи. Строй.» — персонажи Roblox среди цветных столбов из блоков"
+      },
+      "width": 1600,
+      "height": 900,
+      "locale": "ru",
+      "source": "~/Downloads (ChatGPT images, 15-17 Oct 2026)",
+      "notes": "Promo thumbnail (AI-generated key art), text in the image language."
+    },
+    {
+      "type": "image",
+      "src": "/media/pillars/cover-2-ru.webp",
+      "alt": {
+        "en": "PILLARS promo art: “Find. Steal. Win.” — Roblox characters among coloured block pillars",
+        "ru": "Промо-арт «Столбы»: «Найди. Укради. Победи.» — персонажи Roblox среди цветных столбов из блоков"
+      },
+      "width": 1600,
+      "height": 900,
+      "locale": "ru",
+      "source": "~/Downloads (ChatGPT images, 15-17 Oct 2026)",
+      "notes": "Promo thumbnail (AI-generated key art), text in the image language."
+    },
+    {
+      "type": "image",
+      "src": "/media/pillars/cover-3-ru.webp",
+      "alt": {
+        "en": "PILLARS promo art: “Stack to the top!” — Roblox characters among coloured block pillars",
+        "ru": "Промо-арт «Столбы»: «Строй до вершины!» — персонажи Roblox среди цветных столбов из блоков"
+      },
+      "width": 1600,
+      "height": 900,
+      "locale": "ru",
+      "source": "~/Downloads (ChatGPT images, 15-17 Oct 2026)",
+      "notes": "Promo thumbnail (AI-generated key art), text in the image language."
     },
     {
       "type": "video",
@@ -287,7 +448,8 @@
         "ru": "Вертикальный промо-ролик PILLARS: Hide & Stack на английском: спрячь блоки, найди чужие цвета, построй самый высокий столб"
       },
       "source": "C:\\Users\\tolik\\Documents\\PILLARS\\assets\\video\\pillars_tiktok_en.mp4",
-      "notes": "Full 22 s, with audio, 720x1280, about 1.5 MB. Poster frame at 13 s (stacking phase). Music licence (APM tracks per git log) not re-verified. The end card says 'Play free on Roblox!', but no Roblox link was found."
+      "notes": "Full 22 s, with audio, 720x1280, about 1.5 MB. Poster frame at 13 s (stacking phase). Music licence (APM tracks per git log) not re-verified. The end card says 'Play free on Roblox!', but no Roblox link was found.",
+      "locale": "en"
     },
     {
       "type": "video",
@@ -300,21 +462,48 @@
         "ru": "Вертикальный промо-ролик PILLARS: Hide & Stack на русском: фазы «спрячь», «найди» и «построй столб»"
       },
       "source": "C:\\Users\\tolik\\Documents\\PILLARS\\assets\\video\\pillars_tiktok_ru.mp4",
-      "notes": "Full 22 s, with audio, 720x1280, about 1.5 MB. Promo images (*.webp) are added separately by the 3D artist."
+      "notes": "Full 22 s, with audio, 720x1280, about 1.5 MB. Promo images (*.webp) are added separately by the 3D artist.",
+      "locale": "ru"
     }
   ],
   "build-your-pet": [
+    {
+      "type": "image",
+      "src": "/media/build-your-pet/cover-en.webp",
+      "alt": {
+        "en": "Build Your Own Pet key art: a cute sea dragon and pets over floating voxel islands",
+        "ru": "Обложка Build Your Own Pet: милый морской дракон и питомцы над летающими воксельными островами"
+      },
+      "width": 1600,
+      "height": 900,
+      "locale": "en",
+      "source": "~/Downloads (ChatGPT image, 18 Oct 2026)",
+      "notes": "Promo key art (AI-generated), EN title."
+    },
+    {
+      "type": "image",
+      "src": "/media/build-your-pet/cover-ru.webp",
+      "alt": {
+        "en": "Build Your Own Pet key art with the Russian title",
+        "ru": "Обложка «Собери своего питомца»: милый морской дракон и питомцы над летающими воксельными островами"
+      },
+      "width": 1600,
+      "height": 900,
+      "locale": "ru",
+      "source": "~/Downloads (ChatGPT image, 18 Oct 2026)",
+      "notes": "Promo key art (AI-generated), RU title."
+    },
     {
       "type": "image",
       "src": "/media/build-your-pet/all-pets.webp",
       "width": 1600,
       "height": 394,
       "alt": {
-        "en": "Lineup of cute modular pets from Petforge Arena, each assembled from elemental parts",
-        "ru": "Ряд милых модульных питомцев Petforge Arena, каждый собран из частей разных стихий"
+        "en": "Lineup of cute modular pets from Build Your Own Pet, each assembled from elemental parts",
+        "ru": "Ряд милых модульных питомцев из «Собери своего питомца», каждый собран из частей разных стихий"
       },
       "source": "C:\\Users\\tolik\\Documents\\питомцы\\blender\\previews\\v2\\ALL_PETS.png",
-      "notes": "Blender render (v2 art). The in-source project title is 'Petforge Arena' (working title); 'Build Your Pet' is not confirmed as the game name."
+      "notes": "Blender render (v2 art). Released as Build Your Own Pet / «Собери своего питомца» (source repo: Petforge Arena)."
     },
     {
       "type": "image",
@@ -322,8 +511,8 @@
       "width": 1600,
       "height": 510,
       "alt": {
-        "en": "The same Petforge Arena pet in increasing rarity tiers, each with richer ornaments",
-        "ru": "Один и тот же питомец Petforge Arena на разных уровнях редкости, с всё более богатыми украшениями"
+        "en": "The same Build Your Own Pet pet in increasing rarity tiers, each with richer ornaments",
+        "ru": "Один и тот же питомец из «Собери своего питомца» на разных уровнях редкости, с всё более богатыми украшениями"
       },
       "source": "C:\\Users\\tolik\\Documents\\питомцы\\blender\\previews\\v2\\RARITY_LINEUP.png",
       "notes": "Blender render."
@@ -334,8 +523,8 @@
       "width": 1600,
       "height": 1000,
       "alt": {
-        "en": "Aerial view of the pastel Petforge Arena lobby with the challenge tower, shops, arena and portal arches",
-        "ru": "Вид сверху на пастельное лобби Petforge Arena: башня испытаний, магазины, арена и арки порталов"
+        "en": "Aerial view of the pastel Build Your Own Pet lobby with the challenge tower, shops, arena and portal arches",
+        "ru": "Вид сверху на пастельное лобби «Собери своего питомца»: башня испытаний, магазины, арена и арки порталов"
       },
       "source": "C:\\Users\\tolik\\Documents\\питомцы\\blender\\previews\\world\\LOBBY_aerial.png",
       "notes": "Blender render of the world layout, not an in-game Roblox screenshot. Slightly washed out."
@@ -346,8 +535,8 @@
       "width": 1600,
       "height": 1000,
       "alt": {
-        "en": "Grid of Petforge Arena pet parts by element (air, wood, stone, fire): wings, tails, paws, heads and bodies",
-        "ru": "Сетка частей питомцев Petforge Arena по стихиям (воздух, дерево, камень, огонь): крылья, хвосты, лапы, головы и тела"
+        "en": "Grid of Build Your Own Pet pet parts by element (air, wood, stone, fire): wings, tails, paws, heads and bodies",
+        "ru": "Сетка частей питомцев из «Собери своего питомца» по стихиям (воздух, дерево, камень, огонь): крылья, хвосты, лапы, головы и тела"
       },
       "source": "C:\\Users\\tolik\\Documents\\питомцы\\blender\\previews\\PARTS_GRID.png",
       "notes": "Blender render of the first-version parts set; it illustrates the 6-slot modular system."

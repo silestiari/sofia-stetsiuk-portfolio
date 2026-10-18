@@ -17,14 +17,15 @@
   --color-transparent: transparent;
   --color-current: currentColor;
 
-  --color-qa-accent: #9D8CFF;
-  --color-qa-accent-fill: #6E5CF0;
-  --color-qa-accent-fill-hover: #5B48E0; /* темнее fill → контраст с белым растёт (> 4.7) */
+  --color-qa-accent: #F58FBA;           /* нежно-розовый, 8.6:1 на bg */
+  --color-qa-accent-fill: #F58FBA;
+  --color-qa-accent-fill-hover: #F7A6C8; /* светлее fill → контраст с тёмным текстом растёт */
+  --color-on-accent: #0D0E11;           /* текст на розовой заливке, 8.6:1 */
   --color-qa-measure: #A4AAB5;
 
   --color-game-pink: #FF7AB8;
   --color-game-sky: #6FC9FF;
-  --color-game-violet: #9D8CFF;
+  --color-game-violet: #F58FBA;
 
   --color-pet-bg: #FFF7EF;
   --color-pet-surface: #FFE8DA;
@@ -165,7 +166,7 @@
   }
   h1, h2, h3 { text-wrap: balance; hyphens: manual; }
   p { text-wrap: pretty; overflow-wrap: break-word; hyphens: auto; }
-  ::selection { background: var(--color-qa-accent-fill); color: var(--color-white); }
+  ::selection { background: var(--color-qa-accent-fill); color: var(--color-on-accent); }
 
   :focus-visible { outline: var(--ring); outline-offset: var(--ring-offset); }
   [tabindex="-1"]:focus:not(:focus-visible) { outline: none; }
@@ -308,7 +309,7 @@
 .btn[aria-disabled="true"], .btn:disabled { cursor: default; }
 .btn[aria-busy="true"] { pointer-events: none; }
 
-.btn-primary { background: var(--color-qa-accent-fill); color: var(--color-white); }
+.btn-primary { background: var(--color-qa-accent-fill); color: var(--color-on-accent); }
 /* HUD corner brackets that appear outside the button on hover */
 .btn-primary::after {
   content: "";

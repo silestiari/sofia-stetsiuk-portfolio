@@ -111,13 +111,6 @@ export const aiLabNodes: AiLabNode[] = [
         },
       },
       {
-        projectSlug: "metrocity",
-        text: {
-          en: "14 agents and a file-ownership table in CLAUDE.md and AGENTS.md.",
-          ru: "14 агентов и таблица владения файлами в CLAUDE.md и AGENTS.md.",
-        },
-      },
-      {
         projectSlug: "grand-mall-batumi",
         text: {
           en: "8 subagents: UI, Next.js, UI/UX testing, performance, accessibility, SEO, test automation and code review.",
@@ -256,13 +249,6 @@ export const aiLabNodes: AiLabNode[] = [
       {
         projectSlug: "pillars",
         text: { en: "Tagged v1.0 with a release checklist.", ru: "Тег v1.0 и чек-лист релиза." },
-      },
-      {
-        projectSlug: "metrocity",
-        text: {
-          en: "Launch is on hold until written approval — indexing stays off.",
-          ru: "Запуск ждёт письменного согласования — индексация пока выключена.",
-        },
       },
       {
         projectSlug: "cabin-chaos",

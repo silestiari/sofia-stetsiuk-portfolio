@@ -188,7 +188,7 @@ export function WorkflowGraph({ projectTitles }: { projectTitles: Record<string,
                       aria-controls="ai-role-panel"
                       tabIndex={role === r ? 0 : -1}
                       onClick={() => setRole(r)}
-                      className="hud text-mono-xs min-h-11 cursor-pointer rounded-qa px-4 text-text-2 aria-selected:bg-qa-accent-fill aria-selected:text-white"
+                      className="hud text-mono-xs min-h-11 cursor-pointer rounded-qa px-4 text-text-2 aria-selected:bg-qa-accent-fill aria-selected:text-on-accent"
                     >
                       {t(r)}
                     </button>

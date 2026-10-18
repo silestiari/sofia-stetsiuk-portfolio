@@ -21,6 +21,8 @@ export interface ProjectMedia {
   width?: number;
   height?: number;
   poster?: string;
+  /** Shown only in this locale (e.g. promo art with text); omitted = both */
+  locale?: Locale;
 }
 
 export interface ProjectLink {
@@ -62,6 +64,10 @@ export interface Project {
 export interface Model3D {
   id: string;
   projectSlug: Project["slug"];
+  /** Showroom picker group, e.g. buildings / trees */
+  group: string;
+  /** Roblox Creator Store page of the pack this model ships in */
+  storeUrl?: string;
   /** Optimized .glb path under /public */
   file: string;
   /** Static image shown before/instead of the 3D canvas */

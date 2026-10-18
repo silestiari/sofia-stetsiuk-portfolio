@@ -1,222 +1,728 @@
 [
   {
-    "id": "pet-cotton-cloud",
+    "id": "bubble-lagoon-dragon",
     "projectSlug": "build-your-pet",
-    "file": "/models/pet-cotton-cloud.glb",
-    "poster": "/posters/pet-cotton-cloud.webp",
+    "group": "dragon",
+    "file": "/models/bubble-lagoon-dragon.glb",
+    "poster": "/posters/bubble-lagoon-dragon.webp",
     "title": {
-      "en": "Cotton Cloud Pet",
-      "ru": "Питомец Cotton Cloud"
+      "en": "Bubble Lagoon Sea Dragon",
+      "ru": "Морской дракон Bubble Lagoon"
     },
     "description": {
-      "en": "Air-element pet assembled from six procedurally generated parts of the Build Your Pet parts library.",
-      "ru": "Питомец стихии «Воздух», собранный из шести процедурно сгенерированных частей библиотеки Build Your Pet."
+      "en": "The dragon coiled around the Bubble Lagoon vortex — one piece, as in the game.",
+      "ru": "Дракон, обвивший водоворот Bubble Lagoon, — одна модель, как в игре."
     },
-    "source": "../питомцы/blender/assets/petforge_parts_v2.blend",
-    "triangles": 14796,
-    "sizeKB": 395.2,
+    "source": "../питомцы/blender/exports/creator_store/packs/Petforge_Sea_Dragon.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/106866128680722",
+    "triangles": 118129,
+    "sizeKB": 482.3,
     "decimated": false,
     "animations": [],
-    "notes": "Source tris 14796; colours: vertex colours (COLOR_0); poster 30.4 KB"
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 4 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
   },
   {
-    "id": "pet-bunny-dragon",
+    "id": "coin-shop",
     "projectSlug": "build-your-pet",
-    "file": "/models/pet-bunny-dragon.glb",
-    "poster": "/posters/pet-bunny-dragon.webp",
+    "group": "buildings",
+    "file": "/models/coin-shop.glb",
+    "poster": "/posters/coin-shop.webp",
     "title": {
-      "en": "Bunny Dragon Hybrid",
-      "ru": "Гибрид Bunny Dragon"
+      "en": "Coin Shop",
+      "ru": "Магазин монет"
     },
     "description": {
-      "en": "Hybrid pet mixing Air, Fire, Wood and Stone parts (the HYBRID_BUNNY_DRAGON combo from build_all.py).",
-      "ru": "Гибридный питомец из частей стихий «Воздух», «Огонь», «Дерево» и «Камень» (комбинация HYBRID_BUNNY_DRAGON из build_all.py)."
+      "en": "Building from the Build Your Own Pet lobby and worlds.",
+      "ru": "Здание из лобби и миров «Собери своего питомца»."
     },
-    "source": "../питомцы/blender/assets/petforge_parts_v2.blend",
-    "triangles": 14798,
-    "sizeKB": 444.7,
+    "source": "../питомцы/blender/exports/creator_store/buildings/COIN_SHOP.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/132105402001132",
+    "triangles": 29952,
+    "sizeKB": 141.2,
     "decimated": false,
     "animations": [],
-    "notes": "Source tris 14798; colours: vertex colours (COLOR_0); poster 31.4 KB"
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 2 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "comp-stage",
+    "projectSlug": "build-your-pet",
+    "group": "buildings",
+    "file": "/models/comp-stage.glb",
+    "poster": "/posters/comp-stage.webp",
+    "title": {
+      "en": "Competition Stage",
+      "ru": "Сцена соревнований"
+    },
+    "description": {
+      "en": "Building from the Build Your Own Pet lobby and worlds.",
+      "ru": "Здание из лобби и миров «Собери своего питомца»."
+    },
+    "source": "../питомцы/blender/exports/creator_store/buildings/COMP_STAGE.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/132105402001132",
+    "triangles": 28080,
+    "sizeKB": 120.4,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 1 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "pvp-arena",
+    "projectSlug": "build-your-pet",
+    "group": "buildings",
+    "file": "/models/pvp-arena.glb",
+    "poster": "/posters/pvp-arena.webp",
+    "title": {
+      "en": "PvP Arena",
+      "ru": "PvP-арена"
+    },
+    "description": {
+      "en": "Building from the Build Your Own Pet lobby and worlds.",
+      "ru": "Здание из лобби и миров «Собери своего питомца»."
+    },
+    "source": "../питомцы/blender/exports/creator_store/buildings/PVP_ARENA.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/132105402001132",
+    "triangles": 29625,
+    "sizeKB": 158.3,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 2 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "spawn-gazebo",
+    "projectSlug": "build-your-pet",
+    "group": "buildings",
+    "file": "/models/spawn-gazebo.glb",
+    "poster": "/posters/spawn-gazebo.webp",
+    "title": {
+      "en": "Spawn Gazebo",
+      "ru": "Беседка спавна"
+    },
+    "description": {
+      "en": "Building from the Build Your Own Pet lobby and worlds.",
+      "ru": "Здание из лобби и миров «Собери своего питомца»."
+    },
+    "source": "../питомцы/blender/exports/creator_store/buildings/SPAWN_GAZEBO.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/132105402001132",
+    "triangles": 19884,
+    "sizeKB": 88.0,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 1 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "token-shop",
+    "projectSlug": "build-your-pet",
+    "group": "buildings",
+    "file": "/models/token-shop.glb",
+    "poster": "/posters/token-shop.webp",
+    "title": {
+      "en": "Token Shop",
+      "ru": "Магазин жетонов"
+    },
+    "description": {
+      "en": "Building from the Build Your Own Pet lobby and worlds.",
+      "ru": "Здание из лобби и миров «Собери своего питомца»."
+    },
+    "source": "../питомцы/blender/exports/creator_store/buildings/TOKEN_SHOP.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/132105402001132",
+    "triangles": 29820,
+    "sizeKB": 151.7,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 2 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "tower",
+    "projectSlug": "build-your-pet",
+    "group": "buildings",
+    "file": "/models/tower.glb",
+    "poster": "/posters/tower.webp",
+    "title": {
+      "en": "Tower",
+      "ru": "Башня"
+    },
+    "description": {
+      "en": "Building from the Build Your Own Pet lobby and worlds.",
+      "ru": "Здание из лобби и миров «Собери своего питомца»."
+    },
+    "source": "../питомцы/blender/exports/creator_store/buildings/TOWER.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/132105402001132",
+    "triangles": 29969,
+    "sizeKB": 173.5,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 3 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "aurora-switch-palace",
+    "projectSlug": "build-your-pet",
+    "group": "buildings",
+    "file": "/models/aurora-switch-palace.glb",
+    "poster": "/posters/aurora-switch-palace.webp",
+    "title": {
+      "en": "Aurora Switch Palace",
+      "ru": "Дворец Aurora Switch"
+    },
+    "description": {
+      "en": "Building from the Build Your Own Pet lobby and worlds.",
+      "ru": "Здание из лобби и миров «Собери своего питомца»."
+    },
+    "source": "../питомцы/blender/exports/creator_store/buildings/W_AURORA_SWITCH_PALACE.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/99035061910645",
+    "triangles": 32336,
+    "sizeKB": 168.0,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 3 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "bubble-lagoon-lighthouse",
+    "projectSlug": "build-your-pet",
+    "group": "buildings",
+    "file": "/models/bubble-lagoon-lighthouse.glb",
+    "poster": "/posters/bubble-lagoon-lighthouse.webp",
+    "title": {
+      "en": "Bubble Lagoon Lighthouse",
+      "ru": "Маяк Bubble Lagoon"
+    },
+    "description": {
+      "en": "Building from the Build Your Own Pet lobby and worlds.",
+      "ru": "Здание из лобби и миров «Собери своего питомца»."
+    },
+    "source": "../питомцы/blender/exports/creator_store/buildings/W_BUBBLE_LAGOON_LIGHTHOUSE.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/99035061910645",
+    "triangles": 23440,
+    "sizeKB": 106.6,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 2 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
   },
   {
     "id": "cloud-gardens-castle",
     "projectSlug": "build-your-pet",
+    "group": "buildings",
     "file": "/models/cloud-gardens-castle.glb",
     "poster": "/posters/cloud-gardens-castle.webp",
     "title": {
       "en": "Cloud Gardens Castle",
-      "ru": "Замок Cloud Gardens"
+      "ru": "Облачный замок Cloud Gardens"
     },
     "description": {
-      "en": "World landmark of the Cloud Gardens world, generated by the Blender Python script w_cloud_gardens.py.",
-      "ru": "Объект мира Cloud Gardens, сгенерированный Blender Python-скриптом w_cloud_gardens.py."
+      "en": "Building from the Build Your Own Pet lobby and worlds.",
+      "ru": "Здание из лобби и миров «Собери своего питомца»."
     },
-    "source": "../питомцы/blender/assets/petforge_world.blend",
-    "triangles": 23994,
-    "sizeKB": 755.0,
-    "decimated": true,
+    "source": "../питомцы/blender/exports/creator_store/buildings/W_CLOUD_GARDENS_CASTLE.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/99035061910645",
+    "triangles": 35576,
+    "sizeKB": 194.6,
+    "decimated": false,
     "animations": [],
-    "notes": "Source tris 35576; decimated (Collapse) to 23994; colours: vertex colours (COLOR_0); poster 42.5 KB"
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 2 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
   },
   {
-    "id": "fairy-tree",
+    "id": "hidden-meadow-windmill",
     "projectSlug": "build-your-pet",
-    "file": "/models/fairy-tree.glb",
-    "poster": "/posters/fairy-tree.webp",
+    "group": "buildings",
+    "file": "/models/hidden-meadow-windmill.glb",
+    "poster": "/posters/hidden-meadow-windmill.webp",
     "title": {
-      "en": "Fairy Tree",
-      "ru": "Сказочное дерево"
+      "en": "Hidden Meadow Windmill",
+      "ru": "Мельница Hidden Meadow"
     },
     "description": {
-      "en": "Voxel-style lobby tree generated by the Blender Python script t_fairy.py.",
-      "ru": "Воксельное дерево лобби, сгенерированное Blender Python-скриптом t_fairy.py."
+      "en": "Building from the Build Your Own Pet lobby and worlds.",
+      "ru": "Здание из лобби и миров «Собери своего питомца»."
     },
-    "source": "../питомцы/blender/assets/petforge_world.blend",
+    "source": "../питомцы/blender/exports/creator_store/buildings/W_HIDDEN_MEADOW_WINDMILL.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/99035061910645",
+    "triangles": 29504,
+    "sizeKB": 133.4,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 2 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "leaf-leap-pagoda",
+    "projectSlug": "build-your-pet",
+    "group": "buildings",
+    "file": "/models/leaf-leap-pagoda.glb",
+    "poster": "/posters/leaf-leap-pagoda.webp",
+    "title": {
+      "en": "Leaf Leap Pagoda",
+      "ru": "Пагода Leaf Leap"
+    },
+    "description": {
+      "en": "Building from the Build Your Own Pet lobby and worlds.",
+      "ru": "Здание из лобби и миров «Собери своего питомца»."
+    },
+    "source": "../питомцы/blender/exports/creator_store/buildings/W_LEAF_LEAP_PAGODA.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/99035061910645",
+    "triangles": 18728,
+    "sizeKB": 98.0,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 1 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "mushroom-maze-house",
+    "projectSlug": "build-your-pet",
+    "group": "buildings",
+    "file": "/models/mushroom-maze-house.glb",
+    "poster": "/posters/mushroom-maze-house.webp",
+    "title": {
+      "en": "Mushroom Maze House",
+      "ru": "Грибной домик Mushroom Maze"
+    },
+    "description": {
+      "en": "Building from the Build Your Own Pet lobby and worlds.",
+      "ru": "Здание из лобби и миров «Собери своего питомца»."
+    },
+    "source": "../питомцы/blender/exports/creator_store/buildings/W_MUSHROOM_MAZE_HOUSE.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/99035061910645",
+    "triangles": 35550,
+    "sizeKB": 151.2,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 3 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "pebble-peaks-temple",
+    "projectSlug": "build-your-pet",
+    "group": "buildings",
+    "file": "/models/pebble-peaks-temple.glb",
+    "poster": "/posters/pebble-peaks-temple.webp",
+    "title": {
+      "en": "Pebble Peaks Temple",
+      "ru": "Храм Pebble Peaks"
+    },
+    "description": {
+      "en": "Building from the Build Your Own Pet lobby and worlds.",
+      "ru": "Здание из лобби и миров «Собери своего питомца»."
+    },
+    "source": "../питомцы/blender/exports/creator_store/buildings/W_PEBBLE_PEAKS_TEMPLE.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/99035061910645",
+    "triangles": 35152,
+    "sizeKB": 178.9,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 3 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "starfall-scoop-observatory",
+    "projectSlug": "build-your-pet",
+    "group": "buildings",
+    "file": "/models/starfall-scoop-observatory.glb",
+    "poster": "/posters/starfall-scoop-observatory.webp",
+    "title": {
+      "en": "Starfall Scoop Observatory",
+      "ru": "Обсерватория Starfall Scoop"
+    },
+    "description": {
+      "en": "Building from the Build Your Own Pet lobby and worlds.",
+      "ru": "Здание из лобби и миров «Собери своего питомца»."
+    },
+    "source": "../питомцы/blender/exports/creator_store/buildings/W_STARFALL_SCOOP_OBSERVATORY.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/99035061910645",
+    "triangles": 29828,
+    "sizeKB": 132.0,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 2 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "whisperwood-cottage",
+    "projectSlug": "build-your-pet",
+    "group": "buildings",
+    "file": "/models/whisperwood-cottage.glb",
+    "poster": "/posters/whisperwood-cottage.webp",
+    "title": {
+      "en": "Whisperwood Cottage",
+      "ru": "Лесной домик Whisperwood"
+    },
+    "description": {
+      "en": "Building from the Build Your Own Pet lobby and worlds.",
+      "ru": "Здание из лобби и миров «Собери своего питомца»."
+    },
+    "source": "../питомцы/blender/exports/creator_store/buildings/W_WHISPERWOOD_COTTAGE.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/99035061910645",
+    "triangles": 27180,
+    "sizeKB": 111.4,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 3 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "workshop",
+    "projectSlug": "build-your-pet",
+    "group": "buildings",
+    "file": "/models/workshop.glb",
+    "poster": "/posters/workshop.webp",
+    "title": {
+      "en": "Workshop",
+      "ru": "Мастерская"
+    },
+    "description": {
+      "en": "Building from the Build Your Own Pet lobby and worlds.",
+      "ru": "Здание из лобби и миров «Собери своего питомца»."
+    },
+    "source": "../питомцы/blender/exports/creator_store/buildings/WORKSHOP.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/132105402001132",
+    "triangles": 44672,
+    "sizeKB": 226.2,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 3 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "tree-lilac",
+    "projectSlug": "build-your-pet",
+    "group": "trees",
+    "file": "/models/tree-lilac.glb",
+    "poster": "/posters/tree-lilac.webp",
+    "title": {
+      "en": "Lilac Tree",
+      "ru": "Сиреневое дерево"
+    },
+    "description": {
+      "en": "Stylised tree prop.",
+      "ru": "Стилизованное дерево-декорация."
+    },
+    "source": "../питомцы/blender/exports/creator_store/trees/PROP_TREE_LILAC.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/128077058614717",
+    "triangles": 1198,
+    "sizeKB": 9.4,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); poster with bloom"
+  },
+  {
+    "id": "tree-mint",
+    "projectSlug": "build-your-pet",
+    "group": "trees",
+    "file": "/models/tree-mint.glb",
+    "poster": "/posters/tree-mint.webp",
+    "title": {
+      "en": "Mint Tree",
+      "ru": "Мятное дерево"
+    },
+    "description": {
+      "en": "Stylised tree prop.",
+      "ru": "Стилизованное дерево-декорация."
+    },
+    "source": "../питомцы/blender/exports/creator_store/trees/PROP_TREE_MINT.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/128077058614717",
+    "triangles": 1164,
+    "sizeKB": 7.4,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); poster with bloom"
+  },
+  {
+    "id": "tree-pink",
+    "projectSlug": "build-your-pet",
+    "group": "trees",
+    "file": "/models/tree-pink.glb",
+    "poster": "/posters/tree-pink.webp",
+    "title": {
+      "en": "Pink Tree",
+      "ru": "Розовое дерево"
+    },
+    "description": {
+      "en": "Stylised tree prop.",
+      "ru": "Стилизованное дерево-декорация."
+    },
+    "source": "../питомцы/blender/exports/creator_store/trees/PROP_TREE_PINK.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/128077058614717",
+    "triangles": 1290,
+    "sizeKB": 9.2,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); poster with bloom"
+  },
+  {
+    "id": "tree-ancient-island",
+    "projectSlug": "build-your-pet",
+    "group": "trees",
+    "file": "/models/tree-ancient-island.glb",
+    "poster": "/posters/tree-ancient-island.webp",
+    "title": {
+      "en": "Ancient Tree on an Island",
+      "ru": "Древнее дерево на острове"
+    },
+    "description": {
+      "en": "Voxel tree for the game worlds.",
+      "ru": "Воксельное дерево для миров игры."
+    },
+    "source": "../питомцы/blender/exports/creator_store/trees/TREE_ANCIENT.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/96989146849250",
+    "triangles": 62142,
+    "sizeKB": 374.8,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 4 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "tree-ancient-l",
+    "projectSlug": "build-your-pet",
+    "group": "trees",
+    "file": "/models/tree-ancient-l.glb",
+    "poster": "/posters/tree-ancient-l.webp",
+    "title": {
+      "en": "Ancient Tree, large",
+      "ru": "Древнее дерево, большое"
+    },
+    "description": {
+      "en": "Voxel tree for the game worlds.",
+      "ru": "Воксельное дерево для миров игры."
+    },
+    "source": "../питомцы/blender/exports/creator_store/trees/TREE_ANCIENT_L.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/118286549704362",
+    "triangles": 13886,
+    "sizeKB": 86.2,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 1 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "tree-ancient-m",
+    "projectSlug": "build-your-pet",
+    "group": "trees",
+    "file": "/models/tree-ancient-m.glb",
+    "poster": "/posters/tree-ancient-m.webp",
+    "title": {
+      "en": "Ancient Tree, medium",
+      "ru": "Древнее дерево, среднее"
+    },
+    "description": {
+      "en": "Voxel tree for the game worlds.",
+      "ru": "Воксельное дерево для миров игры."
+    },
+    "source": "../питомцы/blender/exports/creator_store/trees/TREE_ANCIENT_M.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/118286549704362",
+    "triangles": 4396,
+    "sizeKB": 27.8,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); poster with bloom"
+  },
+  {
+    "id": "tree-blossom-l",
+    "projectSlug": "build-your-pet",
+    "group": "trees",
+    "file": "/models/tree-blossom-l.glb",
+    "poster": "/posters/tree-blossom-l.webp",
+    "title": {
+      "en": "Blossom Tree, large",
+      "ru": "Цветущее дерево, большое"
+    },
+    "description": {
+      "en": "Voxel tree for the game worlds.",
+      "ru": "Воксельное дерево для миров игры."
+    },
+    "source": "../питомцы/blender/exports/creator_store/trees/TREE_BLOSSOM_L.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/118286549704362",
+    "triangles": 13776,
+    "sizeKB": 89.5,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 1 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "tree-blossom-m",
+    "projectSlug": "build-your-pet",
+    "group": "trees",
+    "file": "/models/tree-blossom-m.glb",
+    "poster": "/posters/tree-blossom-m.webp",
+    "title": {
+      "en": "Blossom Tree, medium",
+      "ru": "Цветущее дерево, среднее"
+    },
+    "description": {
+      "en": "Voxel tree for the game worlds.",
+      "ru": "Воксельное дерево для миров игры."
+    },
+    "source": "../питомцы/blender/exports/creator_store/trees/TREE_BLOSSOM_M.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/118286549704362",
+    "triangles": 4484,
+    "sizeKB": 30.8,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 1 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "tree-cloud-l",
+    "projectSlug": "build-your-pet",
+    "group": "trees",
+    "file": "/models/tree-cloud-l.glb",
+    "poster": "/posters/tree-cloud-l.webp",
+    "title": {
+      "en": "Cloud Tree, large",
+      "ru": "Облачное дерево, большое"
+    },
+    "description": {
+      "en": "Voxel tree for the game worlds.",
+      "ru": "Воксельное дерево для миров игры."
+    },
+    "source": "../питомцы/blender/exports/creator_store/trees/TREE_CLOUD_L.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/118286549704362",
+    "triangles": 13672,
+    "sizeKB": 87.1,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 1 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "tree-cloud-m",
+    "projectSlug": "build-your-pet",
+    "group": "trees",
+    "file": "/models/tree-cloud-m.glb",
+    "poster": "/posters/tree-cloud-m.webp",
+    "title": {
+      "en": "Cloud Tree, medium",
+      "ru": "Облачное дерево, среднее"
+    },
+    "description": {
+      "en": "Voxel tree for the game worlds.",
+      "ru": "Воксельное дерево для миров игры."
+    },
+    "source": "../питомцы/blender/exports/creator_store/trees/TREE_CLOUD_M.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/118286549704362",
+    "triangles": 4430,
+    "sizeKB": 28.8,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 1 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "tree-crystal-l",
+    "projectSlug": "build-your-pet",
+    "group": "trees",
+    "file": "/models/tree-crystal-l.glb",
+    "poster": "/posters/tree-crystal-l.webp",
+    "title": {
+      "en": "Crystal Tree, large",
+      "ru": "Кристальное дерево, большое"
+    },
+    "description": {
+      "en": "Voxel tree for the game worlds.",
+      "ru": "Воксельное дерево для миров игры."
+    },
+    "source": "../питомцы/blender/exports/creator_store/trees/TREE_CRYSTAL_L.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/118286549704362",
+    "triangles": 13158,
+    "sizeKB": 70.3,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 1 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "tree-crystal-m",
+    "projectSlug": "build-your-pet",
+    "group": "trees",
+    "file": "/models/tree-crystal-m.glb",
+    "poster": "/posters/tree-crystal-m.webp",
+    "title": {
+      "en": "Crystal Tree, medium",
+      "ru": "Кристальное дерево, среднее"
+    },
+    "description": {
+      "en": "Voxel tree for the game worlds.",
+      "ru": "Воксельное дерево для миров игры."
+    },
+    "source": "../питомцы/blender/exports/creator_store/trees/TREE_CRYSTAL_M.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/118286549704362",
+    "triangles": 4398,
+    "sizeKB": 25.7,
+    "decimated": false,
+    "animations": [],
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 1 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
+  },
+  {
+    "id": "tree-fairy-l",
+    "projectSlug": "build-your-pet",
+    "group": "trees",
+    "file": "/models/tree-fairy-l.glb",
+    "poster": "/posters/tree-fairy-l.webp",
+    "title": {
+      "en": "Fairy Tree, large",
+      "ru": "Сказочное дерево, большое"
+    },
+    "description": {
+      "en": "Voxel tree for the game worlds.",
+      "ru": "Воксельное дерево для миров игры."
+    },
+    "source": "../питомцы/blender/exports/creator_store/trees/TREE_FAIRY_L.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/118286549704362",
     "triangles": 13548,
-    "sizeKB": 927.4,
+    "sizeKB": 85.0,
     "decimated": false,
     "animations": [],
-    "notes": "Source tris 13548; colours: vertex colours (COLOR_0); poster 47.0 KB"
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 3 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
   },
   {
-    "id": "robot-passenger",
-    "projectSlug": "cabin-chaos",
-    "file": "/models/robot-passenger.glb",
-    "poster": "/posters/robot-passenger.webp",
+    "id": "tree-fairy-m",
+    "projectSlug": "build-your-pet",
+    "group": "trees",
+    "file": "/models/tree-fairy-m.glb",
+    "poster": "/posters/tree-fairy-m.webp",
     "title": {
-      "en": "Robot Passenger",
-      "ru": "Пассажир-робот"
+      "en": "Fairy Tree, medium",
+      "ru": "Сказочное дерево, среднее"
     },
     "description": {
-      "en": "Special passenger, low-poly model generated by generate_special_passengers.py.",
-      "ru": "Особый пассажир, low-poly модель, сгенерированная generate_special_passengers.py."
+      "en": "Voxel tree for the game worlds.",
+      "ru": "Воксельное дерево для миров игры."
     },
-    "source": "../CabinChaos-Codex-Starter/CabinChaos-Codex-Starter/assets/special_passengers/SpecialPassengers.blend",
-    "triangles": 1224,
-    "sizeKB": 60.1,
+    "source": "../питомцы/blender/exports/creator_store/trees/TREE_FAIRY_M.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/118286549704362",
+    "triangles": 4448,
+    "sizeKB": 31.9,
     "decimated": false,
     "animations": [],
-    "notes": "Source tris 1224; colours: PBR material factors, no textures; poster 29.5 KB"
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 3 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
   },
   {
-    "id": "sleepy-monster",
-    "projectSlug": "cabin-chaos",
-    "file": "/models/sleepy-monster.glb",
-    "poster": "/posters/sleepy-monster.webp",
+    "id": "tree-mushroom-l",
+    "projectSlug": "build-your-pet",
+    "group": "trees",
+    "file": "/models/tree-mushroom-l.glb",
+    "poster": "/posters/tree-mushroom-l.webp",
     "title": {
-      "en": "Sleepy Monster",
-      "ru": "Сонный монстр"
+      "en": "Mushroom Tree, large",
+      "ru": "Гриб-дерево, большое"
     },
     "description": {
-      "en": "Special passenger, low-poly model generated by generate_special_passengers.py.",
-      "ru": "Особый пассажир, low-poly модель, сгенерированная generate_special_passengers.py."
+      "en": "Voxel tree for the game worlds.",
+      "ru": "Воксельное дерево для миров игры."
     },
-    "source": "../CabinChaos-Codex-Starter/CabinChaos-Codex-Starter/assets/special_passengers/SpecialPassengers.blend",
-    "triangles": 1832,
-    "sizeKB": 37.3,
+    "source": "../питомцы/blender/exports/creator_store/trees/TREE_MUSHROOM_L.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/118286549704362",
+    "triangles": 13126,
+    "sizeKB": 90.2,
     "decimated": false,
     "animations": [],
-    "notes": "Source tris 1832; colours: PBR material factors, no textures; poster 26.9 KB"
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 1 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
   },
   {
-    "id": "vampire-passenger",
-    "projectSlug": "cabin-chaos",
-    "file": "/models/vampire-passenger.glb",
-    "poster": "/posters/vampire-passenger.webp",
+    "id": "tree-mushroom-m",
+    "projectSlug": "build-your-pet",
+    "group": "trees",
+    "file": "/models/tree-mushroom-m.glb",
+    "poster": "/posters/tree-mushroom-m.webp",
     "title": {
-      "en": "Vampire Passenger",
-      "ru": "Пассажир-вампир"
+      "en": "Mushroom Tree, medium",
+      "ru": "Гриб-дерево, среднее"
     },
     "description": {
-      "en": "Passenger model generated by generate_prompt27.py.",
-      "ru": "Модель пассажира, сгенерированная generate_prompt27.py."
+      "en": "Voxel tree for the game worlds.",
+      "ru": "Воксельное дерево для миров игры."
     },
-    "source": "../CabinChaos-Codex-Starter/CabinChaos-Codex-Starter/assets/prompt27_passengers/Prompt27Passengers.blend",
-    "triangles": 2252,
-    "sizeKB": 82.3,
+    "source": "../питомцы/blender/exports/creator_store/trees/TREE_MUSHROOM_M.fbx",
+    "storeUrl": "https://create.roblox.com/store/asset/118286549704362",
+    "triangles": 4356,
+    "sizeKB": 30.7,
     "decimated": false,
     "animations": [],
-    "notes": "Source tris 2252; colours: PBR material factors, no textures; poster 26.3 KB"
-  },
-  {
-    "id": "dragon",
-    "projectSlug": "woodcutter-vs-zombies",
-    "file": "/models/dragon.glb",
-    "poster": "/posters/dragon.webp",
-    "title": {
-      "en": "Dragon",
-      "ru": "Дракон"
-    },
-    "description": {
-      "en": "Dragon model from the Woodcutter vs Zombies asset folder (FBX source).",
-      "ru": "Модель дракона из папки ассетов Woodcutter vs Zombies (исходник FBX)."
-    },
-    "source": "../woodcutter/woodcutter/blender/dragon.fbx",
-    "triangles": 19717,
-    "sizeKB": 701.1,
-    "decimated": true,
-    "animations": [],
-    "notes": "Source tris 45646; decimated (Collapse) to 19717; colours: PBR material factors, no textures; poster 24.0 KB"
-  },
-  {
-    "id": "knight-bow",
-    "projectSlug": "woodcutter-vs-zombies",
-    "file": "/models/knight-bow.glb",
-    "poster": "/posters/knight-bow.webp",
-    "title": {
-      "en": "Knight Archer",
-      "ru": "Рыцарь-лучник"
-    },
-    "description": {
-      "en": "Armoured knight with a bow from the Woodcutter vs Zombies asset folder (FBX source).",
-      "ru": "Рыцарь в доспехах с луком из папки ассетов Woodcutter vs Zombies (исходник FBX)."
-    },
-    "source": "../woodcutter/woodcutter/blender/knightBow.fbx",
-    "triangles": 31707,
-    "sizeKB": 964.2,
-    "decimated": true,
-    "animations": [],
-    "notes": "Source tris 78810; decimated (Collapse) to 31707; colours: PBR material factors, no textures; poster 36.8 KB"
-  },
-  {
-    "id": "zombie-brute",
-    "projectSlug": "woodcutter-vs-zombies",
-    "file": "/models/zombie-brute.glb",
-    "poster": "/posters/zombie-brute.webp",
-    "title": {
-      "en": "Zombie Brute",
-      "ru": "Зомби-громила"
-    },
-    "description": {
-      "en": "Zombie outfit model from the Woodcutter vs Zombies asset folder (FBX source).",
-      "ru": "Модель зомби из папки ассетов Woodcutter vs Zombies (исходник FBX)."
-    },
-    "source": "../woodcutter/woodcutter/blender/zombieBruteOutfit.fbx",
-    "triangles": 22834,
-    "sizeKB": 755.1,
-    "decimated": true,
-    "animations": [],
-    "notes": "Source tris 49370; decimated (Collapse) to 22834; colours: PBR material factors, no textures; removed 1096 stray source vertices far outside the model; poster 36.8 KB"
-  },
-  {
-    "id": "gold-axe",
-    "projectSlug": "woodcutter-vs-zombies",
-    "file": "/models/gold-axe.glb",
-    "poster": "/posters/gold-axe.webp",
-    "title": {
-      "en": "Gold Axe",
-      "ru": "Золотой топор"
-    },
-    "description": {
-      "en": "Axe model from the Woodcutter vs Zombies asset folder (FBX source).",
-      "ru": "Модель топора из папки ассетов Woodcutter vs Zombies (исходник FBX)."
-    },
-    "source": "../woodcutter/woodcutter/blender/goldAxe.fbx",
-    "triangles": 15552,
-    "sizeKB": 368.8,
-    "decimated": false,
-    "animations": [],
-    "notes": "Source tris 15552; colours: PBR material factors, no textures; poster 18.9 KB"
+    "notes": "Draco, scaled to 2 m, front turned to the viewer; colours: vertex colours (COLOR_0); 1 glow/glass parts (Neon / Glass per CreatorStoreSetup.luau); poster with bloom"
   }
 ]

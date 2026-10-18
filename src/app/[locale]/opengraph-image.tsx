@@ -63,7 +63,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
             <span>{t("firstName")}</span>
             <span>{t("lastName")}</span>
           </div>
-          <div style={{ display: "flex", marginTop: 40, fontSize: 44, color: "#9D8CFF" }}>{t("subtitle")}</div>
+          <div style={{ display: "flex", marginTop: 40, fontSize: 44, color: "#F58FBA" }}>{t("subtitle")}</div>
           <div style={{ display: "flex", marginTop: 12, fontSize: 30, color: "#A4AAB5" }}>{t("tagline")}</div>
         </div>
       </div>

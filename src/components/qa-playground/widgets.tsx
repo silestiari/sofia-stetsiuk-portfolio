@@ -403,7 +403,7 @@ export function ItemCardWidget(p: WidgetProps<"item-card">) {
             {...target(p, "card-cta")}
             onClick={() => setCount((c) => c + 1)}
             style={{ width: ctaWidthPx }}
-            className="h-11 cursor-pointer overflow-hidden rounded-qa-panel bg-qa-accent-fill px-3 text-left text-small font-bold whitespace-nowrap text-white"
+            className="h-11 cursor-pointer overflow-hidden rounded-qa-panel bg-qa-accent-fill px-3 text-left text-small font-bold whitespace-nowrap text-on-accent"
           >
             {ctaLabel[preview]}
           </button>

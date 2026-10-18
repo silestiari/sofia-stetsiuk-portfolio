@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const slugs = ["grand-mall-batumi", "metrocity", "sakhli", "woodcutter-vs-zombies", "cabin-chaos", "pillars", "build-your-pet"];
+const slugs = ["grand-mall-batumi", "sakhli", "woodcutter-vs-zombies", "cabin-chaos", "pillars", "build-your-pet"];
 const locales = ["en", "ru"] as const;
 
 test.describe("case pages", () => {

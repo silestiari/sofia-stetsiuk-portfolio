@@ -2,8 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useLocale, useTranslations } from "next-intl";
-import { useId, useState, type KeyboardEvent } from "react";
-import { LazyMount } from "@/components/LazyMount";
+import { useEffect, useId, useRef, useState, type KeyboardEvent } from "react";
 import { IconButton, Segmented } from "@/components/showroom/ShowroomControls";
 import type { Backdrop, StageCommand } from "@/components/showroom/ShowroomStage";
 import type { Pass } from "@/components/three/passes";
@@ -11,81 +10,143 @@ import { Button } from "@/components/ui/Button";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { models } from "@/content/models";
 import { getProject } from "@/content/projects";
-import { useMediaQuery, MOBILE_QUERY } from "@/hooks/useMediaQuery";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
-import { useRovingRadio } from "@/hooks/useRovingRadio";
 import { useWebGLSupport } from "@/hooks/useWebGLSupport";
+import type { Model3D } from "@/content/types";
 
 const Poster = ({ src, alt }: { src: string; alt: string }) => (
   // eslint-disable-next-line @next/next/no-img-element -- pre-sized webp poster from public/posters
-  <img
-    src={src}
-    alt={alt}
-    width={1024}
-    height={1024}
-    loading="lazy"
-    decoding="async"
-    className="absolute inset-0 size-full object-contain p-6"
-  />
+  <img src={src} alt={alt} width={1024} height={1024} decoding="async" className="absolute inset-0 size-full object-contain p-6" />
 );
 
 const ShowroomStage = dynamic(() => import("@/components/showroom/ShowroomStage"), { ssr: false });
 
-const projectSlugs = [...new Set(models.map((m) => m.projectSlug))];
-const thumb = (poster: string) => poster.replace("/posters/", "/posters/thumbs/");
+const groups = [...new Set(models.map((m) => m.group))];
+const card = (poster: string) => poster.replace("/posters/", "/posters/thumbs/");
 const fileName = (path: string) => path.split(/[\\/]/).pop()?.split("#")[0] ?? path;
+const setScrollLock = (on: boolean) => {
+  document.documentElement.style.overflow = on ? "hidden" : "";
+};
 
-/** DESIGN_SYSTEM.md 4.9 / 5.3. Posters on mobile, without WebGL and with reduced motion — same pickers. */
+/**
+ * 3D showcase: a grid of glowing model cards; any card opens the model in a <dialog showModal> where it can be
+ * rotated, zoomed and switched between render passes. Without WebGL the dialog shows the large poster.
+ */
 export function Showroom() {
+  const t = useTranslations("sections.showroom");
+  const locale = useLocale();
+  const [group, setGroup] = useState("all");
+  const [open, setOpen] = useState<Model3D | null>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const opener = useRef<HTMLButtonElement | null>(null);
+
+  const shown = group === "all" ? models : models.filter((m) => m.group === group);
+  const groupLabel = (g: string) => t(`groups.${g}` as Parameters<typeof t>[0]);
+
+  const show = (m: Model3D, button: HTMLButtonElement) => {
+    opener.current = button;
+    setOpen(m);
+    dialog.current?.showModal();
+    setScrollLock(true);
+  };
+  const onClosed = () => {
+    setOpen(null);
+    setScrollLock(false);
+    opener.current?.focus();
+  };
+  useEffect(() => () => setScrollLock(false), []);
+
+  return (
+    <SectionShell id="showroom" title={t("title")}>
+      <p className="mt-6 max-w-prose text-lead text-text-2">{t("intro")}</p>
+
+      <Segmented
+        className="mt-8"
+        label={t("groupLabel")}
+        options={[{ value: "all", label: t("allGroups") }, ...groups.map((g) => ({ value: g, label: groupLabel(g) }))]}
+        value={group}
+        onChange={setGroup}
+      />
+
+      <p className="hud mt-6 text-mono-xs text-qa-accent">↗ {t("clickHint")}</p>
+
+      <ul aria-label={t("listLabel")} className="mt-3 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
+        {shown.map((m) => (
+          <li key={m.id}>
+            <button
+              type="button"
+              onClick={(e) => show(m, e.currentTarget)}
+              className="showroom-card group relative block w-full cursor-pointer overflow-hidden rounded-game border border-line bg-[radial-gradient(ellipse_at_center,var(--color-surface-2)_0%,var(--color-bg)_80%)] text-left transition-colors hover:border-qa-accent"
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element -- 400px card render of the model */}
+              <img
+                src={card(m.poster)}
+                alt=""
+                width={400}
+                height={400}
+                loading="lazy"
+                decoding="async"
+                className="aspect-square w-full object-contain p-3 transition-transform duration-300 group-hover:scale-105"
+              />
+              <span
+                aria-hidden="true"
+                className="hud absolute top-2 right-2 rounded-qa border border-line bg-bg/80 px-2 py-1 text-mono-xs text-text-2 transition-colors group-hover:border-qa-accent group-hover:text-qa-accent group-focus-visible:text-qa-accent"
+              >
+                3D ↗
+              </span>
+              <span className="block border-t border-line px-3 py-2">
+                {/* name = visible title first (voice control), then the action for screen readers */}
+                <span className="block truncate text-small font-semibold text-text">
+                  {m.title[locale]}
+                  <span className="sr-only"> — {t("open3d")}</span>
+                </span>
+                <span aria-hidden="true" className="hud block truncate text-mono-xs text-text-3">
+                  {groupLabel(m.group)}
+                </span>
+              </span>
+            </button>
+          </li>
+        ))}
+      </ul>
+
+      <dialog
+        ref={dialog}
+        aria-labelledby="showroom-dialog-title"
+        onClose={onClosed}
+        className="showroom-dialog fixed inset-0 z-(--z-menu) m-auto h-[min(92dvh,860px)] w-[min(100%-1rem,1200px)] max-w-none overflow-hidden rounded-game border border-line bg-bg p-0 text-text backdrop:bg-bg/85"
+      >
+        {open && <Viewer model={open} onClose={() => dialog.current?.close()} />}
+      </dialog>
+    </SectionShell>
+  );
+}
+
+function Viewer({ model, onClose }: { model: Model3D; onClose: () => void }) {
   const t = useTranslations("sections.showroom");
   const tErr = useTranslations("errors");
   const locale = useLocale();
   const hintId = useId();
+  const reduced = usePrefersReducedMotion();
+  const webgl = useWebGLSupport();
 
-  const [modelId, setModelId] = useState(models[0].id);
   const [pass, setPass] = useState<Pass>("beauty");
-  const [backdrop, setBackdrop] = useState<Backdrop>("grid");
-  const [autoRotate, setAutoRotate] = useState(true);
+  const [backdrop, setBackdrop] = useState<Backdrop>("studio");
+  const [autoRotate, setAutoRotate] = useState(!reduced);
   const [command, setCommand] = useState<StageCommand | null>(null);
   const [failed, setFailed] = useState(false);
   const [retry, setRetry] = useState(0);
   const [lost, setLost] = useState(false);
-  const [announce, setAnnounce] = useState("");
+  const live = webgl === true && !lost;
 
-  const webgl = useWebGLSupport();
-  const reduced = usePrefersReducedMotion();
-  const mobile = useMediaQuery(MOBILE_QUERY, true);
-  const live = webgl === true && !reduced && !mobile && !lost;
-
-  const model = models.find((m) => m.id === modelId) ?? models[0];
-  const projectTitle = (slug: string) => getProject(slug)?.title[locale] ?? slug;
-  const projectModels = models.filter((m) => m.projectSlug === model.projectSlug);
   const title = model.title[locale];
-
+  const project = getProject(model.projectSlug)?.title[locale] ?? model.projectSlug;
   const passes: { value: Pass; label: string }[] = [
     { value: "wire", label: t("passWire") },
     { value: "clay", label: t("passClay") },
     { value: "shaded", label: t("passShaded") },
     { value: "beauty", label: t("passFinal") },
   ];
-
-  const selectModel = (id: string) => {
-    const m = models.find((x) => x.id === id)!;
-    setModelId(id);
-    setFailed(false);
-    setAnnounce(t("announce", { title: m.title[locale], project: projectTitle(m.projectSlug) }));
-  };
-  const selectPass = (p: Pass) => {
-    setPass(p);
-    setAnnounce(t("announcePass", { pass: passes.find((x) => x.value === p)!.label }));
-  };
   const send = (kind: StageCommand["kind"]) => setCommand({ kind, id: Date.now() });
-
-  const list = useRovingRadio(
-    projectModels.length,
-    projectModels.findIndex((m) => m.id === model.id),
-    (i) => selectModel(projectModels[i].id),
-  );
 
   const onKeyDown = (e: KeyboardEvent<HTMLDivElement>) => {
     if (!live || e.altKey || e.ctrlKey || e.metaKey) return;
@@ -106,156 +167,122 @@ export function Showroom() {
   };
 
   return (
-    <SectionShell id="showroom" title={t("title")}>
-      <p className="mt-6 max-w-prose text-lead text-text-2">{t("intro")}</p>
-
-      <div className="mt-8 grid gap-6 lg:grid-cols-12" role="group" aria-describedby={hintId} onKeyDown={onKeyDown}>
-        <p id={hintId} className="sr-only">
-          {t("keyboardHint")}
-        </p>
-
-        {/* stage */}
-        <div className="relative lg:col-span-9">
-          <div
-            className={`relative aspect-[4/5] overflow-hidden rounded-game border border-line md:aspect-auto md:h-[min(72vh,640px)] ${
-              backdrop === "studio" && live
-                ? "bg-[radial-gradient(ellipse_at_center,var(--color-surface-2)_0%,var(--color-bg)_80%)]"
-                : "bg-[radial-gradient(ellipse_at_center,var(--color-surface-1)_0%,var(--color-bg)_75%)]"
-            }`}
-          >
-            {live && !failed ? (
-              <LazyMount className="absolute inset-0" fallback={<Poster src={model.poster} alt="" />}>
-                <ShowroomStage
-                  model={model}
-                  pass={pass}
-                  backdrop={backdrop}
-                  autoRotate={autoRotate}
-                  command={command}
-                  retry={retry}
-                  label={t("stageLabel", { title })}
-                  onError={() => setFailed(true)}
-                  onContextLost={() => setLost(true)}
-                />
-              </LazyMount>
-            ) : (
-              <Poster src={model.poster} alt={t("posterAlt", { title })} />
-            )}
-
-            <div className="pointer-events-none absolute inset-x-0 top-0 flex flex-wrap items-start justify-end gap-3 p-4">
-              {live && !failed && (
-                <Segmented
-                  className="pointer-events-auto bg-bg/70"
-                  label={t("passLabel")}
-                  options={passes}
-                  value={pass}
-                  onChange={selectPass}
-                />
-              )}
-            </div>
-
-            {failed && (
-              <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-center gap-4 bg-bg/80 p-4" role="alert">
-                <span className="hud text-mono-xs text-sev-critical">✕ {tErr("modelFailed")}</span>
-                <Button
-                  variant="secondary"
-                  size="sm"
-                  onClick={() => {
-                    setRetry((r) => r + 1);
-                    setFailed(false);
-                  }}
-                >
-                  {t("retry")}
-                </Button>
-              </div>
-            )}
-
-            {live && !failed && (
-              <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-3 p-4">
-                <div className="flex flex-wrap gap-2">
-                  <IconButton label={t("rotateLeft")} shortcut="←" onClick={() => send("left")}>⟲</IconButton>
-                  <IconButton label={t("rotateRight")} shortcut="→" onClick={() => send("right")}>⟳</IconButton>
-                  <IconButton label={t("zoomOut")} shortcut="−" onClick={() => send("out")}>−</IconButton>
-                  <IconButton label={t("zoomIn")} shortcut="+" onClick={() => send("in")}>+</IconButton>
-                  <IconButton label={t("reset")} shortcut="R" onClick={() => send("reset")}>⌂</IconButton>
-                  <IconButton
-                    label={autoRotate ? t("autoRotateOff") : t("autoRotateOn")}
-                    shortcut="Space"
-                    pressed={autoRotate}
-                    onClick={() => setAutoRotate((a) => !a)}
-                  >
-                    {autoRotate ? "❚❚" : "▶"}
-                  </IconButton>
-                </div>
-                <Segmented
-                  className="bg-bg/70"
-                  label={t("bgLabel")}
-                  options={[
-                    { value: "grid", label: t("bgGrid") },
-                    { value: "studio", label: t("bgStudio") },
-                  ]}
-                  value={backdrop}
-                  onChange={setBackdrop}
-                />
-              </div>
-            )}
-          </div>
-          {!live && webgl !== null && (
-            <p className="hud mt-3 text-mono-xs text-text-2">{webgl && !lost ? t("staticNotice") : tErr("webglUnavailable")}</p>
-          )}
-          {/* caption: below the stage on mobile, over its top-left corner from md (section fits a 900px screen) */}
-          <div className="mt-6 max-w-3xl md:pointer-events-none md:absolute md:top-4 md:left-4 md:mt-0 md:max-w-[22rem]">
-            <h3 className="text-h3 font-semibold">{title}</h3>
-            <p className="hud mt-1 text-mono-xs text-text-2">
-              {t("fromProject", { project: projectTitle(model.projectSlug) })} · {t("triangles", { count: model.triangles.toLocaleString(locale) })} ·{" "}
-              {t("sizeKB", { size: Math.round(model.sizeKB) })} · {t("source")}: {fileName(model.source)}
-            </p>
-            <p className="mt-2 text-small text-text-2">{model.description[locale]}</p>
-            <Button variant="ghost" href={`/projects/${model.projectSlug}`} className="md:pointer-events-auto">
-              {t("caseLink", { project: projectTitle(model.projectSlug) })}
-            </Button>
-          </div>
+    <div className="flex h-full flex-col" role="group" aria-describedby={hintId} onKeyDown={onKeyDown}>
+      <p id={hintId} className="sr-only">
+        {t("keyboardHint")}
+      </p>
+      <div className="flex items-start justify-between gap-4 border-b border-line p-4">
+        <div className="min-w-0">
+          <h3 id="showroom-dialog-title" className="text-h3 font-semibold">
+            {title}
+          </h3>
+          <p className="hud mt-1 text-mono-xs text-text-2">
+            {t("fromProject", { project })} · {t("triangles", { count: model.triangles.toLocaleString(locale) })} ·{" "}
+            {t("sizeKB", { size: Math.round(model.sizeKB) })} · {t("source")}: {fileName(model.source)}
+          </p>
         </div>
-
-        {/* pickers */}
-        <div className="flex min-w-0 flex-col gap-4 lg:col-span-3">
-          <Segmented
-            label={t("projectLabel")}
-            options={projectSlugs.map((s) => ({ value: s, label: projectTitle(s) }))}
-            value={model.projectSlug}
-            onChange={(s) => selectModel(models.find((m) => m.projectSlug === s)!.id)}
-          />
-          <div
-            {...list.group}
-            aria-label={t("listLabel")}
-            className="-mx-(--page-margin) flex snap-x snap-mandatory gap-2 overflow-x-auto px-(--page-margin) pb-2 lg:mx-0 lg:flex-col lg:overflow-visible lg:px-0"
-          >
-            {projectModels.map((m, i) => (
-              <button
-                key={m.id}
-                type="button"
-                {...list.item(i)}
-                className={`flex min-w-56 shrink-0 snap-start items-center gap-3 rounded-qa-panel border p-2 text-left lg:min-w-0 ${
-                  m.id === model.id ? "border-qa-accent bg-surface-1" : "border-line hover:border-text-3"
-                }`}
-              >
-                {/* eslint-disable-next-line @next/next/no-img-element -- 48px thumbnail of the poster */}
-                <img src={thumb(m.poster)} alt="" width={48} height={48} loading="lazy" decoding="async" className="size-12 shrink-0 rounded-qa bg-surface-2 object-contain" />
-                <span className="min-w-0">
-                  <span className="block truncate text-small font-semibold text-text">
-                    <span aria-hidden="true" className="mr-1 text-qa-accent">{m.id === model.id ? "●" : "○"}</span>
-                    {m.title[locale]}
-                  </span>
-                  <span className="hud block truncate text-mono-xs text-text-3">{projectTitle(m.projectSlug)}</span>
-                </span>
-              </button>
-            ))}
-          </div>
-        </div>
+        <button
+          type="button"
+          autoFocus
+          onClick={onClose}
+          aria-label={t("close")}
+          className="grid size-11 shrink-0 cursor-pointer place-items-center rounded-qa border border-line text-text hover:border-qa-accent"
+        >
+          ✕
+        </button>
       </div>
 
-      <p className="sr-only" aria-live="polite">
-        {announce}
-      </p>
-    </SectionShell>
+      <div
+        className={`relative min-h-0 flex-1 ${
+          backdrop === "studio"
+            ? "bg-[radial-gradient(ellipse_at_center,var(--color-surface-2)_0%,var(--color-bg)_80%)]"
+            : "bg-[radial-gradient(ellipse_at_center,var(--color-surface-1)_0%,var(--color-bg)_75%)]"
+        }`}
+      >
+        {live && !failed ? (
+          <ShowroomStage
+            model={model}
+            pass={pass}
+            backdrop={backdrop}
+            autoRotate={autoRotate}
+            command={command}
+            retry={retry}
+            label={t("stageLabel", { title })}
+            onError={() => setFailed(true)}
+            onContextLost={() => setLost(true)}
+          />
+        ) : (
+          <Poster src={model.poster} alt={t("posterAlt", { title })} />
+        )}
+
+        {live && !failed && (
+          <div className="pointer-events-none absolute inset-x-0 top-0 flex justify-end p-4">
+            <Segmented className="pointer-events-auto bg-bg/70" label={t("passLabel")} options={passes} value={pass} onChange={setPass} />
+          </div>
+        )}
+
+        {failed && (
+          <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-center gap-4 bg-bg/80 p-4" role="alert">
+            <span className="hud text-mono-xs text-sev-critical">✕ {tErr("modelFailed")}</span>
+            <Button
+              variant="secondary"
+              size="sm"
+              onClick={() => {
+                setRetry((r) => r + 1);
+                setFailed(false);
+              }}
+            >
+              {t("retry")}
+            </Button>
+          </div>
+        )}
+
+        {live && !failed && (
+          <div className="absolute inset-x-0 bottom-0 flex flex-wrap items-end justify-between gap-3 p-4">
+            <div className="flex flex-wrap gap-2">
+              <IconButton label={t("rotateLeft")} shortcut="←" onClick={() => send("left")}>⟲</IconButton>
+              <IconButton label={t("rotateRight")} shortcut="→" onClick={() => send("right")}>⟳</IconButton>
+              <IconButton label={t("zoomOut")} shortcut="−" onClick={() => send("out")}>−</IconButton>
+              <IconButton label={t("zoomIn")} shortcut="+" onClick={() => send("in")}>+</IconButton>
+              <IconButton label={t("reset")} shortcut="R" onClick={() => send("reset")}>⌂</IconButton>
+              <IconButton
+                label={autoRotate ? t("autoRotateOff") : t("autoRotateOn")}
+                shortcut="Space"
+                pressed={autoRotate}
+                onClick={() => setAutoRotate((a) => !a)}
+              >
+                {autoRotate ? "❚❚" : "▶"}
+              </IconButton>
+            </div>
+            <Segmented
+              className="bg-bg/70"
+              label={t("bgLabel")}
+              options={[
+                { value: "grid", label: t("bgGrid") },
+                { value: "studio", label: t("bgStudio") },
+              ]}
+              value={backdrop}
+              onChange={setBackdrop}
+            />
+          </div>
+        )}
+      </div>
+
+      <div className="flex flex-wrap items-center justify-between gap-x-6 gap-y-1 border-t border-line px-4 py-3">
+        <p className="text-small text-text-2">
+          {model.description[locale]} {!live && webgl !== null && <span className="hud text-mono-xs">{tErr("webglUnavailable")}</span>}
+        </p>
+        <span className="flex flex-wrap gap-x-6">
+          {model.storeUrl && (
+            <Button variant="ghost" href={model.storeUrl}>
+              {t("storeLink")}
+            </Button>
+          )}
+          <Button variant="ghost" href={`/projects/${model.projectSlug}`}>
+            {t("caseLink", { project })}
+          </Button>
+        </span>
+      </div>
+    </div>
   );
 }

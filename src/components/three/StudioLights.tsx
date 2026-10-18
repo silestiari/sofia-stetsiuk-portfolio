@@ -25,7 +25,7 @@ export function StudioLights({ envIntensity = 1 }: { envIntensity?: number }) {
     <>
       <hemisphereLight args={["#ECEEF2", "#2A2E37", 0.6]} />
       <directionalLight position={[3, 5, 4]} intensity={1.8} />
-      <directionalLight position={[-4, 2, -3]} intensity={0.8} color="#9D8CFF" />
+      <directionalLight position={[-4, 2, -3]} intensity={0.8} color="#F58FBA" />
       <Environment resolution={256} frames={1}>
         <Lightformer form="rect" intensity={3} position={[0, 4, 2]} scale={[6, 2, 1]} rotation-x={Math.PI / 2} />
         <Lightformer form="rect" intensity={1.5} position={[-4, 1, 1]} scale={[2, 4, 1]} rotation-y={Math.PI / 2} />

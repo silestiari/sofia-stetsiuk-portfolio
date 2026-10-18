@@ -50,6 +50,11 @@ export function MediaItem({
   );
 }
 
+/** Items for this locale: untagged ones plus those tagged with it. */
+export const mediaIn = (media: ProjectMedia[], locale: Locale) => media.filter((m) => !m.locale || m.locale === locale);
+
 /** Card preview: prefer a landscape screenshot, then any media. */
-export const previewOf = (media: ProjectMedia[]) =>
-  media.find((m) => m.type === "image" && (m.width ?? 0) >= (m.height ?? 0)) ?? media[0];
+export const previewOf = (media: ProjectMedia[], locale: Locale) => {
+  const own = mediaIn(media, locale);
+  return own.find((m) => m.type === "image" && (m.width ?? 0) >= (m.height ?? 0)) ?? own[0];
+};

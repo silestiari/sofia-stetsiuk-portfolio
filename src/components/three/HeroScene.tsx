@@ -33,7 +33,7 @@ function useIdleAfterLoad() {
 }
 
 /**
- * Hero object: Sofia's Cotton Cloud Pet goes through the render passes wire → debug → clay → shaded → beauty
+ * Hero objects: Petforge Arena world pieces go through the render passes wire → debug → clay → shaded → beauty
  * as `scrollProgress` (0..1, hero scroll) grows. Cursor parallax. Decorative: aria-hidden.
  * The poster shows until the page is idle and the 3D chunk has loaded.
  */

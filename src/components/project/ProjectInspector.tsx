@@ -9,10 +9,10 @@ import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { MediaItem, previewOf } from "./MediaItem";
 
-export type InspectorVariant = "web" | "roblox" | "pet";
+export type InspectorVariant = "web" | "roblox";
 
 export const variantOf = (p: Project): InspectorVariant =>
-  p.slug === "build-your-pet" ? "pet" : p.category === "web" ? "web" : "roblox";
+  p.category === "web" ? "web" : "roblox";
 
 const VISIBLE_TECH = 6;
 
@@ -27,19 +27,18 @@ interface Props {
   accent?: "pink" | "sky";
 }
 
-/** DESIGN_SYSTEM.md 4.6: web (QA properties panel), roblox (tilted game preview), pet (pastel island). */
+/** DESIGN_SYSTEM.md 4.6: web (QA properties panel), roblox (tilted game preview). */
 export function ProjectInspector({ project, locale, flip = false, mode = "home", accent = "pink" }: Props) {
   const t = useTranslations("sections.projects");
   const tp = useTranslations("project");
   const variant = variantOf(project);
-  const pet = variant === "pet";
   const isCase = mode === "case";
-  const media = previewOf(project.media);
+  const media = previewOf(project.media, locale);
   const title = project.title[locale];
   const caseHref = `/projects/${project.slug}`;
 
   const heading = isCase ? (
-    <h1 id="case-title" className={`${pet ? "font-display font-medium" : variant === "roblox" ? "font-display" : ""} text-h1 font-semibold`}>
+    <h1 id="case-title" className={`${variant === "roblox" ? "font-display" : ""} text-h1 font-semibold`}>
       {title}
     </h1>
   ) : (
@@ -55,7 +54,7 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
   const chips = (
     <div className="flex flex-wrap items-start gap-2">
       {shown.map((tech) => (
-        <TechChip key={tech} pet={pet}>
+        <TechChip key={tech}>
           {tech}
         </TechChip>
       ))}
@@ -64,7 +63,7 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
         <details className="max-w-full [&[open]>summary]:hidden">
           <summary
             className={`hud text-mono-xs inline-flex h-6 cursor-pointer list-none items-center rounded-qa border px-2 ${
-              pet ? "border-pet-ink/40 text-pet-ink" : "border-text-3 text-text-2 hover:border-qa-accent"
+              "border-text-3 text-text-2 hover:border-qa-accent"
             }`}
           >
             {t("moreTech", { count: hidden.length })}
@@ -72,7 +71,7 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
           </summary>
           <div className="flex flex-wrap gap-2">
             {hidden.map((tech) => (
-              <TechChip key={tech} pet={pet}>
+              <TechChip key={tech}>
                 {tech}
               </TechChip>
             ))}
@@ -83,7 +82,7 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
   );
 
   const links = project.links.map((l) => (
-    <Button key={l.href} variant="secondary" href={l.href} className={pet ? "btn-pet rounded-full border-pet-ink text-pet-ink" : ""}>
+    <Button key={l.href} variant="secondary" href={l.href}>
       {l.label[locale]}
     </Button>
   ));
@@ -92,7 +91,7 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
       {!isCase && (
         <Button
           href={caseHref}
-          className={pet ? "btn-pet rounded-full bg-pet-ink text-pet-bg after:hidden" : ""}
+         
           aria-label={`${t("openCase")}: ${title}`}
         >
           {t("openCase")} <span aria-hidden="true">→</span>
@@ -100,18 +99,18 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
       )}
       {links}
       {isCase && links.length === 0 && (
-        <span className={`text-mono-xs font-mono ${pet ? "text-pet-ink-2" : "text-text-3"}`}>— {tp("noLink")}</span>
+        <span className={`text-mono-xs font-mono ${"text-text-3"}`}>— {tp("noLink")}</span>
       )}
     </div>
   );
 
   const note = project.note && (
-    <p className={`text-small ${pet ? "text-pet-ink-2" : "text-text-3"}`}>{project.note[locale]}</p>
+    <p className={`text-small ${"text-text-3"}`}>{project.note[locale]}</p>
   );
   const subtitle = project.subtitle && (
-    <p className={`text-small ${pet ? "text-pet-ink-2" : "text-text-2"}`}>{project.subtitle[locale]}</p>
+    <p className={`text-small ${"text-text-2"}`}>{project.subtitle[locale]}</p>
   );
-  const summary = <p className={`max-w-prose ${pet ? "text-pet-ink" : "text-text-2"}`}>{project.summary[locale]}</p>;
+  const summary = <p className={`max-w-prose ${"text-text-2"}`}>{project.summary[locale]}</p>;
   const sizes = "(min-width: 1024px) 60vw, 100vw";
   const mediaEl = media ? (
     <MediaItem item={media} locale={locale} sizes={sizes} preload={isCase} className="mx-auto max-h-[80svh] w-auto" />
@@ -170,46 +169,26 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
     );
   }
 
-  if (variant === "roblox") {
-    const accentCls = accent === "pink" ? "border-t-game-pink" : "border-t-game-sky";
-    return (
-      <article className="group grid gap-6 lg:grid-cols-12 lg:gap-(--gutter)">
-        <div
-          className={`row-start-1 overflow-hidden rounded-game bg-surface-1 shadow-game transition-transform duration-240 ease-soft rotate-[-1deg] group-hover:-translate-y-1 group-hover:-rotate-2 lg:col-span-8 lg:rotate-0 ${
-            flip ? "lg:col-start-5" : "lg:col-start-1"
-          }`}
-        >
-          {mediaEl}
-        </div>
-        <div
-          className={`relative z-(--z-raised) flex flex-col gap-4 rounded-game border border-line border-t-2 bg-surface-1 p-6 lg:row-start-1 lg:col-span-5 lg:self-end lg:-mb-12 ${accentCls} ${
-            flip ? "lg:col-start-1" : "lg:col-start-8"
-          }`}
-        >
-          {heading}
-          {subtitle}
-          <div className="flex flex-wrap items-center gap-3">
-            <StatusBadge status={project.status} />
-            <span className="text-small text-text-2">{tp(`category.${project.category}`)}</span>
-          </div>
-          {summary}
-          {note}
-          {chips}
-          {actions}
-        </div>
-      </article>
-    );
-  }
-
+  const accentCls = accent === "pink" ? "border-t-game-pink" : "border-t-game-sky";
   return (
-    <article className="grid gap-8 rounded-pet-lg bg-pet-bg p-6 text-pet-ink shadow-pet transition-shadow duration-300 [--ring:var(--ring-pet)] hover:shadow-pet-lift md:p-10 lg:grid-cols-12">
-      <div className="overflow-hidden rounded-pet bg-pet-surface lg:col-span-7">{mediaEl}</div>
-      <div className="flex flex-col gap-4 lg:col-span-5">
+    <article className="group grid gap-6 lg:grid-cols-12 lg:gap-(--gutter)">
+      <div
+        className={`row-start-1 overflow-hidden rounded-game bg-surface-1 shadow-game transition-transform duration-240 ease-soft rotate-[-1deg] group-hover:-translate-y-1 group-hover:-rotate-2 lg:col-span-8 lg:rotate-0 ${
+          flip ? "lg:col-start-5" : "lg:col-start-1"
+        }`}
+      >
+        {mediaEl}
+      </div>
+      <div
+        className={`relative z-(--z-raised) flex flex-col gap-4 rounded-game border border-line border-t-2 bg-surface-1 p-6 lg:row-start-1 lg:col-span-5 lg:self-end lg:-mb-12 ${accentCls} ${
+          flip ? "lg:col-start-1" : "lg:col-start-8"
+        }`}
+      >
         {heading}
         {subtitle}
         <div className="flex flex-wrap items-center gap-3">
-          <StatusBadge status={project.status} pet />
-          <span className="text-small text-pet-ink-2">{tp(`category.${project.category}`)}</span>
+          <StatusBadge status={project.status} />
+          <span className="text-small text-text-2">{tp(`category.${project.category}`)}</span>
         </div>
         {summary}
         {note}
@@ -218,4 +197,5 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
       </div>
     </article>
   );
+
 }

@@ -1,7 +1,12 @@
 import { expect, test } from "@playwright/test";
 
 // The desktop header switcher; the mobile menu has its own (hidden) copy.
-const switchTo = (page: import("@playwright/test").Page, l: "en" | "ru") => page.locator(`header a[hreflang="${l}"]:visible`).first().click();
+// Clicked by coordinates: locator.click() first scrolls the sticky header "into view", which moves the page
+// by a few hundred px and changes the section the switcher keeps — something a real click never does.
+const switchTo = async (page: import("@playwright/test").Page, l: "en" | "ru") => {
+  const b = (await page.locator(`header a[hreflang="${l}"]:visible`).first().boundingBox())!;
+  await page.mouse.click(b.x + b.width / 2, b.y + b.height / 2);
+};
 
 test("case page: switcher keeps the path and the anchor", async ({ page }) => {
   await page.goto("/en/projects/pillars");
@@ -16,8 +21,6 @@ test("case page: switcher keeps the path and the anchor", async ({ page }) => {
 
 test("home: switcher keeps the section in view", async ({ page }) => {
   await page.goto("/ru#skills");
-  // the idle-loaded hero canvas can nudge the scroll after load; click once the page is settled
-  await page.waitForLoadState("networkidle");
   await expect(page.locator('header a[hreflang="en"]:visible')).toHaveAttribute("href", "/en#skills");
   await switchTo(page, "en");
   await expect(page).toHaveURL(/\/en#skills$/);

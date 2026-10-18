@@ -139,79 +139,6 @@ export const projects: Project[] = [
     ],
   },
   {
-    slug: "metrocity",
-    short: "Metro",
-    category: "web",
-    status: "in-development",
-    title: { en: "Metro City", ru: "Metro City" },
-    note: {
-      en: "Demo website prepared for the mall's management. Not the official site and not public yet.",
-      ru: "Демо-сайт, подготовленный для руководства ТЦ. Не официальный сайт и пока не опубликован.",
-    },
-    summary: {
-      en: "A trilingual (KA/EN/RU) demo website for a Batumi shopping mall, backed by a full QA report: 46/46 smoke tests and 0 axe violations across 165 page loads.",
-      ru: "Демо-сайт торгового центра в Батуми на трёх языках (KA/EN/RU) с полным QA-отчётом: 46/46 smoke-тестов и 0 нарушений axe на 165 загрузках.",
-    },
-    role: aiDirectedRole,
-    tech: ["Next.js 16.4.1", "React 19.3.0", "TypeScript 5 (strict)", "Tailwind CSS 4", "Playwright 1.64", "axe", "Lighthouse"],
-    features: {
-      en: [
-        "Home, stores, dining, entertainment, events, map, visit, about and 404 pages",
-        "Tenant directory with verified / unconfirmed statuses",
-        "Search and filter chips with state kept in the URL",
-        "Events disappear automatically after their end date",
-        "Built-in Next.js i18n pattern with dictionaries, no extra library",
-        "CSS animations only when the user hasn't asked for reduced motion",
-      ],
-      ru: [
-        "Страницы: главная, магазины, рестораны, развлечения, события, карта, как добраться, о ТЦ и 404",
-        "Каталог арендаторов со статусами «проверено» / «не подтверждено»",
-        "Поиск и фильтры-чипы, состояние сохраняется в URL",
-        "События сами исчезают после даты окончания",
-        "Встроенный в Next.js паттерн i18n со словарями, без сторонних библиотек",
-        "CSS-анимации только если пользователь не просил уменьшить движение",
-      ],
-    },
-    challenges: {
-      en: [
-        "First smoke run: 44/46 → defects F-1 and F-2 fixed and re-tested, 46/46",
-        "Real data is still missing (opening hours, contacts, full tenant list, licensed building photos) → tracked in a launch checklist instead of filled with guesses",
-        "SEO 69 in Lighthouse → expected: indexing is disabled on purpose until the launch is approved",
-      ],
-      ru: [
-        "Первый smoke-прогон: 44/46 → дефекты F-1 и F-2 исправлены и перепроверены, 46/46",
-        "Нет части реальных данных (часы работы, контакты, полный список арендаторов, лицензированные фото здания) → вынесено в чек-лист запуска, а не заполнено догадками",
-        "SEO 69 в Lighthouse → ожидаемо: индексация намеренно отключена до согласования запуска",
-      ],
-    },
-    caseStudy: caseStudy(
-      {
-        overview:
-          "A demonstration website for the Metro City mall in Batumi, in Georgian, English and Russian, prepared to show the mall's management. It is not the official website yet: indexing is off and the launch is waiting for written approval.",
-        process:
-          "Work was split between 14 specialist agents with a file-ownership table in CLAUDE.md and AGENTS.md, so no two agents edited the same files. Unknown facts stay marked as unconfirmed and are listed in the launch checklist.",
-        qa: "Lint 0 errors / 0 warnings, typecheck passing, unit tests 4/4, a build of 34 static pages. E2E smoke 46/46 (the first run was 44/46; both defects were fixed and re-tested). A matrix of 165 page loads — 11 routes × 3 languages × 5 widths — with axe: 0 violations. Lighthouse mobile on /ka: Performance 93, Accessibility 100, Best Practices 100, SEO 69 because of the intentional noindex. Only Chromium was tested; no WebKit, Firefox or real devices.",
-        ai: "14 Claude Code agents — art director, UI and UX designers, motion designer, Next.js developer, localization reviewer, functional and responsive/accessibility QA, performance & SEO reviewer and others — plus installed design and motion skills.",
-      },
-      {
-        overview:
-          "Демонстрационный сайт ТЦ Metro City в Батуми на грузинском, английском и русском, подготовленный для показа руководству молла. Это пока не официальный сайт: индексация выключена, запуск ждёт письменного согласования.",
-        process:
-          "Работа разделена между 14 профильными агентами с таблицей владения файлами в CLAUDE.md и AGENTS.md — два агента не правят одни и те же файлы. Неизвестные факты остаются помеченными как неподтверждённые и вынесены в чек-лист запуска.",
-        qa: "Линтер — 0 ошибок и 0 предупреждений, typecheck проходит, unit-тесты 4/4, сборка из 34 статических страниц. E2E smoke 46/46 (первый прогон — 44/46, оба дефекта исправлены и перепроверены). Матрица из 165 загрузок — 11 маршрутов × 3 языка × 5 ширин — с axe: 0 нарушений. Lighthouse mobile на /ka: Performance 93, Accessibility 100, Best Practices 100, SEO 69 из-за намеренного noindex. Тестировался только Chromium, без WebKit, Firefox и реальных устройств.",
-        ai: "14 агентов Claude Code — арт-директор, UI- и UX-дизайнеры, моушн-дизайнер, Next.js-разработчик, ревьюер локализации, функциональный QA и QA адаптивности/доступности, ревьюер производительности и SEO и другие — плюс подключённые скиллы по дизайну и анимации.",
-      },
-    ),
-    metrics: [
-      { value: "46/46", label: { en: "E2E smoke tests passing", ru: "E2E smoke-тестов проходят" } },
-      { value: "165", label: { en: "page loads in the route × language × width matrix", ru: "загрузок в матрице маршрут × язык × ширина" } },
-      { value: "0", label: { en: "axe violations", ru: "нарушений axe" } },
-      { value: "93 / 100 / 100", label: { en: "Lighthouse mobile: Performance / A11y / Best Practices", ru: "Lighthouse, мобильные: производительность / доступность / рекомендации" }, note: { en: "Lighthouse lab data; SEO 69 due to intentional noindex", ru: "Lab-данные Lighthouse; SEO 69 из-за намеренного noindex" } },
-    ],
-    media: mediaFor("metrocity"),
-    links: [],
-  },
-  {
     slug: "sakhli",
     short: "Sakhli",
     category: "web",
@@ -364,13 +291,19 @@ export const projects: Project[] = [
       { value: "57", label: { en: "achievement tiers", ru: "ступеней достижений" } },
     ],
     media: mediaFor("woodcutter-vs-zombies"),
-    links: [],
+    links: [
+      {
+        kind: "roblox",
+        href: "https://www.roblox.com/games/126918896016438",
+        label: { en: "Play on Roblox", ru: "Играть в Roblox" },
+      },
+    ],
   },
   {
     slug: "cabin-chaos",
     short: "Cabin",
     category: "roblox",
-    status: "in-development",
+    status: "released",
     title: { en: "Cabin Chaos", ru: "Cabin Chaos" },
     summary: {
       en: "A cartoon co-op party game for 1–4 cabin crew: serve coffee, cola and meals, keep passengers patient and survive the chaos.",
@@ -420,7 +353,7 @@ export const projects: Project[] = [
     caseStudy: caseStudy(
       {
         overview:
-          "A cooperative Roblox party game — explicitly not a realistic flight simulator. Up to four players work as cabin crew, serve passengers, push the trolley through the aisle and deal with special passengers and chain reactions of chaos. In development: real teleport and 2+ player sessions can only be checked after publishing.",
+          "A cooperative Roblox party game — explicitly not a realistic flight simulator. Up to four players work as cabin crew, serve passengers, push the trolley through the aisle and deal with special passengers and chain reactions of chaos. The game is released on Roblox.",
         process:
           "The game was built in staged prompts (Prompt24 through Prompt30), each stage logged in a 600-line PROJECT_STATE.md. 14 Python scripts (generate_*.py) build the 3D assets — cabin kit, trolley, seats, coffee station, crew uniform, lobby gate, special passengers and more — in headless Blender 5.2. Promo Shorts are rendered with Remotion and FFmpeg in EN and RU.",
         qa: "Python test suites for the MVP, chaos, drink balance, special passengers, the spill chain and localization — the latest runs: 6 suites PASS. Among them 67 shop checks, 16 lobby checks and 207 localization checks; earlier 127 mocked assertions and 81,450 geometry checks. A separate gameplay audit, and video QA for promo clips (loudness and frames). Not verified yet: real Robux purchases in Play and multiplayer scenes that need 2+ live players.",
@@ -428,7 +361,7 @@ export const projects: Project[] = [
       },
       {
         overview:
-          "Кооперативная party-игра на Roblox — принципиально не реалистичный авиасимулятор. До четырёх игроков работают бортпроводниками: обслуживают пассажиров, катают тележку по проходу и справляются с особыми пассажирами и цепными реакциями хаоса. В разработке: настоящий телепорт и сессии на 2+ игроков можно проверить только после публикации.",
+          "Кооперативная party-игра на Roblox — принципиально не реалистичный авиасимулятор. До четырёх игроков работают бортпроводниками: обслуживают пассажиров, катают тележку по проходу и справляются с особыми пассажирами и цепными реакциями хаоса. Игра выпущена на Roblox.",
         process:
           "Игра собиралась поэтапными промптами (с Prompt24 по Prompt30), каждый этап записан в журнал PROJECT_STATE.md на 600 строк. 14 Python-скриптов (generate_*.py) собирают 3D-ассеты — салон, тележка, кресла, кофейная станция, форма экипажа, гейт лобби, особые пассажиры и другие — в Blender 5.2 без интерфейса. Промо-шортсы рендерятся через Remotion и FFmpeg на EN и RU.",
         qa: "Наборы Python-тестов для MVP, хаоса, баланса напитков, особых пассажиров, цепочки с пролитым кофе и локализации — в последних прогонах 6 наборов PASS. Среди них 67 проверок магазина, 16 — лобби и 207 — локализации; раньше — 127 mocked-проверок и 81 450 проверок геометрии. Отдельный аудит геймплея и видео-QA промо-роликов (громкость и кадры). Пока не проверено: реальные покупки за Robux в Play и сцены, где нужно 2+ живых игрока.",
@@ -442,21 +375,27 @@ export const projects: Project[] = [
       { value: "14", label: { en: "3D assets generated by Blender Python scripts", ru: "3D-ассетов из Python-скриптов Blender" } },
     ],
     media: mediaFor("cabin-chaos"),
-    links: [],
+    links: [
+      {
+        kind: "roblox",
+        href: "https://www.roblox.com/games/122107110812286",
+        label: { en: "Play on Roblox", ru: "Играть в Roblox" },
+      },
+    ],
   },
   {
     slug: "pillars",
     short: "Pillars",
     category: "roblox",
-    status: "in-development",
+    status: "released",
     title: { en: "PILLARS: Hide & Stack", ru: "PILLARS: Hide & Stack" },
     summary: {
       en: "A multiplayer hide-and-seek block game: hide your 15 blocks, hunt down everyone else's and stack the tallest pillar.",
       ru: "Мультиплеерные прятки с блоками: спрячь свои 15 блоков, найди чужие и построй самый высокий столб.",
     },
     role: {
-      en: "My own game, built with AI agents under my direction: game concept and task framing, design decisions and quality checks. Being prepared for release.",
-      ru: "Моя игра, созданная с помощью AI-агентов под моим руководством: концепция и постановка задач, дизайн-решения и проверка качества. Сейчас готовится к релизу.",
+      en: "My own game, built with AI agents under my direction: game concept and task framing, design decisions and quality checks.",
+      ru: "Моя игра, созданная с помощью AI-агентов под моим руководством: концепция и постановка задач, дизайн-решения и проверка качества.",
     },
     tech: ["Luau", "Rojo 7.7.1", "Lune 0.11", "luau-lsp 1.70.1", "run-in-roblox 0.3", "Claude Code"],
     features: {
@@ -494,7 +433,7 @@ export const projects: Project[] = [
     caseStudy: caseStudy(
       {
         overview:
-          "A Roblox multiplayer hide-and-seek game inspired by the Minecraft \"Pillars\" minigame. All 13 maps are procedural and built from Roblox parts — no imported 3D models. The project is tagged v1.0 and has a release checklist; publication is not confirmed yet.",
+          "A Roblox multiplayer hide-and-seek game inspired by the Minecraft \"Pillars\" minigame. All 13 maps are procedural and built from Roblox parts — no imported 3D models. The project is tagged v1.0, went through a release checklist and is released on Roblox.",
         process:
           "Built in stages, starting with architecture, agent setup and a playable prototype — 30 commits in total. Security, performance and known bugs are documented in separate files.",
         qa: "Syntax pass, logic tests 29/29, type check with 0 errors, a map test where all 13 maps build with 84–97% of the surface reachable, and an engine SELFTEST in Studio passing on all 13 maps. The manual Studio checklist has not been run yet — and it's listed as such.",
@@ -502,7 +441,7 @@ export const projects: Project[] = [
       },
       {
         overview:
-          "Мультиплеерные прятки на Roblox по мотивам мини-игры «Pillars» из Minecraft. Все 13 карт процедурные и собраны из Roblox-деталей — без импортированных 3D-моделей. У проекта есть тег v1.0 и чек-лист релиза; публикация пока не подтверждена.",
+          "Мультиплеерные прятки на Roblox по мотивам мини-игры «Pillars» из Minecraft. Все 13 карт процедурные и собраны из Roblox-деталей — без импортированных 3D-моделей. У проекта есть тег v1.0, он прошёл чек-лист релиза и выпущен на Roblox.",
         process:
           "Работа шла этапами: сначала архитектура, настройка агентов и играбельный прототип — всего 30 коммитов. Безопасность, производительность и известные баги описаны в отдельных документах.",
         qa: "Проверка синтаксиса, логические тесты 29/29, проверка типов с 0 ошибок, тест карт: все 13 собираются, от спавна доступно 84–97% поверхности, и SELFTEST движка в Studio проходит на всех 13 картах. Ручной чек-лист в Studio ещё не пройден — и так и записан.",
@@ -516,19 +455,20 @@ export const projects: Project[] = [
       { value: "0", label: { en: "type errors", ru: "ошибок типов" } },
     ],
     media: mediaFor("pillars"),
-    links: [],
+    links: [
+      {
+        kind: "roblox",
+        href: "https://www.roblox.com/games/102854253424644",
+        label: { en: "Play on Roblox", ru: "Играть в Roblox" },
+      },
+    ],
   },
   {
     slug: "build-your-pet",
     short: "Pet",
     category: "roblox",
-    status: "in-development",
-    title: { en: "Petforge Arena", ru: "Petforge Arena" },
-    subtitle: { en: "Build Your Pet", ru: "Собери питомца" },
-    note: {
-      en: "Working title — the game may be renamed.",
-      ru: "Рабочее название — игра может быть переименована.",
-    },
+    status: "released",
+    title: { en: "Build Your Own Pet", ru: "Собери своего питомца" },
     summary: {
       en: "Build a pet from six parts with elements and rarities, earn new parts in minigames and races, then send it into auto-PvP.",
       ru: "Собери питомца из шести частей со стихиями и редкостью, добывай новые части в мини-играх и гонках и отправляй его в авто-PvP.",
@@ -571,7 +511,7 @@ export const projects: Project[] = [
     caseStudy: caseStudy(
       {
         overview:
-          "A Roblox game about assembling a pet from parts. Each part has an element and a rarity, so mixing them creates hybrids. New parts come from zone minigames, the NPC Tower, a ring race and auto-PvP. Petforge Arena is the working title; on this site the project is also shown as Build Your Pet.",
+          "A Roblox game about assembling a pet from parts. Each part has an element and a rarity, so mixing them creates hybrids. New parts come from zone minigames, the NPC Tower, a ring race and auto-PvP. The game is released on Roblox as Build Your Own Pet.",
         process:
           "The game started from a master prompt that set the lead engineer and multi-agent coordinator role, with task files for each agent. Pet parts and world assets are produced by Blender generators (generate_assets.py and others) and exported as 134 FBX/OBJ files with manifests.",
         qa: "Automated Lune tests: 78 passed, 0 failed — covering data, loot, pet building, combat, progression, profile schema, minigame rules and integration with a mock DataStore. The QA matrix: 19 of 21 cases PASS, 1 FAIL (13b), 1 not run (private-server abuse). All manual Studio checks ST-1…ST-11 are not run yet; zones, competitions, leaderboards and the shop are not covered by Lune tests.",
@@ -579,7 +519,7 @@ export const projects: Project[] = [
       },
       {
         overview:
-          "Игра на Roblox про сборку питомца из частей. У каждой части есть стихия и редкость, поэтому из них получаются гибриды. Новые части дают мини-игры зон, Башня NPC, гонка через кольца и авто-PvP. Petforge Arena — рабочее название; на этом сайте проект также фигурирует как «Собери питомца».",
+          "Игра на Roblox про сборку питомца из частей. У каждой части есть стихия и редкость, поэтому из них получаются гибриды. Новые части дают мини-игры зон, Башня NPC, гонка через кольца и авто-PvP. Игра выпущена на Roblox под названием «Собери своего питомца».",
         process:
           "Игра началась с мастер-промпта, который задаёт роль ведущего инженера и координатора агентов, и файлов с заданиями для каждого агента. Части питомцев и объекты мира создают генераторы в Blender (generate_assets.py и другие) и экспортируют 134 файла FBX/OBJ с манифестами.",
         qa: "Автотесты на Lune: 78 пройдено, 0 упало — данные, лут, сборка питомца, бой, прогрессия, схема профиля, правила мини-игр и интеграция с mock DataStore. QA-матрица: 19 из 21 кейса PASS, 1 FAIL (13b), 1 не запускался (абуз приватных серверов). Все ручные проверки в Studio ST-1…ST-11 ещё не проведены; зоны, соревнования, лидерборды и магазин тестами Lune не покрыты.",
@@ -593,7 +533,13 @@ export const projects: Project[] = [
       { value: "11", label: { en: "Claude Code agents", ru: "агентов Claude Code" } },
     ],
     media: mediaFor("build-your-pet"),
-    links: [],
+    links: [
+      {
+        kind: "roblox",
+        href: "https://www.roblox.com/games/83887073812489",
+        label: { en: "Play on Roblox", ru: "Играть в Roblox" },
+      },
+    ],
   },
 ];
 

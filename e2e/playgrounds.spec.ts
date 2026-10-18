@@ -110,24 +110,22 @@ test("AI Lab: every workflow node opens its details", async ({ page }) => {
   expect(titles.size).toBe(7);
 });
 
-test("Showroom: every model of every project can be selected", async ({ page }) => {
+test("Showroom: every model opens in the dialog", async ({ page }) => {
+  // Opening only: posters instead of WebGL, so 39 models don't each load into software GL.
+  await page.addInitScript(() => {
+    // @ts-expect-error simulate a browser without WebGL2
+    delete window.WebGL2RenderingContext;
+  });
   await page.goto("/en#showroom");
-  const showroom = page.locator("#showroom");
-  const projects = showroom.getByRole("radiogroup", { name: "Project" }).getByRole("radio");
-  const pc = await projects.count();
-  expect(pc).toBeGreaterThan(0);
-  let total = 0;
-  for (let i = 0; i < pc; i++) {
-    await projects.nth(i).click();
-    const models = showroom.getByRole("radiogroup", { name: "Models" }).getByRole("radio");
-    const mc = await models.count();
-    for (let j = 0; j < mc; j++) {
-      await models.nth(j).click();
-      await expect(models.nth(j)).toHaveAttribute("aria-checked", "true");
-      total++;
-    }
+  const cards = page.locator("#showroom").getByRole("list", { name: "Models" }).getByRole("button");
+  const n = await cards.count();
+  expect(n).toBe(33);
+  for (let i = 0; i < n; i++) {
+    await cards.nth(i).click();
+    await expect(page.getByRole("dialog")).toBeVisible();
+    await page.keyboard.press("Escape");
+    await expect(page.getByRole("dialog")).toBeHidden();
   }
-  expect(total).toBe(11);
 });
 
 test("Showroom: getContext('webgl2') returning null falls back to posters", async ({ page }) => {
@@ -139,8 +137,9 @@ test("Showroom: getContext('webgl2') returning null falls back to posters", asyn
     };
   });
   await page.goto("/en#showroom");
-  const showroom = page.locator("#showroom");
-  await expect(showroom.getByText("3D isn’t available", { exact: false }).or(showroom.getByText("3D is", { exact: false })).first()).toBeVisible();
-  await expect(showroom.locator("canvas")).toHaveCount(0);
-  await expect(showroom.locator("img[src^='/posters/']").first()).toBeVisible();
+  await page.locator("#showroom").getByRole("list", { name: "Models" }).getByRole("button").first().click();
+  const dialog = page.getByRole("dialog");
+  await expect(dialog.getByText("3D isn’t available", { exact: false }).or(dialog.getByText("3D is", { exact: false })).first()).toBeVisible();
+  await expect(dialog.locator("canvas")).toHaveCount(0);
+  await expect(dialog.locator("img[src^='/posters/']")).toBeVisible();
 });
