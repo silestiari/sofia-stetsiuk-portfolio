@@ -110,10 +110,15 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
   const subtitle = project.subtitle && (
     <p className={`text-small ${"text-text-2"}`}>{project.subtitle[locale]}</p>
   );
-  const summary = <p className={`max-w-prose ${"text-text-2"}`}>{project.summary[locale]}</p>;
+  const summary = <p className="max-w-prose text-text-2">{project.summary[locale]}</p>;
   const sizes = "(min-width: 1024px) 60vw, 100vw";
+  // Home card: a live interactive (Sakhli's koi pond) goes under the screenshot; the case page has it in its gallery.
+  const live = !isCase && media?.type !== "interactive" ? project.media.find((m) => m.type === "interactive") : undefined;
   const mediaEl = media ? (
-    <MediaItem item={media} locale={locale} sizes={sizes} preload={isCase} className="mx-auto max-h-[80svh] w-auto" />
+    <>
+      <MediaItem item={media} locale={locale} sizes={sizes} preload={isCase} className="mx-auto max-h-[80svh] w-auto" />
+      {live && <MediaItem item={live} locale={locale} sizes={sizes} className="mt-2" />}
+    </>
   ) : (
     <div className="grid aspect-video place-items-center bg-surface-1">
       <HudLabel>{t("previewUnavailable")}</HudLabel>

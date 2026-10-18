@@ -218,66 +218,6 @@
       "locale": "ru",
       "source": "~/Downloads (ChatGPT images, 15-17 Oct 2026)",
       "notes": "Promo thumbnail (AI-generated key art), text in the image language."
-    },
-    {
-      "type": "image",
-      "src": "/media/woodcutter-vs-zombies/render-dragon.webp",
-      "alt": {
-        "en": "Woodcutter vs Zombies model, Blender render: night dragon boss with red membrane wings",
-        "ru": "Модель из «Лесоруба против зомби», рендер Blender: ночной дракон-босс с красными перепончатыми крыльями"
-      },
-      "width": 1600,
-      "height": 900,
-      "source": "C:/Users/tolik/Documents/woodcutter/woodcutter/blender/dragon.fbx",
-      "notes": "Studio render (EEVEE, key + violet rim light, bloom) of the game's FBX model, made for the portfolio."
-    },
-    {
-      "type": "image",
-      "src": "/media/woodcutter-vs-zombies/render-fire-knight.webp",
-      "alt": {
-        "en": "Woodcutter vs Zombies model, Blender render: fire knight with a burning helmet and a crossbow",
-        "ru": "Модель из «Лесоруба против зомби», рендер Blender: огненный рыцарь с горящим шлемом и арбалетом"
-      },
-      "width": 1600,
-      "height": 900,
-      "source": "C:/Users/tolik/Documents/woodcutter/woodcutter/blender/knightFire.fbx",
-      "notes": "Studio render (EEVEE, key + violet rim light, bloom) of the game's FBX model, made for the portfolio."
-    },
-    {
-      "type": "image",
-      "src": "/media/woodcutter-vs-zombies/render-gargoyle.webp",
-      "alt": {
-        "en": "Woodcutter vs Zombies model, Blender render: gargoyle with glowing red eyes on a gothic pedestal",
-        "ru": "Модель из «Лесоруба против зомби», рендер Blender: горгулья со светящимися красными глазами на готическом постаменте"
-      },
-      "width": 1600,
-      "height": 900,
-      "source": "C:/Users/tolik/Documents/woodcutter/woodcutter/blender/gargoyle.fbx",
-      "notes": "Studio render (EEVEE, key + violet rim light, bloom) of the game's FBX model, made for the portfolio."
-    },
-    {
-      "type": "image",
-      "src": "/media/woodcutter-vs-zombies/render-treasure-chest.webp",
-      "alt": {
-        "en": "Woodcutter vs Zombies model, Blender render: treasure chest full of coins and glowing gems",
-        "ru": "Модель из «Лесоруба против зомби», рендер Blender: сундук с монетами и светящимися самоцветами"
-      },
-      "width": 1600,
-      "height": 900,
-      "source": "C:/Users/tolik/Documents/woodcutter/woodcutter/blender/treasureChest.fbx",
-      "notes": "Studio render (EEVEE, key + violet rim light, bloom) of the game's FBX model, made for the portfolio."
-    },
-    {
-      "type": "image",
-      "src": "/media/woodcutter-vs-zombies/render-angel.webp",
-      "alt": {
-        "en": "Woodcutter vs Zombies model, Blender render: dark angel statue on a pedestal",
-        "ru": "Модель из «Лесоруба против зомби», рендер Blender: статуя тёмного ангела на постаменте"
-      },
-      "width": 1600,
-      "height": 900,
-      "source": "C:/Users/tolik/Documents/woodcutter/woodcutter/blender/angel.fbx",
-      "notes": "Studio render (EEVEE, key + violet rim light, bloom) of the game's FBX model, made for the portfolio."
     }
   ],
   "cabin-chaos": [
