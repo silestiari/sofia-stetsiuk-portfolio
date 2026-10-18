@@ -1,8 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useRef, useState, type ReactNode } from "react";
-import { useLocale } from "next-intl";
-import { ui } from "@/content/ui";
+import { useTranslations } from "next-intl";
 
 type Tone = "success" | "warning";
 interface ToastData {
@@ -20,7 +19,7 @@ const HIDE_AFTER = 4000;
 
 /** DESIGN_SYSTEM.md 4.14. One toast at a time; the live region is always in the DOM; focus is never moved. */
 export function ToastProvider({ children }: { children: ReactNode }) {
-  const locale = useLocale();
+  const t = useTranslations("a11y");
   const [toast, setToast] = useState<ToastData | null>(null);
   const [paused, setPaused] = useState(false);
   const nextId = useRef(0);
@@ -67,7 +66,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
             <button
               type="button"
               onClick={() => setToast(null)}
-              aria-label={ui.dismiss[locale]}
+              aria-label={t("toastClose")}
               className="ml-auto grid size-11 shrink-0 cursor-pointer place-items-center text-text-2 hover:text-text"
             >
               <span aria-hidden="true">✕</span>

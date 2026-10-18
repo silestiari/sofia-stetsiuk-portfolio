@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { desktopNavIds, sectionIds, sections, type SectionId } from "@/content/sections";
-import { ui } from "@/content/ui";
 import { usePathname } from "@/i18n/navigation";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { MobileMenu } from "./MobileMenu";
@@ -32,7 +31,7 @@ function useActiveSection(pathname: string) {
 
 export function Header() {
   const t = useTranslations("nav");
-  const tSections = useTranslations("sections");
+  const tA11y = useTranslations("a11y");
   const locale = useLocale();
   const pathname = usePathname();
   const activeId = useActiveSection(pathname);
@@ -45,13 +44,13 @@ export function Header() {
         href="#content"
         className="fixed top-2 left-2 z-(--z-skip) -translate-y-[200%] rounded-qa-panel bg-qa-accent-fill px-4 py-3 text-small font-bold text-white focus-visible:translate-y-0"
       >
-        {ui.skipToContent[locale]}
+        {tA11y("skipToContent")}
       </a>
 
       <div className="page-container flex h-full items-center gap-6">
         <a
           href={href("hero")}
-          aria-label={`${t("hero")} — ${tSections("hero.title")}`}
+          aria-label={tA11y("logo")}
           className="font-mono text-mono font-medium tracking-[0.08em] text-text"
         >
           SS_
@@ -69,7 +68,7 @@ export function Header() {
                   <span className="hud text-mono-xs text-text-3 group-aria-[current=true]:text-qa-accent">
                     {String(sections.findIndex((s) => s.id === id)).padStart(2, "0")}
                   </span>
-                  {id === "ai-lab" ? ui.labs[locale] : t(id)}
+                  {t(id === "ai-lab" ? "labs" : id)}
                 </a>
               </li>
             ))}

@@ -10,11 +10,12 @@ const look: Record<ProjectStatus, { icon: string; cls: string }> = {
 };
 
 /** Non-interactive status badge; label comes from messages (project.status.*). */
-export function StatusBadge({ status = "unconfirmed" }: { status?: ProjectStatus }) {
+/** `pet`: pastel island — ink text on mint, the shape keeps the meaning (DESIGN_SYSTEM.md 4.7). */
+export function StatusBadge({ status = "unconfirmed", pet = false }: { status?: ProjectStatus; pet?: boolean }) {
   const t = useTranslations("project.status");
   const { icon, cls } = look[status];
   return (
-    <span className={`hud text-mono-xs inline-flex h-6 items-center gap-1.5 rounded-qa border px-2 ${cls}`}>
+    <span className={`hud text-mono-xs inline-flex h-6 items-center gap-1.5 rounded-qa border px-2 ${pet ? "border-pet-ink/30 bg-pet-mint text-pet-ink" : cls}`}>
       <span aria-hidden="true">{icon}</span>
       {t(status)}
     </span>

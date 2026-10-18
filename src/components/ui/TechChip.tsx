@@ -9,10 +9,11 @@ const base = "hud text-mono-xs inline-flex h-6 items-center gap-1 rounded-qa bor
 export function TechChip({
   children,
   pressed,
+  pet = false,
   ...button
-}: { children: string; pressed?: boolean } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children">) {
+}: { children: string; pressed?: boolean; pet?: boolean } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "children">) {
   if (pressed === undefined) {
-    return <span className={`${base} border-line text-text-2`}>{children}</span>;
+    return <span className={`${base} ${pet ? "border-pet-ink/30 text-pet-ink" : "border-line text-text-2"}`}>{children}</span>;
   }
   return (
     <button

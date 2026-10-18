@@ -1,6 +1,5 @@
 import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
-import { useLocale } from "next-intl";
-import { ui } from "@/content/ui";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
 type Variant = "primary" | "secondary" | "ghost";
@@ -24,7 +23,7 @@ const isLocalePath = (href: string) => href.startsWith("/") && !href.startsWith(
 
 /** DESIGN_SYSTEM.md 4.4. Renders <a>/<Link> when `href` is given, otherwise <button>. */
 export function Button(props: ButtonProps) {
-  const locale = useLocale();
+  const t = useTranslations("a11y");
   const { variant = "primary", size = "md", loading = false, className = "", children, ...rest } = props;
   const cls = [
     "btn",
@@ -46,7 +45,7 @@ export function Button(props: ButtonProps) {
         <a {...anchor} href={href} target="_blank" rel="noopener noreferrer" className={cls} aria-busy={loading || undefined}>
           {content}
           <span aria-hidden="true">↗</span>
-          <span className="sr-only">{ui.opensInNewTab[locale]}</span>
+          <span className="sr-only">{t("opensInNewTab")}</span>
         </a>
       );
     }

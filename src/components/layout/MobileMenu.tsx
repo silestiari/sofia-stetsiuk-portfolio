@@ -2,8 +2,9 @@
 
 import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type MouseEvent } from "react";
 import { useLocale, useTranslations } from "next-intl";
+import { Button } from "@/components/ui/Button";
+import { profile } from "@/content/profile";
 import { sectionIds, type SectionId } from "@/content/sections";
-import { ui } from "@/content/ui";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
 const gridVars = { "--grid-from": 1, "--grid-to": 1, "--hud-from": 1, "--hud-to": 1 } as CSSProperties;
@@ -18,6 +19,8 @@ const setScrollLock = (on: boolean) => {
  */
 export function MobileMenu({ activeId, className = "" }: { activeId: SectionId | null; className?: string }) {
   const t = useTranslations("nav");
+  const tA11y = useTranslations("a11y");
+  const tContact = useTranslations("sections.contact");
   const locale = useLocale();
   const dialog = useRef<HTMLDialogElement>(null);
   const [open, setOpen] = useState(false);
@@ -71,7 +74,7 @@ export function MobileMenu({ activeId, className = "" }: { activeId: SectionId |
         onClick={show}
         aria-expanded={open}
         aria-controls="mobile-menu"
-        aria-label={ui.openMenu[locale]}
+        aria-label={tA11y("menuOpen")}
         className="grid size-11 cursor-pointer place-items-center text-text"
       >
         <BurgerIcon cross={false} />
@@ -94,7 +97,7 @@ export function MobileMenu({ activeId, className = "" }: { activeId: SectionId |
               type="button"
               autoFocus
               onClick={() => dialog.current?.close()}
-              aria-label={ui.closeMenu[locale]}
+              aria-label={tA11y("menuClose")}
               className="grid size-11 cursor-pointer place-items-center text-text"
             >
               <BurgerIcon cross />
@@ -126,6 +129,15 @@ export function MobileMenu({ activeId, className = "" }: { activeId: SectionId |
 
           <div className="page-container flex shrink-0 flex-wrap items-center gap-4 border-t border-line py-6">
             <LanguageSwitcher activeId={activeId} />
+            <Button variant="ghost" href={`mailto:${profile.contacts.email}`}>
+              {tContact("email")}
+            </Button>
+            <Button variant="ghost" href={profile.contacts.phone.href}>
+              {tContact("call")}
+            </Button>
+            <Button variant="ghost" href={profile.contacts.github.href}>
+              {tContact("github")}
+            </Button>
           </div>
         </div>
       </dialog>

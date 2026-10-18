@@ -362,4 +362,18 @@
 .toast { animation: toast-in 240ms var(--ease-out); }
 @keyframes tooltip-in { from { opacity: 0; transform: translate(-50%, 4px); } }
 .tooltip { animation: tooltip-in 150ms var(--ease-precise); }
+
+/* ===== Projects filter: JS sets data-filter on the section; without JS everything stays visible ===== */
+[data-filter="web"] [data-group]:not([data-group="web"]),
+[data-filter="roblox"] [data-group="web"] { display: none; }
+
+/* ===== Hero scene slot: decorative wireframe grid until the 3D scene mounts ===== */
+.hero-slot-grid {
+  background-image:
+    linear-gradient(var(--color-grid-strong) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-grid-strong) 1px, transparent 1px);
+  background-size: 48px 48px;
+  background-position: center;
+  mask: radial-gradient(closest-side, #000 40%, transparent);
+}
 } /* @layer components */
