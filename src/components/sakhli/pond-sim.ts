@@ -1,4 +1,4 @@
-// Copied from the Sakhli project (components/pond-sim.ts); only change: colours are read from the pond element.
+// Copied from the Sakhli project (components/pond-sim.ts). Changes: colours are read from the pond element; endless swimming (AWAKE).
 // Living pond: a few koi wander on smooth paths (heading-based steering), keep inside the pond oval,
 // keep apart, flee the cursor/finger, and every tap/click drops a ripple. Canvas 2D, no deps.
 // Runs only while the pond is on screen and the tab is visible. Loaded lazily by <KoiPond>.
@@ -22,7 +22,9 @@ export function startPond(root: HTMLElement): VoidFunction {
   const coarse = matchMedia("(pointer: coarse)").matches;
   let W = 0, H = 0, dpr = 1;
   let running = false, visible = false, raf = 0, last = 0;
-  const AWAKE = 2800; // ms of unprompted swimming; with the ~1.5 s glide to rest it stays under 5 s
+  // Portfolio change: the koi keep swimming while the pond is on screen (Sakhli stops after 2.8 s), so touch
+  // screens without hover see it alive too. Off-screen, hidden tab and reduced motion still stop it.
+  const AWAKE = Infinity;
   let awakeUntil = 0;
   const pointer = { x: 0, y: 0, until: 0 };
   const ripples: (P & { t: number })[] = [];
