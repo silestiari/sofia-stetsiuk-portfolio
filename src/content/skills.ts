@@ -212,8 +212,8 @@ export const skillGroups: SkillGroup[] = [
         label: { en: "Blender & Python scripting", ru: "Blender и Python-скрипты" },
         projects: ["woodcutter-vs-zombies", "cabin-chaos", "build-your-pet"],
         how: {
-          en: "183 FBX models for Woodcutter; generate_*.py scripts for Cabin Chaos assets and Petforge parts.",
-          ru: "183 FBX-модели для Woodcutter; скрипты generate_*.py для ассетов Cabin Chaos и частей Petforge.",
+          en: "A Blender scene and FBX assets in Woodcutter; generate_*.py scripts for Cabin Chaos assets and Petforge parts.",
+          ru: "Сцена Blender и FBX-ассеты в Woodcutter; скрипты generate_*.py для ассетов Cabin Chaos и частей Petforge.",
         },
       },
       {

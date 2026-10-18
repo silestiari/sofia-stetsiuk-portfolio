@@ -344,7 +344,7 @@ export const projects: Project[] = [
         overview:
           "A Roblox tycoon with tower-defense nights in a dark-fantasy style. By day you chop wood, process it and build up your plot; by night you defend it from zombie waves and bosses. The game is released on Roblox; rebirth and seasonal events are planned next.",
         process:
-          "The codebase grew to 108 Luau files (about 38.7k lines) synced with Rojo. I described mechanics and changes, Claude implemented them, and I tested each build in Roblox Studio before moving on. 3D models were made in Blender — 183 FBX files; Blender MCP is connected to the project.",
+          "The codebase grew to 108 Luau files (about 38.7k lines) synced with Rojo. I described mechanics and changes, Claude implemented them, and I tested each build in Roblox Studio before moving on. The project folder holds a Blender scene and 183 FBX files, and Blender MCP is connected to the project.",
         qa: "There are no automated tests; quality was kept by three layers. Two read-only agents, tester and reviewer, audited the code — the issues they found (game-pass spoofing, receipt handling, chop-rate abuse, module crashes) were fixed. An in-game SelfTest checks 9 game passes, DataStore, models, 6 plots and the server size of 6 players. On top of that I tested manually in Studio; the project log also has a pre-release checklist and a self-check of the published game.",
         ai: "Claude Code with project instructions in CLAUDE.md, agents for Blender, review and testing, project skills, Blender MCP and a graphify code graph to keep a 38k-line codebase navigable.",
       },
@@ -352,14 +352,14 @@ export const projects: Project[] = [
         overview:
           "Roblox-тайкун с ночной обороной в стиле dark fantasy. Днём рубишь лес, перерабатываешь его и отстраиваешь участок, ночью защищаешь его от волн зомби и боссов. Игра выпущена на Roblox; следующие в планах — перерождение и праздничные события.",
         process:
-          "Кодовая база выросла до 108 Luau-файлов (около 38,7 тыс. строк), синхронизация через Rojo. Я описывала механики и изменения, Claude их реализовывал, а я тестировала каждую сборку в Roblox Studio, прежде чем двигаться дальше. 3D-модели сделаны в Blender — 183 FBX-файла; к проекту подключён Blender MCP.",
+          "Кодовая база выросла до 108 Luau-файлов (около 38,7 тыс. строк), синхронизация через Rojo. Я описывала механики и изменения, Claude их реализовывал, а я тестировала каждую сборку в Roblox Studio, прежде чем двигаться дальше. В папке проекта — сцена Blender и 183 FBX-файла, к проекту подключён Blender MCP.",
         qa: "Автотестов нет, качество держится на трёх уровнях. Два агента только для чтения, tester и reviewer, проверяли код — найденные проблемы (подделка геймпассов, обработка покупок, злоупотребление рубкой, падение модулей) исправлены. Внутриигровой SelfTest проверяет 9 геймпассов, DataStore, модели, 6 участков и лимит сервера в 6 игроков. Плюс мои ручные проверки в Studio; в журнале проекта есть также чек-лист перед релизом и самопроверка опубликованной игры.",
         ai: "Claude Code с инструкциями проекта в CLAUDE.md, агенты для Blender, ревью и тестирования, скиллы проекта, Blender MCP и граф кода graphify, чтобы ориентироваться в 38 тыс. строк.",
       },
     ),
     metrics: [
       { value: "108", label: { en: "Luau files, ~38.7k lines", ru: "Luau-файлов, ~38,7 тыс. строк" } },
-      { value: "183", label: { en: "FBX models made in Blender", ru: "FBX-модели из Blender" } },
+      { value: "183", label: { en: "FBX files in the project", ru: "FBX-файла в проекте" } },
       { value: "9", label: { en: "game passes covered by the in-game SelfTest", ru: "геймпассов в проверке SelfTest" } },
       { value: "57", label: { en: "achievement tiers", ru: "ступеней достижений" } },
     ],
@@ -541,7 +541,7 @@ export const projects: Project[] = [
     features: {
       en: [
         "A pet is built from 6 parts: head, body, front paws, hind paws, tail and back",
-        "Four elements — Fire, Stone, Wood, Air — and part rarities",
+        "Five elements — Fire, Stone, Wood, Air, Water — and part rarities that scale stats",
         "Parts drop in zone minigames, the NPC Tower and the Sky Ring Rush race for 2–8 players",
         "Auto-PvP unlocks at level 15",
         "Balance kept in a separate game-data spreadsheet",
@@ -549,7 +549,7 @@ export const projects: Project[] = [
       ],
       ru: [
         "Питомец собирается из 6 частей: голова, тело, передние лапы, задние лапы, хвост и спина",
-        "Четыре стихии — Огонь, Камень, Дерево, Воздух — и редкость частей",
+        "Пять стихий — Огонь, Камень, Дерево, Воздух, Вода — и редкость частей, которая усиливает характеристики",
         "Части выпадают в мини-играх зон, в Башне NPC и в гонке Sky Ring Rush на 2–8 игроков",
         "Авто-PvP открывается с 15 уровня",
         "Баланс ведётся в отдельной таблице игровых данных",

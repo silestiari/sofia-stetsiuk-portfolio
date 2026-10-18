@@ -71,8 +71,8 @@ export const journey: JourneyStage[] = [
     label: { en: "3D ASSETS", ru: "3D-АССЕТЫ" },
     title: { en: "Blender and game assets", ru: "Blender и игровые ассеты" },
     text: {
-      en: "Models for my games come from Blender — from hand-assembled FBX sets to Python scripts that generate whole asset kits and pet parts.",
-      ru: "Модели для моих игр рождаются в Blender — от собранных наборов FBX до Python-скриптов, которые генерируют целые наборы ассетов и части питомцев.",
+      en: "Blender is part of every game pipeline — and in Cabin Chaos and Petforge Arena, Python scripts generate whole asset kits and pet parts.",
+      ru: "Blender есть в пайплайне каждой игры, а в Cabin Chaos и Petforge Arena Python-скрипты генерируют целые наборы ассетов и части питомцев.",
     },
     projects: ["woodcutter-vs-zombies", "cabin-chaos", "build-your-pet"],
   },
