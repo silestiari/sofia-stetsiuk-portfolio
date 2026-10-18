@@ -190,17 +190,11 @@ function Scene({
               fadeStrength={1.5}
             />
           )}
-          {pass === "beauty" && (
-            <ContactShadows
-              key={model.id}
-              frames={1}
-              position={[0, 0.002, 0]}
-              scale={fit.footprint * 2.6}
-              blur={2.4}
-              opacity={0.55}
-              far={fit.radius * 2}
-            />
-          )}
+          {/* Mounted once with constant props: drei re-creates (and never disposes) its render targets when
+              `scale` changes, so the per-model size goes on the parent group instead. */}
+          <group scale={fit.footprint * 2.6} visible={pass === "beauty"}>
+            <ContactShadows position={[0, 0.002, 0]} scale={1} blur={2.4} opacity={0.55} far={(fit.radius * 2) / (fit.footprint * 2.6)} />
+          </group>
         </group>
       )}
       <OrbitControls

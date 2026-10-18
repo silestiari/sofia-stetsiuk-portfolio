@@ -2,6 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useLocale, useTranslations } from "next-intl";
+import { AnimatePresence, motion } from "motion/react";
 import { useMemo, useState } from "react";
 import { LazyMount } from "@/components/LazyMount";
 import type { Placed } from "@/components/pet-builder/PetStage";
@@ -50,6 +51,16 @@ export function GamePlayground() {
     }
     return list;
   }, [build, acc]);
+
+  // Set bonus (SetBonuses.luau): 2 / 4 / 6 parts of one element across the 6 slots; the accessory doesn't count.
+  // Only the highest tier of the dominant element is shown: one element ability is active at a time.
+  const top = elements
+    .map((e) => ({ id: e.id, n: slots.filter((s) => build[s.id] === e.id).length }))
+    .reduce((a, b) => (b.n > a.n ? b : a));
+  const tier = top.n >= 6 ? 6 : top.n >= 4 ? 4 : top.n >= 2 ? 2 : 0;
+  const bonus = tier
+    ? t(`setBonus.tier${tier as 2 | 4 | 6}`, { count: top.n, element: elementTitle(top.id) })
+    : t("setBonus.none");
 
   const counts = elements
     .map((e) => ({ id: e.id, n: slots.filter((s) => build[s.id] === e.id).length }))
@@ -186,6 +197,24 @@ export function GamePlayground() {
               <span className="text-pet-ink-2">{t("element")}: </span>
               <span className="font-semibold">{counts}</span>
             </p>
+            <div className="mt-4 rounded-pet bg-pet-bg p-4">
+              <p className="text-small text-pet-ink-2">{t("setBonus.label")}</p>
+              {/* stable live region; the keyed child animates in (spring pet «плюх», DESIGN_SYSTEM.md 8.1) */}
+              <div aria-live="polite" className="mt-1 min-h-6">
+                <AnimatePresence mode="wait" initial={false}>
+                  <motion.p
+                    key={`${tier}-${top.id}-${top.n}`}
+                    className="font-semibold"
+                    initial={reduced ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.9 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, transition: { duration: reduced ? 0 : 0.12 } }}
+                    transition={reduced ? { duration: 0.15 } : { type: "spring", stiffness: 320, damping: 14, mass: 0.8 }}
+                  >
+                    {bonus}
+                  </motion.p>
+                </AnimatePresence>
+              </div>
+            </div>
           </section>
 
           <div>
