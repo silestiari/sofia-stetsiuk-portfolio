@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { Link, usePathname } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
+import { RERENDER_KEY } from "./MotionObserver";
 
 const subscribeHash = (onChange: () => void) => {
   window.addEventListener("hashchange", onChange);
@@ -49,7 +50,12 @@ export function LanguageSwitcher({ activeId, className = "" }: { activeId?: stri
             aria-current={current ? "true" : undefined}
             onClick={(e) => {
               if (current) e.preventDefault();
-              else setPending({ from: locale, to: l });
+              else {
+                setPending({ from: locale, to: l });
+                try {
+                  sessionStorage.setItem(RERENDER_KEY, l);
+                } catch {}
+              }
             }}
             className={`hud relative grid place-items-center px-2.5 text-mono font-medium before:absolute before:-inset-y-1.5 before:inset-x-0 ${
               selected === l

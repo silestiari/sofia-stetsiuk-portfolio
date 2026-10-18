@@ -145,13 +145,16 @@ export function MobileMenu({ activeId, className = "" }: { activeId: SectionId |
   );
 }
 
-/** Two lines → cross (DESIGN_SYSTEM.md 8.2) */
+/**
+ * Two lines → cross (DESIGN_SYSTEM.md 8.2). The dialog's close button sits exactly over the burger,
+ * so the cross morphs from the burger's lines each time the menu opens (globals.css .burger-cross).
+ */
 function BurgerIcon({ cross }: { cross: boolean }) {
-  const line = "absolute left-0 h-px w-5 bg-current transition-transform duration-180 ease-precise";
+  const line = "absolute left-0 h-px w-5 bg-current";
   return (
-    <span aria-hidden="true" className="relative block h-3 w-5">
-      <span className={`${line} ${cross ? "top-1/2 rotate-45" : "top-0.5"}`} />
-      <span className={`${line} ${cross ? "top-1/2 -rotate-45" : "bottom-0.5"}`} />
+    <span aria-hidden="true" className={`relative block h-3 w-5 ${cross ? "burger-cross" : ""}`}>
+      <span className={`${line} top-0.5`} />
+      <span className={`${line} bottom-0.5`} />
     </span>
   );
 }

@@ -23,7 +23,11 @@ const ITEMS = [
 const PASSES: Pass[] = ["wire", "debug", "clay", "shaded", "beauty"];
 export const passForProgress = (p: number) => PASSES[Math.min(PASSES.length - 1, Math.floor(MathUtils.clamp(p, 0, 1) * PASSES.length))];
 
-function Item({ item, pass, spread }: { item: (typeof ITEMS)[number]; pass: Pass; spread: number }) {
+/** A number (static) or anything with get(), e.g. a motion MotionValue: read every frame, no React re-render. */
+export type Progress = number | { get(): number };
+const read = (p: Progress) => MathUtils.clamp(typeof p === "number" ? p : p.get(), 0, 1);
+
+function Item({ item, pass, progress }: { item: (typeof ITEMS)[number]; pass: Pass; progress: { current: number } }) {
   const model = useModel(item.url);
   usePass(model, pass);
   const ref = useRef<Group>(null);
@@ -39,9 +43,12 @@ function Item({ item, pass, spread }: { item: (typeof ITEMS)[number]; pass: Pass
     if (!g) return;
     const t = clock.elapsedTime;
     const [x, y, z] = item.at;
-    // Objects drift apart as the hero scrolls away (spread 1 → 2.2).
+    // As the hero scrolls away the objects drift apart (spread 1 → 2.2) and fly past the camera:
+    // the composition opens up and hands the viewer over to Projects.
+    const p = progress.current;
+    const spread = 1 + p * 1.2;
     g.position.x = MathUtils.damp(g.position.x, x * spread, 4, dt);
-    g.position.z = MathUtils.damp(g.position.z, z * spread, 4, dt);
+    g.position.z = MathUtils.damp(g.position.z, z * spread + p * 2.5, 4, dt);
     const bob = Math.sin((t / 8) * Math.PI * 2 + item.phase) * 0.08;
     g.position.y = MathUtils.damp(g.position.y, y * spread + bob, 4, dt);
     g.rotation.y += dt * item.spin * 0.25;
@@ -61,8 +68,11 @@ function Item({ item, pass, spread }: { item: (typeof ITEMS)[number]; pass: Pass
   );
 }
 
-function Rig({ scrollProgress }: { scrollProgress: number }) {
+function Rig({ scrollProgress }: { scrollProgress: Progress }) {
   const ref = useRef<Group>(null);
+  const progress = useRef(0);
+  // Pass is discrete (5 steps): React re-renders only when it actually changes.
+  const [pass, setPass] = useState(() => passForProgress(read(scrollProgress)));
   const pointer = useRef({ x: 0, y: 0 });
   useEffect(() => {
     const onMove = (e: PointerEvent) => {
@@ -72,6 +82,9 @@ function Rig({ scrollProgress }: { scrollProgress: number }) {
     return () => removeEventListener("pointermove", onMove);
   }, []);
   useFrame((_, dt) => {
+    progress.current = read(scrollProgress);
+    const next = passForProgress(progress.current);
+    if (next !== pass) setPass(next);
     const g = ref.current;
     if (!g) return;
     g.rotation.y = MathUtils.damp(g.rotation.y, pointer.current.x * 0.25, 3, dt);
@@ -81,15 +94,13 @@ function Rig({ scrollProgress }: { scrollProgress: number }) {
   // The slot can be portrait or landscape: scale the ~4.6 × 3.6 composition to fit the view at z = 0.
   const viewport = useThree((st) => st.viewport);
   const fit = Math.min(viewport.width / 4.6, viewport.height / 3.6, 1.3);
-  const pass = passForProgress(scrollProgress);
-  const spread = 1 + MathUtils.clamp(scrollProgress, 0, 1) * 1.2;
   return (
     <>
       <StudioLights envIntensity={envIntensity[pass]} />
       <group ref={ref} scale={fit}>
         {ITEMS.map((item) => (
           <Suspense key={item.url} fallback={null}>
-            <Item item={item} pass={pass} spread={spread} />
+            <Item item={item} pass={pass} progress={progress} />
           </Suspense>
         ))}
       </group>
@@ -100,9 +111,10 @@ function Rig({ scrollProgress }: { scrollProgress: number }) {
 /**
  * Hero composition: Sofia's own models float around the name and go through the render passes
  * wire → debug → clay → shaded → beauty as `scrollProgress` (0..1, hero scroll) grows; they also spread out.
+ * Pass a MotionValue (or any { get() }) to drive it without re-rendering React on scroll.
  * Light cursor parallax. Decorative: aria-hidden, the name and text carry the meaning.
  */
-export default function HeroScene({ scrollProgress = 0, className = "" }: { scrollProgress?: number; className?: string }) {
+export default function HeroScene({ scrollProgress = 0, className = "" }: { scrollProgress?: Progress; className?: string }) {
   const webgl = useWebGLSupport();
   const reduced = usePrefersReducedMotion();
   const [lost, setLost] = useState(false);

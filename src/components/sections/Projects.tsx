@@ -39,14 +39,14 @@ export function Projects() {
         const list = projects.filter((p) => variantOf(p) === g.id);
         if (list.length === 0) return null;
         return (
-          <div key={g.id} data-group={g.id} className="mt-20 lg:mt-28">
+          <div key={g.id} data-group={g.id} className={`mt-20 lg:mt-28 ${g.id === "roblox" ? "roblox-pass" : ""}`}>
             <div className="mb-10 flex items-center gap-4">
               <HudLabel size="md">{t(g.key)}</HudLabel>
-              <span aria-hidden="true" className="h-px flex-1 bg-grid-strong opacity-(--hud-opacity)" />
+              <span aria-hidden="true" className="hud-line h-px flex-1 origin-left bg-grid-strong opacity-(--hud-opacity)" />
             </div>
             <ul className="flex flex-col gap-20 lg:gap-32">
               {list.map((p, i) => (
-                <li key={p.slug}>
+                <li key={p.slug} data-reveal={g.id === "web" ? "draw" : "rise"}>
                   <ProjectInspector project={p} locale={locale} flip={i % 2 === 1} accent={i % 2 ? "sky" : "pink"} />
                 </li>
               ))}

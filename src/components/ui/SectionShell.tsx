@@ -28,12 +28,16 @@ export function SectionShell({
   const index = sections.findIndex((s) => s.id === id);
   const self = sections[index];
   const prev = sections[index - 1] ?? self;
+  // A section can end on different values than it starts (Projects: roblox scrub clay → shaded)
+  const prevGrid = "exitGrid" in prev ? prev.exitGrid : prev.grid;
+  const prevHud = "exitHud" in prev ? prev.exitHud : prev.hud;
   const style = {
-    "--grid-from": prev.grid,
+    "--grid-from": prevGrid,
     "--grid-to": self.grid,
-    "--hud-from": prev.hud,
+    "--hud-from": prevHud,
     "--hud-to": self.hud,
   } as CSSProperties;
+  const hero = id === "hero";
   const label = hudTitle ?? (typeof title === "string" ? title : "");
 
   return (
@@ -45,12 +49,15 @@ export function SectionShell({
       className={`pass-section py-(--section-y) ${className}`}
     >
       <div className="page-container">
-        <HudLabel>
-          {String(index).padStart(2, "0")} / {label}
-        </HudLabel>
-        <Heading id={`${id}-title`} tabIndex={-1} className={`mt-4 ${headingClassName}`}>
-          {title}
-        </Heading>
+        {/* Hero has its own intro (globals.css); other sections reveal once on entry (MotionObserver) */}
+        <div data-reveal={hero ? undefined : "stagger"}>
+          <HudLabel>
+            {String(index).padStart(2, "0")} / {label}
+          </HudLabel>
+          <Heading id={`${id}-title`} tabIndex={-1} className={`mt-4 ${headingClassName}`}>
+            {title}
+          </Heading>
+        </div>
         {children}
       </div>
     </section>

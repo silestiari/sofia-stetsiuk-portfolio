@@ -1,5 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
+import { DrawFrame } from "@/components/ui/DrawFrame";
 import { HudLabel } from "@/components/ui/HudLabel";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { TechChip } from "@/components/ui/TechChip";
@@ -82,7 +83,7 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
   );
 
   const links = project.links.map((l) => (
-    <Button key={l.href} variant="secondary" href={l.href} className={pet ? "rounded-full border-pet-ink text-pet-ink" : ""}>
+    <Button key={l.href} variant="secondary" href={l.href} className={pet ? "btn-pet rounded-full border-pet-ink text-pet-ink" : ""}>
       {l.label[locale]}
     </Button>
   ));
@@ -91,7 +92,7 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
       {!isCase && (
         <Button
           href={caseHref}
-          className={pet ? "rounded-full bg-pet-ink text-pet-bg after:hidden" : ""}
+          className={pet ? "btn-pet rounded-full bg-pet-ink text-pet-bg after:hidden" : ""}
           aria-label={`${t("openCase")}: ${title}`}
         >
           {t("openCase")} <span aria-hidden="true">→</span>
@@ -126,14 +127,18 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
     return (
       <article className="group grid gap-6 lg:grid-cols-12 lg:gap-(--gutter)">
         <figure
-          className={`relative row-start-1 self-start border border-line bg-surface-1 p-2 transition-colors duration-300 group-focus-within:border-qa-accent group-hover:border-qa-accent lg:col-span-7 ${
+          className={`relative row-start-1 self-start border border-transparent bg-surface-1 p-2 text-line transition-colors duration-300 group-focus-within:text-qa-accent group-hover:text-qa-accent lg:col-span-7 ${
             flip ? "lg:col-start-6" : "lg:col-start-1"
           }`}
         >
           {mediaEl}
+          <DrawFrame />
           {media?.width && (
-            <figcaption className="absolute -top-6 right-0" aria-hidden="true">
-              <HudLabel>
+            <figcaption className="absolute -top-6 right-0 flex items-center gap-2" aria-hidden="true">
+              {/* callout: anchor dot + line drawn towards the label (DESIGN_SYSTEM.md 4.5) */}
+              <span className="size-[3px] bg-grid-strong opacity-(--hud-opacity)" />
+              <span className="callout-line -ml-2 h-px w-10 origin-left bg-grid-strong opacity-(--hud-opacity)" />
+              <HudLabel className="callout-label">
                 [ W {media.width} × H {media.height} ]
               </HudLabel>
             </figcaption>

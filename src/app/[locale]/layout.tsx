@@ -5,6 +5,7 @@ import { getTranslations } from "next-intl/server";
 import { JetBrains_Mono, Manrope, Unbounded } from "next/font/google";
 import { Footer } from "@/components/layout/Footer";
 import { Header } from "@/components/layout/Header";
+import { MotionObserver } from "@/components/layout/MotionObserver";
 import { RenderPassFallback } from "@/components/layout/RenderPassFallback";
 import { ToastProvider } from "@/components/ui/Toast";
 import { routing } from "@/i18n/routing";
@@ -71,6 +72,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
             </main>
             <Footer />
             <RenderPassFallback />
+            <MotionObserver />
           </ToastProvider>
         </NextIntlClientProvider>
       </body>

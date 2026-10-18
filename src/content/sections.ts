@@ -2,7 +2,8 @@
 // pass / grid / hud = render-pass map from DESIGN_SYSTEM.md 8.3 (grid = --grid-opacity, hud = --hud-opacity).
 export const sections = [
   { id: "hero", pass: "wire", grid: 1, hud: 1 },
-  { id: "projects", pass: "debug", grid: 1, hud: 1 },
+  // exit*: the roblox sub-block scrubs clay → shaded (grid 1 → 0, hud 1 → 0.4), see globals.css #projects
+  { id: "projects", pass: "debug", grid: 1, hud: 1, exitGrid: 0, exitHud: 0.4 },
   { id: "showroom", pass: "shaded", grid: 0, hud: 0.4 },
   { id: "about", pass: "debug-light", grid: 0.4, hud: 0.6 },
   { id: "skills", pass: "debug-light", grid: 0.4, hud: 0.6 },

@@ -15,7 +15,7 @@ export function HudLabel({
 }) {
   return (
     <span
-      className={`hud ${size === "md" ? "text-mono" : "text-mono-xs"} ${onSurface2 ? "text-text-2" : "text-text-3"} opacity-(--hud-opacity) ${className}`}
+      className={`hud ${size === "md" ? "text-mono" : "text-mono-xs"} ${onSurface2 ? "text-text-2" : "text-text-3"} hud-label opacity-(--hud-opacity) ${className}`}
     >
       {children}
     </span>

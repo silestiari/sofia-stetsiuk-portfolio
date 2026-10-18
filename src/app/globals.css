@@ -300,8 +300,10 @@
   line-height: 1;
   cursor: pointer;
   transition: background-color var(--dur-micro) var(--ease-precise), border-color var(--dur-micro) var(--ease-precise),
-    transform 80ms var(--ease-precise);
+    transform 80ms var(--ease-precise), scale 180ms var(--ease-soft);
 }
+/* Pet island buttons: soft scale(1.03) (DESIGN_SYSTEM.md 4.4) */
+@media (hover: hover) { .btn-pet:hover { scale: 1.03; } }
 .btn:active:not([aria-disabled="true"], :disabled) { transform: scale(0.98); }
 .btn[aria-disabled="true"], .btn:disabled { cursor: default; }
 .btn[aria-busy="true"] { pointer-events: none; }
@@ -376,4 +378,85 @@
   background-position: center;
   mask: radial-gradient(closest-side, #000 40%, transparent);
 }
+
+/* ===== HUD "releases" the object (DESIGN_SYSTEM.md 8.3) =====
+   Driven by the same scrubbed --hud-opacity, no JS: callout lines shrink to their anchor,
+   labels slide 8px to the nearest (left) edge once the HUD drops below 0.4. */
+.hud-label { display: inline-block; translate: calc(max(0, 0.4 - var(--hud-opacity)) * -20px) 0; }
+.hud-line, .callout-line { scale: var(--hud-opacity) 1; }
+
+/* Callout line of the web Inspector: accent line draws over it on hover / focus (300ms) */
+.callout-line { position: relative; }
+.callout-line::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: var(--color-qa-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--dur-comp) var(--ease-precise);
+}
+.group:focus-within .callout-line::after { transform: scaleX(1); }
+@media (hover: hover) { .group:hover .callout-line::after { transform: scaleX(1); } }
+
+/* Burger → cross: the close button sits over the burger, its lines rotate in on every open */
+.burger-cross > :first-child { transform: translateY(3.5px) rotate(45deg); }
+.burger-cross > :last-child { transform: translateY(-3.5px) rotate(-45deg); }
 } /* @layer components */
+
+@keyframes intro-scale-y { from { transform: scaleY(0); } }
+@keyframes intro-draw { from { stroke-dashoffset: 1; } }
+@keyframes intro-clip { from { clip-path: inset(0 100% 0 0); } }
+@keyframes intro-fade { from { opacity: 0; } }
+@keyframes intro-rise { from { opacity: 0; transform: translateY(var(--rise, 16px)); } }
+@keyframes intro-scale-x { from { transform: scaleX(0); } }
+@keyframes burger-x { from { transform: none; } }
+@keyframes roblox-pass {
+  from { --grid-opacity: 1; --hud-opacity: 1; }
+  to { --grid-opacity: 0; --hud-opacity: 0.4; }
+}
+
+/* Everything below is motion only: with reduced motion none of it applies, content is in its final state. */
+@media (prefers-reduced-motion: no-preference) {
+  /* ===== Hero intro (8.3): ≤ 1200ms total; transform/opacity/clip-path only, so no layout shift
+     and every link is clickable from the first frame. Fill "backwards": afterwards the normal styles apply. ===== */
+  #hero::before { transform-origin: top; animation: intro-scale-y 400ms var(--ease-precise) backwards; }
+  #hero .hero-frame rect { animation: intro-draw 480ms var(--ease-precise) 200ms backwards; }
+  #hero .hero-name-line { animation: intro-clip 480ms var(--ease-precise) calc(300ms + var(--i, 0) * 40ms) backwards; }
+  #hero :is(.hud-label, .hero-handle) { animation: intro-fade 240ms var(--ease-precise) 600ms backwards; }
+  #hero [data-hero-scene] { animation: intro-fade 500ms var(--ease-out) 700ms backwards; }
+  #hero .intro-rise { animation: intro-rise 360ms var(--ease-out) calc(360ms + var(--i, 0) * 40ms) backwards; }
+
+  /* ===== One-shot reveals (MotionObserver sets html[data-motion] and [data-inview]) =====
+     Hidden state exists only after hydration and only for elements that were off screen. */
+  [data-motion] [data-reveal="rise"]:not([data-inview]),
+  [data-motion] [data-reveal="stagger"]:not([data-inview]) > * { opacity: 0; }
+  [data-motion] [data-reveal="draw"]:not([data-inview]) :is(.draw-frame rect) { stroke-dashoffset: 1; }
+  [data-motion] [data-reveal="draw"]:not([data-inview]) .callout-line { transform: scaleX(0); }
+  [data-motion] [data-reveal="draw"]:not([data-inview]) .callout-label { opacity: 0; }
+
+  [data-inview="anim"][data-reveal="rise"] { --rise: 24px; animation: intro-rise 480ms var(--ease-out) backwards; }
+  [data-inview="anim"][data-reveal="stagger"] > * { animation: intro-rise 480ms var(--ease-out) backwards; }
+  [data-inview="anim"][data-reveal="stagger"] > :nth-child(2) { animation-delay: 40ms; }
+  [data-inview="anim"][data-reveal="stagger"] > :nth-child(3) { animation-delay: 80ms; }
+  [data-inview="anim"][data-reveal="stagger"] > :nth-child(4) { animation-delay: 120ms; }
+  [data-inview="anim"][data-reveal="stagger"] > :nth-child(5) { animation-delay: 160ms; }
+  [data-inview="anim"][data-reveal="stagger"] > :nth-child(n + 6) { animation-delay: 200ms; }
+  /* web Inspector: media frame draws (360ms), then the callout line and its label (240ms) */
+  [data-inview="anim"][data-reveal="draw"] .draw-frame rect { animation: intro-draw 360ms var(--ease-precise) backwards; }
+  [data-inview="anim"][data-reveal="draw"] .callout-line { animation: intro-scale-x 240ms var(--ease-precise) 360ms backwards; }
+  [data-inview="anim"][data-reveal="draw"] .callout-label { animation: intro-fade 240ms var(--ease-precise) 360ms backwards; }
+
+  .mobile-menu[open] .burger-cross > * { animation: burger-x 180ms var(--ease-precise) 40ms backwards; }
+
+  /* ===== Projects: the roblox sub-block scrubs clay → shaded (grid 1 → 0, HUD 1 → 0.4), table 8.3 ===== */
+  @supports (animation-timeline: view()) {
+    #projects {
+      timeline-scope: --roblox-pass;
+      animation: render-pass linear both, roblox-pass linear both;
+      animation-timeline: view(), --roblox-pass;
+      animation-range: entry 0% entry 70%, cover 0% cover 60%;
+    }
+    .roblox-pass { view-timeline: --roblox-pass block; }
+  }
+}
