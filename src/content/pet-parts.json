@@ -1,0 +1,617 @@
+{
+  "units": "m",
+  "up": "+Y",
+  "forward": "+Z",
+  "scale": 0.172748,
+  "scaleNote": "1 Roblox stud = scale metres; the all-AIR pet is 1 m tall",
+  "assembly": "Put each part GLB (origin = its pivot) at its 'socket' (pet space, ground at y=0). Put an accessory at part.socket + part.accessoryAnchors[0] of the part in its 'slot'.",
+  "slots": [
+    {
+      "id": "BODY",
+      "title": {
+        "en": "Body",
+        "ru": "Тело"
+      }
+    },
+    {
+      "id": "HEAD",
+      "title": {
+        "en": "Head",
+        "ru": "Голова"
+      }
+    },
+    {
+      "id": "FRONT_PAWS",
+      "title": {
+        "en": "Front paws",
+        "ru": "Передние лапы"
+      }
+    },
+    {
+      "id": "HIND_PAWS",
+      "title": {
+        "en": "Hind paws",
+        "ru": "Задние лапы"
+      }
+    },
+    {
+      "id": "TAIL",
+      "title": {
+        "en": "Tail",
+        "ru": "Хвост"
+      }
+    },
+    {
+      "id": "BACK",
+      "title": {
+        "en": "Wings / back",
+        "ru": "Крылья / спина"
+      }
+    }
+  ],
+  "elements": [
+    {
+      "id": "AIR",
+      "title": {
+        "en": "Cotton Cloud",
+        "ru": "Хлопковое облако"
+      }
+    },
+    {
+      "id": "FIRE",
+      "title": {
+        "en": "Strawberry Dragon",
+        "ru": "Клубничный дракон"
+      }
+    },
+    {
+      "id": "WATER",
+      "title": {
+        "en": "Bubble Axolotl",
+        "ru": "Пузырьковый аксолотль"
+      }
+    }
+  ],
+  "parts": [
+    {
+      "id": "air-body",
+      "element": "AIR",
+      "slot": "BODY",
+      "file": "/models/pet-parts/air-body.glb",
+      "title": {
+        "en": "Cotton Cloud: Body",
+        "ru": "Хлопковое облако: Тело"
+      },
+      "socket": [
+        0.0,
+        0.3802,
+        0.0
+      ],
+      "accessoryAnchors": [
+        [
+          0.0,
+          0.0518,
+          0.2384
+        ]
+      ],
+      "idleAnim": "none",
+      "triangles": 2600,
+      "sizeKB": 58.5,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#AIR_BODY"
+    },
+    {
+      "id": "air-head",
+      "element": "AIR",
+      "slot": "HEAD",
+      "file": "/models/pet-parts/air-head.glb",
+      "title": {
+        "en": "Cotton Cloud: Head",
+        "ru": "Хлопковое облако: Голова"
+      },
+      "socket": [
+        0.0,
+        0.6134,
+        0.1641
+      ],
+      "accessoryAnchors": [
+        [
+          0.0,
+          0.2678,
+          0.0345
+        ]
+      ],
+      "idleAnim": "ear_flop",
+      "triangles": 4400,
+      "sizeKB": 154.0,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#AIR_HEAD"
+    },
+    {
+      "id": "air-front-paws",
+      "element": "AIR",
+      "slot": "FRONT_PAWS",
+      "file": "/models/pet-parts/air-front-paws.glb",
+      "title": {
+        "en": "Cotton Cloud: Front paws",
+        "ru": "Хлопковое облако: Передние лапы"
+      },
+      "socket": [
+        0.0,
+        0.1729,
+        0.1296
+      ],
+      "accessoryAnchors": [
+        [
+          0.1641,
+          -0.0777,
+          -0.0138
+        ],
+        [
+          -0.1641,
+          -0.0777,
+          -0.0138
+        ]
+      ],
+      "idleAnim": "none",
+      "triangles": 1800,
+      "sizeKB": 49.1,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#AIR_FRONT_PAWS"
+    },
+    {
+      "id": "air-hind-paws",
+      "element": "AIR",
+      "slot": "HIND_PAWS",
+      "file": "/models/pet-parts/air-hind-paws.glb",
+      "title": {
+        "en": "Cotton Cloud: Hind paws",
+        "ru": "Хлопковое облако: Задние лапы"
+      },
+      "socket": [
+        0.0,
+        0.1729,
+        -0.1382
+      ],
+      "accessoryAnchors": [
+        [
+          0.152,
+          -0.1036,
+          0.0
+        ],
+        [
+          -0.152,
+          -0.1036,
+          0.0
+        ]
+      ],
+      "idleAnim": "none",
+      "triangles": 1798,
+      "sizeKB": 42.7,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#AIR_HIND_PAWS"
+    },
+    {
+      "id": "air-tail",
+      "element": "AIR",
+      "slot": "TAIL",
+      "file": "/models/pet-parts/air-tail.glb",
+      "title": {
+        "en": "Cotton Cloud: Tail",
+        "ru": "Хлопковое облако: Хвост"
+      },
+      "socket": [
+        0.0,
+        0.3542,
+        -0.2332
+      ],
+      "accessoryAnchors": [
+        [
+          0.0,
+          0.0518,
+          -0.1382
+        ]
+      ],
+      "idleAnim": "tail_swish",
+      "triangles": 1798,
+      "sizeKB": 41.5,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#AIR_TAIL"
+    },
+    {
+      "id": "air-back",
+      "element": "AIR",
+      "slot": "BACK",
+      "file": "/models/pet-parts/air-back.glb",
+      "title": {
+        "en": "Cotton Cloud: Wings / back",
+        "ru": "Хлопковое облако: Крылья / спина"
+      },
+      "socket": [
+        0.0,
+        0.5529,
+        -0.0777
+      ],
+      "accessoryAnchors": [
+        [
+          0.0,
+          0.0294,
+          0.0
+        ]
+      ],
+      "idleAnim": "wing_flap",
+      "triangles": 2400,
+      "sizeKB": 54.2,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#AIR_BACK"
+    },
+    {
+      "id": "fire-body",
+      "element": "FIRE",
+      "slot": "BODY",
+      "file": "/models/pet-parts/fire-body.glb",
+      "title": {
+        "en": "Strawberry Dragon: Body",
+        "ru": "Клубничный дракон: Тело"
+      },
+      "socket": [
+        0.0,
+        0.3802,
+        0.0
+      ],
+      "accessoryAnchors": [
+        [
+          0.0,
+          0.0432,
+          0.2349
+        ]
+      ],
+      "idleAnim": "none",
+      "triangles": 2600,
+      "sizeKB": 95.7,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#FIRE_BODY"
+    },
+    {
+      "id": "fire-head",
+      "element": "FIRE",
+      "slot": "HEAD",
+      "file": "/models/pet-parts/fire-head.glb",
+      "title": {
+        "en": "Strawberry Dragon: Head",
+        "ru": "Клубничный дракон: Голова"
+      },
+      "socket": [
+        0.0,
+        0.6134,
+        0.1641
+      ],
+      "accessoryAnchors": [
+        [
+          0.0,
+          0.2799,
+          0.0173
+        ]
+      ],
+      "idleAnim": "head_tilt",
+      "triangles": 4400,
+      "sizeKB": 167.3,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#FIRE_HEAD"
+    },
+    {
+      "id": "fire-front-paws",
+      "element": "FIRE",
+      "slot": "FRONT_PAWS",
+      "file": "/models/pet-parts/fire-front-paws.glb",
+      "title": {
+        "en": "Strawberry Dragon: Front paws",
+        "ru": "Клубничный дракон: Передние лапы"
+      },
+      "socket": [
+        0.0,
+        0.1729,
+        0.1296
+      ],
+      "accessoryAnchors": [
+        [
+          0.1537,
+          -0.0864,
+          -0.0207
+        ],
+        [
+          -0.1537,
+          -0.0864,
+          -0.0207
+        ]
+      ],
+      "idleAnim": "none",
+      "triangles": 1800,
+      "sizeKB": 49.1,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#FIRE_FRONT_PAWS"
+    },
+    {
+      "id": "fire-hind-paws",
+      "element": "FIRE",
+      "slot": "HIND_PAWS",
+      "file": "/models/pet-parts/fire-hind-paws.glb",
+      "title": {
+        "en": "Strawberry Dragon: Hind paws",
+        "ru": "Клубничный дракон: Задние лапы"
+      },
+      "socket": [
+        0.0,
+        0.1729,
+        -0.1382
+      ],
+      "accessoryAnchors": [
+        [
+          0.152,
+          -0.095,
+          -0.0311
+        ],
+        [
+          -0.152,
+          -0.095,
+          -0.0311
+        ]
+      ],
+      "idleAnim": "none",
+      "triangles": 1798,
+      "sizeKB": 46.3,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#FIRE_HIND_PAWS"
+    },
+    {
+      "id": "fire-tail",
+      "element": "FIRE",
+      "slot": "TAIL",
+      "file": "/models/pet-parts/fire-tail.glb",
+      "title": {
+        "en": "Strawberry Dragon: Tail",
+        "ru": "Клубничный дракон: Хвост"
+      },
+      "socket": [
+        0.0,
+        0.3542,
+        -0.2332
+      ],
+      "accessoryAnchors": [
+        [
+          0.0,
+          0.0207,
+          -0.1347
+        ]
+      ],
+      "idleAnim": "tail_swish",
+      "triangles": 1800,
+      "sizeKB": 42.1,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#FIRE_TAIL"
+    },
+    {
+      "id": "fire-back",
+      "element": "FIRE",
+      "slot": "BACK",
+      "file": "/models/pet-parts/fire-back.glb",
+      "title": {
+        "en": "Strawberry Dragon: Wings / back",
+        "ru": "Клубничный дракон: Крылья / спина"
+      },
+      "socket": [
+        0.0,
+        0.5529,
+        -0.0777
+      ],
+      "accessoryAnchors": [
+        [
+          0.0,
+          0.0276,
+          0.0
+        ]
+      ],
+      "idleAnim": "wing_flap",
+      "triangles": 2400,
+      "sizeKB": 62.2,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#FIRE_BACK"
+    },
+    {
+      "id": "water-body",
+      "element": "WATER",
+      "slot": "BODY",
+      "file": "/models/pet-parts/water-body.glb",
+      "title": {
+        "en": "Bubble Axolotl: Body",
+        "ru": "Пузырьковый аксолотль: Тело"
+      },
+      "socket": [
+        0.0,
+        0.3802,
+        0.0
+      ],
+      "accessoryAnchors": [
+        [
+          0.0,
+          0.0432,
+          0.2349
+        ]
+      ],
+      "idleAnim": "none",
+      "triangles": 2600,
+      "sizeKB": 77.6,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#WATER_BODY"
+    },
+    {
+      "id": "water-head",
+      "element": "WATER",
+      "slot": "HEAD",
+      "file": "/models/pet-parts/water-head.glb",
+      "title": {
+        "en": "Bubble Axolotl: Head",
+        "ru": "Пузырьковый аксолотль: Голова"
+      },
+      "socket": [
+        0.0,
+        0.6134,
+        0.1641
+      ],
+      "accessoryAnchors": [
+        [
+          0.0,
+          0.2678,
+          0.0173
+        ]
+      ],
+      "idleAnim": "head_tilt",
+      "triangles": 4400,
+      "sizeKB": 153.1,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#WATER_HEAD"
+    },
+    {
+      "id": "water-front-paws",
+      "element": "WATER",
+      "slot": "FRONT_PAWS",
+      "file": "/models/pet-parts/water-front-paws.glb",
+      "title": {
+        "en": "Bubble Axolotl: Front paws",
+        "ru": "Пузырьковый аксолотль: Передние лапы"
+      },
+      "socket": [
+        0.0,
+        0.1729,
+        0.1296
+      ],
+      "accessoryAnchors": [
+        [
+          0.1676,
+          -0.0777,
+          -0.0207
+        ],
+        [
+          -0.1676,
+          -0.0777,
+          -0.0207
+        ]
+      ],
+      "idleAnim": "none",
+      "triangles": 1800,
+      "sizeKB": 40.2,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#WATER_FRONT_PAWS"
+    },
+    {
+      "id": "water-hind-paws",
+      "element": "WATER",
+      "slot": "HIND_PAWS",
+      "file": "/models/pet-parts/water-hind-paws.glb",
+      "title": {
+        "en": "Bubble Axolotl: Hind paws",
+        "ru": "Пузырьковый аксолотль: Задние лапы"
+      },
+      "socket": [
+        0.0,
+        0.1729,
+        -0.1382
+      ],
+      "accessoryAnchors": [
+        [
+          0.1831,
+          -0.0777,
+          -0.0207
+        ],
+        [
+          -0.1831,
+          -0.0777,
+          -0.0207
+        ]
+      ],
+      "idleAnim": "none",
+      "triangles": 1800,
+      "sizeKB": 40.2,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#WATER_HIND_PAWS"
+    },
+    {
+      "id": "water-tail",
+      "element": "WATER",
+      "slot": "TAIL",
+      "file": "/models/pet-parts/water-tail.glb",
+      "title": {
+        "en": "Bubble Axolotl: Tail",
+        "ru": "Пузырьковый аксолотль: Хвост"
+      },
+      "socket": [
+        0.0,
+        0.3542,
+        -0.2332
+      ],
+      "accessoryAnchors": [
+        [
+          0.0,
+          0.0518,
+          -0.1296
+        ]
+      ],
+      "idleAnim": "tail_swish",
+      "triangles": 1798,
+      "sizeKB": 40.0,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#WATER_TAIL"
+    },
+    {
+      "id": "water-back",
+      "element": "WATER",
+      "slot": "BACK",
+      "file": "/models/pet-parts/water-back.glb",
+      "title": {
+        "en": "Bubble Axolotl: Wings / back",
+        "ru": "Пузырьковый аксолотль: Крылья / спина"
+      },
+      "socket": [
+        0.0,
+        0.5529,
+        -0.0777
+      ],
+      "accessoryAnchors": [
+        [
+          0.0,
+          0.1271,
+          -0.043
+        ]
+      ],
+      "idleAnim": "back_bob",
+      "triangles": 2400,
+      "sizeKB": 53.5,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#WATER_BACK"
+    }
+  ],
+  "accessories": [
+    {
+      "id": "acc-head-rare",
+      "slot": "HEAD",
+      "rarity": "RARE",
+      "file": "/models/pet-parts/acc-head-rare.glb",
+      "title": {
+        "en": "Rare head charm",
+        "ru": "Редкий аксессуар головы"
+      },
+      "triangles": 696,
+      "sizeKB": 16.8,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#ORN_HEAD_RARE"
+    },
+    {
+      "id": "acc-head-epic",
+      "slot": "HEAD",
+      "rarity": "EPIC",
+      "file": "/models/pet-parts/acc-head-epic.glb",
+      "title": {
+        "en": "Epic head charm",
+        "ru": "Эпический аксессуар головы"
+      },
+      "triangles": 856,
+      "sizeKB": 20.4,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#ORN_HEAD_EPIC"
+    },
+    {
+      "id": "acc-head-legendary",
+      "slot": "HEAD",
+      "rarity": "LEGENDARY",
+      "file": "/models/pet-parts/acc-head-legendary.glb",
+      "title": {
+        "en": "Legendary head charm",
+        "ru": "Легендарный аксессуар головы"
+      },
+      "triangles": 856,
+      "sizeKB": 20.4,
+      "source": "../питомцы/blender/assets/petforge_parts_v2.blend#ORN_HEAD_LEGENDARY"
+    }
+  ],
+  "source": "../питомцы/blender/manifest.json"
+}
