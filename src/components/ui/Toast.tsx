@@ -57,7 +57,7 @@ export function ToastProvider({ children }: { children: ReactNode }) {
             onMouseLeave={() => setPaused(false)}
             onFocus={() => setPaused(true)}
             onBlur={() => setPaused(false)}
-            className="toast pointer-events-auto flex max-w-[360px] items-center gap-3 rounded-qa-panel border border-line bg-surface-2 py-1 pl-4 text-small text-text shadow-popover"
+            className="toast pointer-events-auto flex max-w-[360px] items-center gap-3 border border-line bg-surface-2 py-1 pl-4 text-small text-text shadow-popover"
           >
             <span aria-hidden="true" className={toast.tone === "success" ? "text-status-pass" : "text-sev-major"}>
               {toast.tone === "success" ? "✓" : "!"}

@@ -7,7 +7,7 @@ type Size = "md" | "sm";
 
 interface CommonProps {
   variant?: Variant;
-  /** sm — only for the desktop header */
+  /** sm (44px) — header and dense toolbars */
   size?: Size;
   /** Shows "···", sets aria-busy, ignores repeated clicks */
   loading?: boolean;
@@ -21,14 +21,14 @@ export type ButtonProps = LinkProps | NativeButtonProps;
 const isExternal = (href: string) => /^(https?:)?\/\//.test(href);
 const isLocalePath = (href: string) => href.startsWith("/") && !href.startsWith("//");
 
-/** DESIGN_SYSTEM.md 4.4. Renders <a>/<Link> when `href` is given, otherwise <button>. */
+/** Pill button (docs/REDESIGN_UX_SPEC.md 3.1): primary = the pink fill, secondary = outline, ghost = inline link. Renders <a>/<Link> when `href` is given, otherwise <button>. */
 export function Button(props: ButtonProps) {
   const t = useTranslations("a11y");
   const { variant = "primary", size = "md", loading = false, className = "", children, ...rest } = props;
   const cls = [
     "btn",
     `btn-${variant}`,
-    variant === "ghost" ? "h-11 px-0" : size === "sm" ? "h-10 px-4" : "h-12 px-6",
+    variant === "ghost" ? "min-h-11 px-0" : size === "sm" ? "min-h-11 px-5 py-2" : "min-h-12 px-6 py-2",
     className,
   ].join(" ");
   const content = (

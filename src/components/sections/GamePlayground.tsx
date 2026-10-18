@@ -22,7 +22,7 @@ const DEFAULT_BUILD = Object.fromEntries(slots.map((s) => [s.id, "AIR"])) as Rec
 const add = (a: number[], b: number[]) => a.map((v, i) => v + (b[i] ?? 0));
 const pick = <T,>(list: readonly T[]) => list[Math.floor(Math.random() * list.length)];
 
-/** Game Design Playground (DESIGN_SYSTEM.md 4.12 / 5.8): assemble a pet from real Build Your Pet parts. */
+/** Game Design Playground: assemble a pet from real Build Your Pet parts. Dark, like the rest of the site. */
 export function GamePlayground() {
   const t = useTranslations("sections.game-playground");
   const locale = useLocale();
@@ -83,15 +83,15 @@ export function GamePlayground() {
       value: build[s.id],
       options: parts
         .filter((p) => p.slot === s.id)
-        .map((p) => ({ value: p.element, label: elementTitle(p.element), swatch: p.element })),
+        .map((p) => ({ value: p.element, label: elementTitle(p.element) })),
     })),
     {
       id: "ACCESSORY",
       label: t("accessory"),
       value: accessory ?? "",
       options: [
-        { value: "", label: t("accessoryNone"), swatch: "NONE" },
-        ...accessories.map((a) => ({ value: a.id, label: rarity(a.rarity), swatch: a.rarity })),
+        { value: "", label: t("accessoryNone") },
+        ...accessories.map((a) => ({ value: a.id, label: rarity(a.rarity) })),
       ],
     },
   ];
@@ -131,17 +131,12 @@ export function GamePlayground() {
   const show3D = webgl === true && !lost;
 
   return (
-    <SectionShell
-      id="game-playground"
-      title={t("title")}
-      headingClassName="font-display text-h1 font-medium"
-      className="mx-[clamp(8px,2vw,32px)] rounded-pet-lg bg-pet-bg text-pet-ink"
-    >
-      <p className="mt-6 max-w-prose text-lead text-pet-ink-2">{t("intro")}</p>
+    <SectionShell id="game-playground" title={t("title")}>
+      <p className="mt-8 max-w-prose text-lead font-light text-text">{t("intro")}</p>
 
       <div className="mt-10 grid items-start gap-8 lg:grid-cols-12">
         <div className="lg:col-span-6">
-          <div className="relative aspect-square overflow-hidden rounded-pet-lg bg-pet-surface shadow-pet">
+          <div className="relative aspect-square overflow-hidden border border-line bg-[radial-gradient(ellipse_at_center,var(--color-surface-2)_0%,var(--color-bg)_75%)]">
             {show3D ? (
               <LazyMount
                 className="absolute inset-0"
@@ -161,67 +156,59 @@ export function GamePlayground() {
               <img src={POSTER} alt={elementTitle("AIR")} loading="lazy" decoding="async" className="size-full object-contain p-8" />
             )}
           </div>
-          {!show3D && webgl !== null && <p className="mt-3 text-small text-pet-ink-2">{t("posterNote")}</p>}
-          {show3D && !coarse && <p className="mt-3 text-small text-pet-ink-2">{t("dragHint")}</p>}
+          {!show3D && webgl !== null && <p className="mt-3 text-small text-text-2">{t("posterNote")}</p>}
+          {show3D && !coarse && <p className="hud mt-3 text-mono-xs text-text-3">{t("dragHint")}</p>}
         </div>
 
         <div className="flex flex-col gap-8 lg:col-span-6">
           <PartPicker tabs={tabs} label={t("categoriesLabel")} optionsLabel={(slot) => t("optionsLabel", { slot })} onChoose={choose} />
 
-          <div className="flex flex-wrap items-center gap-4">
-            <button
-              type="button"
-              onClick={randomize}
-              className="h-12 rounded-full border-2 border-pet-ink bg-pet-butter px-6 font-semibold text-pet-ink transition-transform duration-(--dur-micro) ease-(--ease-soft) hover:scale-103 focus-visible:[outline:var(--ring-pet)]"
-            >
+          <div className="flex flex-wrap items-center gap-2">
+            <button type="button" onClick={randomize} className="btn btn-primary min-h-12 px-6 py-2">
               {t("randomize")}
             </button>
-            <button
-              type="button"
-              onClick={reset}
-              className="h-11 font-semibold text-pet-ink underline underline-offset-4 focus-visible:[outline:var(--ring-pet)]"
-            >
+            <button type="button" onClick={reset} className="btn btn-secondary min-h-12 px-6 py-2">
               {t("reset")}
             </button>
           </div>
 
           {/* 2D summary: also the whole result when 3D is unavailable */}
-          <section aria-labelledby="pet-composition" className="rounded-pet bg-pet-surface p-6">
-            <h3 id="pet-composition" className="font-display text-h3 font-medium">
+          <section aria-labelledby="pet-composition" className="border border-line bg-surface-1 p-6">
+            <h3 id="pet-composition" className="font-display text-h3 font-semibold uppercase">
               {t("composition")}
             </h3>
             <dl className="mt-4 grid grid-cols-[auto_1fr] gap-x-6 gap-y-1 text-small">
               {slots.map((s) => (
                 <div key={s.id} className="contents">
-                  <dt className="text-pet-ink-2">{s.title[locale]}</dt>
+                  <dt className="text-text-2">{s.title[locale]}</dt>
                   <dd className="font-semibold">{elementTitle(partFor(s.id).element)}</dd>
                 </div>
               ))}
-              <dt className="text-pet-ink-2">{t("accessory")}</dt>
+              <dt className="text-text-2">{t("accessory")}</dt>
               <dd className="font-semibold">{acc ? acc.title[locale] : t("accessoryNone")}</dd>
               {acc && (
                 <>
-                  <dt className="text-pet-ink-2">{t("rarity")}</dt>
+                  <dt className="text-text-2">{t("rarity")}</dt>
                   <dd className="font-semibold">{rarity(acc.rarity)}</dd>
                 </>
               )}
             </dl>
             <p className="mt-4 text-small">
-              <span className="text-pet-ink-2">{t("element")}: </span>
+              <span className="text-text-2">{t("element")}: </span>
               <span className="font-semibold">{counts}</span>
             </p>
-            <div className="mt-4 rounded-pet bg-pet-bg p-4">
-              <p className="text-small text-pet-ink-2">{t("setBonus.label")}</p>
-              {/* stable live region; the keyed child animates in (spring pet «плюх», DESIGN_SYSTEM.md 8.1) */}
+            <div className="mt-4 border-t border-line pt-4">
+              <p className="hud text-mono-xs text-text-3">{t("setBonus.label")}</p>
+              {/* stable live region; the keyed child rises in (no bounce) */}
               <div aria-live="polite" className="mt-1 min-h-6">
                 <AnimatePresence mode="wait" initial={false}>
                   <motion.p
                     key={`${tier}-${top.id}-${top.n}`}
                     className="font-semibold"
-                    initial={reduced ? { opacity: 0 } : { opacity: 0, y: 8, scale: 0.9 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    initial={reduced ? { opacity: 0 } : { opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, transition: { duration: reduced ? 0 : 0.12 } }}
-                    transition={reduced ? { duration: 0.15 } : { type: "spring", stiffness: 320, damping: 14, mass: 0.8 }}
+                    transition={{ duration: reduced ? 0.15 : 0.24, ease: [0.19, 1, 0.22, 1] }}
                   >
                     {bonus}
                   </motion.p>
@@ -231,8 +218,8 @@ export function GamePlayground() {
           </section>
 
           <div>
-            <h3 className="font-semibold">{t("designNoteTitle")}</h3>
-            <p className="mt-1 max-w-prose text-pet-ink-2">{t("designNote")}</p>
+            <h3 className="hud text-mono-xs text-text-3">{t("designNoteTitle")}</h3>
+            <p className="mt-2 max-w-prose text-text-2">{t("designNote")}</p>
           </div>
         </div>
       </div>

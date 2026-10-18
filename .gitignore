@@ -50,3 +50,6 @@ next-env.d.ts
 
 # playwright MCP screenshots
 /.playwright-mcp/
+
+# design reference (someone else's work, not for the repo)
+docs/reference-pinterest*

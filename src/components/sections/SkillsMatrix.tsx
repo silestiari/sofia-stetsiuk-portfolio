@@ -29,13 +29,9 @@ export function SkillsMatrix({ columns, groups }: { columns: MatrixColumn[]; gro
     projects.length === 0 ? (
       <span className="text-small text-text-3">— {t("fromTraining")}</span>
     ) : (
-      <span className="flex flex-wrap gap-x-3">
+      <span className="mt-2 flex flex-wrap gap-2">
         {projects.map((slug) => (
-          <Link
-            key={slug}
-            href={`/projects/${slug}`}
-            className="inline-flex min-h-11 items-center text-small text-qa-accent underline underline-offset-4 hover:decoration-2 lg:min-h-6"
-          >
+          <Link key={slug} href={`/projects/${slug}`} className="btn btn-secondary min-h-11 px-5 py-2">
             {titleOf(slug)}
           </Link>
         ))}
@@ -76,7 +72,7 @@ export function SkillsMatrix({ columns, groups }: { columns: MatrixColumn[]; gro
             {groups.map((g) => (
               <Fragment key={g.id}>
                 <tr>
-                  <th scope="colgroup" colSpan={columns.length + 1} className="pt-8 pb-2 text-left text-h3 font-bold">
+                  <th scope="colgroup" colSpan={columns.length + 1} className="pt-10 pb-2 text-left font-display text-h3 font-semibold uppercase">
                     {g.title}
                   </th>
                 </tr>
@@ -104,8 +100,8 @@ export function SkillsMatrix({ columns, groups }: { columns: MatrixColumn[]; gro
                         return (
                           <td key={c.slug} className="min-w-0 text-center">
                             {used && (
-                              <span aria-hidden="true" className={on ? "text-qa-accent" : "text-text-2"}>
-                                ■
+                              <span aria-hidden="true" className={`font-mono text-lead ${on ? "text-qa-accent" : "text-text"}`}>
+                                +
                               </span>
                             )}
                             <span className="sr-only">{used ? t("used") : t("notUsed")}</span>
@@ -122,7 +118,7 @@ export function SkillsMatrix({ columns, groups }: { columns: MatrixColumn[]; gro
 
         <div aria-live="polite" className="mt-8 min-h-24">
           {skill && (
-            <div className="grid grid-cols-12 gap-(--gutter) border-l border-qa-accent pl-6">
+            <div className="grid grid-cols-12 gap-(--gutter) border-t-2 border-qa-accent pt-6">
               <div className="col-span-7">
                 <p className="font-bold">{skill.label}</p>
                 <p className="mt-2 text-text-2">
@@ -138,7 +134,7 @@ export function SkillsMatrix({ columns, groups }: { columns: MatrixColumn[]; gro
           )}
         </div>
         {skill && (
-          <button type="button" onClick={() => setSelected(null)} className="btn btn-ghost h-11 px-0">
+          <button type="button" onClick={() => setSelected(null)} className="btn btn-ghost min-h-11 px-0">
             {t("clearFilter")}
           </button>
         )}
@@ -148,10 +144,10 @@ export function SkillsMatrix({ columns, groups }: { columns: MatrixColumn[]; gro
       <div className="mt-10 flex flex-col gap-10 lg:hidden">
         {groups.map((g) => (
           <div key={g.id}>
-            <h3 className="text-h3 font-bold">{g.title}</h3>
-            <ul className="mt-4 flex flex-col gap-3">
+            <h3 className="font-display text-h3 font-semibold uppercase">{g.title}</h3>
+            <ul className="mt-4 flex flex-col">
               {g.skills.map((s) => (
-                <li key={s.id} className="rounded-qa-panel border border-line bg-surface-1 p-4">
+                <li key={s.id} className="border-t border-line py-4">
                   <p className="font-bold">{s.label}</p>
                   <p className="hud mt-3 text-mono-xs text-text-3">{t("usedIn")}</p>
                   {usedIn(s.projects)}

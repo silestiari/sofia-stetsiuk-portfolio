@@ -18,8 +18,8 @@ export function Projects() {
 
   return (
     <SectionShell id="projects" title={t("title")}>
-      <div className="mt-6 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
-        <p className="max-w-prose text-lead text-text-2">{t("intro")}</p>
+      <div className="mt-8 flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <p className="max-w-prose text-lead font-light text-text">{t("intro")}</p>
         <ProjectFilter
           label={t("filterLabel")}
           options={[
@@ -30,8 +30,8 @@ export function Projects() {
           ]}
         />
       </div>
-      <p className="mt-6 inline-flex gap-2 rounded-qa border border-dashed border-text-3 px-3 py-2 text-small text-text-2">
-        <span aria-hidden="true" className="font-mono text-text-3">
+      <p className="mt-6 inline-flex items-center gap-2 rounded-3xl border border-line-strong px-4 py-2 text-small text-text-2">
+        <span aria-hidden="true" className="grid size-5 shrink-0 place-items-center rounded-full border border-line-strong font-mono text-mono-xs">
           i
         </span>
         {projectsDisclaimer[locale]}
@@ -41,15 +41,17 @@ export function Projects() {
         const list = projects.filter((p) => p.category === g.id);
         if (list.length === 0) return null;
         return (
-          <div key={g.id} data-group={g.id} className={`mt-20 lg:mt-28 ${g.id === "roblox" ? "roblox-pass" : ""}`}>
-            <div className="mb-10 flex items-center gap-4">
-              <HudLabel size="md">{t(g.key)}</HudLabel>
+          <div key={g.id} data-group={g.id} className={`mt-20 lg:mt-32 ${g.id === "roblox" ? "roblox-pass" : ""}`}>
+            <div className="mb-12 flex items-center gap-4">
+              <HudLabel size="md">
+                {t(g.key)} / {String(list.length).padStart(2, "0")}
+              </HudLabel>
               <span aria-hidden="true" className="hud-line h-px flex-1 origin-left bg-grid-strong opacity-(--hud-opacity)" />
             </div>
             <ul className="flex flex-col gap-20 lg:gap-32">
               {list.map((p, i) => (
                 <li key={p.slug} data-reveal={g.id === "web" ? "draw" : "rise"}>
-                  <ProjectInspector project={p} locale={locale} flip={i % 2 === 1} accent={i % 2 ? "sky" : "pink"} />
+                  <ProjectInspector project={p} locale={locale} flip={i % 2 === 1} />
                 </li>
               ))}
             </ul>

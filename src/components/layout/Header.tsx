@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { Button } from "@/components/ui/Button";
 import { desktopNavIds, sectionIds, sections, type SectionId } from "@/content/sections";
 import { usePathname } from "@/i18n/navigation";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -42,12 +41,12 @@ export function Header() {
     <header className="site-header sticky top-0 z-(--z-header) h-(--header-h)">
       <a
         href="#content"
-        className="fixed top-2 left-2 z-(--z-skip) -translate-y-[200%] rounded-qa-panel bg-qa-accent-fill px-4 py-3 text-small font-bold text-on-accent focus-visible:translate-y-0"
+        className="fixed top-2 left-2 z-(--z-skip) -translate-y-[200%] rounded-full bg-qa-accent-fill px-4 py-3 text-small font-bold text-on-accent focus-visible:translate-y-0"
       >
         {tA11y("skipToContent")}
       </a>
 
-      <div className="page-container flex h-full items-center gap-6">
+      <div className="page-container flex h-full items-center gap-2 lg:gap-6">
         <a
           href={href("hero")}
           className="font-mono text-mono font-medium tracking-[0.08em] text-text"
@@ -55,16 +54,17 @@ export function Header() {
           SS_<span className="sr-only"> — {tA11y("logo")}</span>
         </a>
 
+        {/* pill nav: links, not a radiogroup; the active section gets a filled pill (docs/REDESIGN_UX_SPEC.md 3.4) */}
         <nav aria-label={t("label")} className="ml-auto hidden lg:block">
-          <ul className="flex items-center gap-6">
+          <ul className="flex items-center gap-1 rounded-full border border-line p-1">
             {desktopNavIds.map((id) => (
               <li key={id}>
                 <a
                   href={href(id)}
                   aria-current={activeId === id ? "true" : undefined}
-                  className="nav-link group relative flex items-baseline gap-1.5 py-2 text-small font-semibold text-text-2 transition-colors duration-150 hover:text-text aria-[current=true]:text-text"
+                  className="group hud relative flex h-9 items-center gap-1.5 rounded-full px-4 text-mono-xs text-text-2 transition-colors duration-150 before:absolute before:-inset-y-1 before:inset-x-0 hover:bg-surface-1 hover:text-text aria-[current=true]:bg-surface-2 aria-[current=true]:text-text"
                 >
-                  <span className="hud text-mono-xs text-text-3 group-aria-[current=true]:text-qa-accent">
+                  <span className="hidden text-text-3 group-aria-[current=true]:text-qa-accent xl:inline">
                     {String(sections.findIndex((s) => s.id === id)).padStart(2, "0")}
                   </span>
                   {t(id === "ai-lab" ? "labs" : id)}
@@ -74,11 +74,18 @@ export function Header() {
           </ul>
         </nav>
 
-        <Button href={isHome ? "#contact" : "/#contact"} size="sm" className="hidden lg:inline-flex">
-          {t("contact")}
-        </Button>
         <LanguageSwitcher activeId={activeId} className="ml-auto lg:ml-0" />
-        <MobileMenu activeId={activeId} className="-mr-2.5 lg:hidden" />
+        {/* "Contact" pill + the adjoining arrow circle: one link, the circle is decoration */}
+        <a href={isHome ? "#contact" : `/${locale}#contact`} className="group hidden items-center gap-1 lg:flex">
+          <span className="btn btn-secondary min-h-11 px-5 group-hover:border-text">{t("contact")}</span>
+          <span
+            aria-hidden="true"
+            className="grid size-11 place-items-center rounded-full border border-ui-border transition-colors duration-150 group-hover:border-text"
+          >
+            ↘
+          </span>
+        </a>
+        <MobileMenu activeId={activeId} className="lg:hidden" />
       </div>
     </header>
   );

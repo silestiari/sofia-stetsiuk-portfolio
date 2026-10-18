@@ -42,6 +42,8 @@
     "hero": {
       "title": "Sofia Stetsiuk",
       "subtitle": "QA-инженер × гейм-дизайнер",
+      "roleA": "QA-инженер",
+      "roleB": "Гейм-дизайнер",
       "hud": "00 / СТАРТ",
       "firstName": "SOFIA",
       "lastName": "STETSIUK",
@@ -258,8 +260,8 @@
     "notConfirmed": "Не подтверждено",
     "noLink": "Публичной ссылки нет",
     "caseCounter": "Кейс {current} / {total}",
-    "prev": "Назад: {title}",
-    "next": "Дальше: {title}",
+    "prevLabel": "Предыдущий",
+    "nextLabel": "Следующий",
     "status": {
       "released": "Выпущен",
       "in-development": "В разработке",
@@ -291,5 +293,6 @@
     "builtWith": "Сделано на Next.js и React Three Fiber командой AI-агентов — задачи и QA от Софии.",
     "disclaimer": "Проекты на сайте — личные или демонстрационные, а не коммерческие заказы.",
     "backToTop": "Наверх"
-  }
+  },
+  "marquee": "QA × Гейм-дизайн × 3D × AI"
 }

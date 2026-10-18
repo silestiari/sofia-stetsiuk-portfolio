@@ -14,7 +14,7 @@ const setScrollLock = (on: boolean) => {
 };
 
 /**
- * Full-screen menu (DESIGN_SYSTEM.md 4.3) on native <dialog showModal>: the page behind is inert
+ * Full-screen menu on native <dialog showModal>: the page behind is inert
  * (focus stays inside), Esc closes, focus returns to the burger. Lists all 8 anchors.
  */
 export function MobileMenu({ activeId, className = "" }: { activeId: SectionId | null; className?: string }) {
@@ -75,7 +75,7 @@ export function MobileMenu({ activeId, className = "" }: { activeId: SectionId |
         aria-expanded={open}
         aria-controls="mobile-menu"
         aria-label={tA11y("menuOpen")}
-        className="grid size-11 cursor-pointer place-items-center text-text"
+        className="grid size-11 cursor-pointer place-items-center rounded-full border border-ui-border text-text"
       >
         <BurgerIcon cross={false} />
       </button>
@@ -98,7 +98,7 @@ export function MobileMenu({ activeId, className = "" }: { activeId: SectionId |
               autoFocus
               onClick={() => dialog.current?.close()}
               aria-label={tA11y("menuClose")}
-              className="grid size-11 cursor-pointer place-items-center text-text"
+              className="grid size-11 cursor-pointer place-items-center rounded-full border border-ui-border text-text"
             >
               <BurgerIcon cross />
             </button>
@@ -117,25 +117,28 @@ export function MobileMenu({ activeId, className = "" }: { activeId: SectionId |
                     aria-current={activeId === id ? "true" : undefined}
                     className="group flex min-h-14 items-center gap-4 py-2"
                   >
-                    <span className="hud text-mono text-text-3 group-aria-[current=true]:text-qa-accent">
+                    <span className="hud text-mono-xs text-text-3 group-aria-[current=true]:text-qa-accent">
                       {String(i).padStart(2, "0")}
                     </span>
-                    <span className="text-h3 font-bold">{t(id)}</span>
+                    <span className="font-display text-h2 font-bold uppercase">{t(id)}</span>
+                    <span aria-hidden="true" className="ml-auto hidden text-qa-accent group-aria-[current=true]:inline">
+                      →
+                    </span>
                   </a>
                 </li>
               ))}
             </ol>
           </nav>
 
-          <div className="page-container flex shrink-0 flex-wrap items-center gap-4 border-t border-line py-6">
+          <div className="page-container flex shrink-0 flex-wrap items-center gap-2 border-t border-line py-6">
             <LanguageSwitcher activeId={activeId} />
-            <Button variant="ghost" href={`mailto:${profile.contacts.email}`}>
+            <Button variant="secondary" size="sm" href={`mailto:${profile.contacts.email}`}>
               {tContact("email")}
             </Button>
-            <Button variant="ghost" href={profile.contacts.phone.href}>
+            <Button variant="secondary" size="sm" href={profile.contacts.phone.href}>
               {tContact("call")}
             </Button>
-            <Button variant="ghost" href={profile.contacts.github.href}>
+            <Button variant="secondary" size="sm" href={profile.contacts.github.href}>
               {tContact("github")}
             </Button>
           </div>

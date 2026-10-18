@@ -7,17 +7,19 @@ export type BugHuntLabels = { counter: string; fixed: string; allFixed: string }
 type Bug = { id: number; x: number; y: number; a: number; v: number; turn: number; step: number; caught: number };
 
 const N = 7;
-const ACCENT = "#F58FBA"; // --color-qa-accent
-const OK = "#5ED39A"; // --color-status-pass
-const TEXT = "#ECEEF2";
-const MUTED = "#7D8390";
+// globals.css tokens (canvas can't read Tailwind classes)
+const ACCENT = "#F58FBA"; // --color-qa-accent: the target on a bug you can catch
+const SIGNAL = "#C5F25A"; // --color-signal: caught / fixed
+const TEXT = "#F2F2F2"; // --color-text: a crawling bug
+const MUTED = "#A8A8A8"; // --color-text-2: counter
 const CATCH_MS = 1600; // selection frame + label, then the bug fades out
 const RESPAWN_MS = 3500; // after "all fixed"
 
 /**
- * Hero mini-game "catch the bug" (QA × game design): glowing bugs crawl over the grid and run from the cursor;
- * a click or tap catches one — selection frame, "BUG-004 · fixed ✓" — and the counter goes up. When all are
- * caught, "release ready", then a new round. Canvas 2D, runs only while on screen; reduced motion: bugs stand still.
+ * Hero mini-game "catch the bug" (QA × game design): white outline bugs crawl over the grid and run from the cursor;
+ * a pink target marks the one in reach; a click or tap catches it — lime selection frame, "BUG-004 · fixed ✓" — and
+ * the counter goes up. When all are caught: one RGB-split glitch of the frame, "release ready", then a new round.
+ * Canvas 2D, runs only while on screen; reduced motion: bugs stand still, no glitch.
  */
 export function BugHunt({ labels, className = "" }: { labels: BugHuntLabels; className?: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -28,13 +30,14 @@ export function BugHunt({ labels, className = "" }: { labels: BugHuntLabels; cla
     const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
     const coarse = matchMedia("(pointer: coarse)").matches;
     const mono = getComputedStyle(document.documentElement).getPropertyValue("--font-mono").trim() || "monospace";
-    let W = 0, H = 0, raf = 0, last = 0, visible = false, round = 0, doneAt = 0;
+    let W = 0, H = 0, raf = 0, last = 0, visible = false, round = 0, doneAt = 0, glitched = false;
     const pointer = { x: -1e4, y: -1e4 };
     let bugs: Bug[] = [];
 
     const spawn = () => {
       round++;
       doneAt = 0;
+      glitched = false;
       bugs = Array.from({ length: N }, (_, i) => ({
         id: (round - 1) * N + i + 1,
         x: W * (0.15 + 0.7 * Math.random()),
@@ -94,20 +97,33 @@ export function BugHunt({ labels, className = "" }: { labels: BugHuntLabels; cla
       }
     };
 
-    const drawBug = (b: Bug, now: number) => {
+    const reach = coarse ? 40 : 28;
+    const target = () => {
+      let best: Bug | undefined, bd = reach;
+      for (const b of bugs) {
+        const d = Math.hypot(b.x - pointer.x, b.y - pointer.y);
+        if (!b.caught && d < bd) {
+          best = b;
+          bd = d;
+        }
+      }
+      return best;
+    };
+
+    const drawBug = (b: Bug, now: number, hot: boolean) => {
       const t = b.caught ? Math.min(1, (now - b.caught) / CATCH_MS) : 0;
       const fade = b.caught ? 1 - Math.max(0, (now - b.caught - CATCH_MS) / 400) : 1;
       if (fade <= 0) return;
-      const color = b.caught ? OK : ACCENT;
+      const color = b.caught ? SIGNAL : TEXT;
       ctx.save();
       ctx.globalAlpha = fade;
       ctx.translate(b.x, b.y);
+      ctx.lineWidth = 1;
 
       if (b.caught) {
         // selection gizmo: corner brackets close in, like selecting an object in an editor
-        const s = 26 - 8 * Math.min(1, t * 3);
-        ctx.strokeStyle = ACCENT;
-        ctx.lineWidth = 1.5;
+        const s = reduced ? 18 : 26 - 8 * Math.min(1, t * 3);
+        ctx.strokeStyle = SIGNAL;
         for (const [sx, sy] of [[-1, -1], [1, -1], [-1, 1], [1, 1]]) {
           ctx.beginPath();
           ctx.moveTo(sx * s, sy * (s - 7));
@@ -115,60 +131,82 @@ export function BugHunt({ labels, className = "" }: { labels: BugHuntLabels; cla
           ctx.lineTo(sx * (s - 7), sy * s);
           ctx.stroke();
         }
-        ctx.font = `600 11px ${mono}`;
+        ctx.font = `500 11px ${mono}`;
         ctx.textAlign = "center";
-        ctx.fillStyle = TEXT;
+        ctx.fillStyle = SIGNAL;
         ctx.fillText(`BUG-${String(b.id).padStart(3, "0")} · ${labels.fixed} ✓`, 0, -s - 8);
+      } else if (hot) {
+        // pink target: this one is in reach of a click
+        ctx.strokeStyle = ACCENT;
+        ctx.beginPath();
+        ctx.arc(0, 0, 18, 0, Math.PI * 2);
+        for (const [dx, dy] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+          ctx.moveTo(dx * 14, dy * 14);
+          ctx.lineTo(dx * 24, dy * 24);
+        }
+        ctx.stroke();
       }
 
       ctx.rotate(b.a);
-      ctx.shadowColor = color;
-      ctx.shadowBlur = 14;
       ctx.strokeStyle = color;
-      ctx.fillStyle = color;
-      ctx.lineWidth = 1.4;
       // six legs, alternating tripod gait
+      ctx.beginPath();
       for (let i = 0; i < 3; i++) {
         const swing = Math.sin(b.step + (i % 2 ? Math.PI : 0)) * (b.caught ? 0 : 2.5);
         const x = -4 + i * 4;
         for (const side of [-1, 1]) {
-          ctx.beginPath();
-          ctx.moveTo(x, side * 3);
+          ctx.moveTo(x, side * 5);
           ctx.lineTo(x + swing * side * 0.6 - 1, side * 9);
-          ctx.stroke();
         }
       }
-      ctx.beginPath();
-      ctx.ellipse(-1, 0, 7, 5, 0, 0, Math.PI * 2); // body
-      ctx.fill();
-      ctx.beginPath();
-      ctx.arc(7, 0, 3, 0, Math.PI * 2); // head
-      ctx.fill();
-      ctx.beginPath(); // antennae
-      ctx.moveTo(9, -1.5);
+      ctx.moveTo(9, -1.5); // antennae
       ctx.lineTo(13, -5);
       ctx.moveTo(9, 1.5);
       ctx.lineTo(13, 5);
+      ctx.stroke();
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.ellipse(-1, 0, 7, 5, 0, 0, Math.PI * 2); // body: outline only
+      ctx.moveTo(10, 0);
+      ctx.arc(7, 0, 3, 0, Math.PI * 2); // head
       ctx.stroke();
       ctx.restore();
     };
 
     const draw = (now: number) => {
       ctx.clearRect(0, 0, W, H);
-      for (const b of bugs) drawBug(b, now);
+      const hot = target();
+      for (const b of bugs) drawBug(b, now, b === hot);
       const found = bugs.filter((b) => b.caught).length;
-      ctx.font = `600 11px ${mono}`;
-      ctx.textAlign = "left";
+      // counter top-right (the frame's top-left belongs to the hint / tagline) + a 1px progress bar
+      ctx.font = `500 11px ${mono}`;
+      ctx.textAlign = "right";
       ctx.fillStyle = MUTED;
-      ctx.fillText(labels.counter.replace("{found}", String(found)).replace("{total}", String(N)), 16, 24);
-      if (doneAt) {
+      const label = labels.counter.replace("{found}", String(found)).replace("{total}", String(N));
+      ctx.fillText(label, W - 16, 24);
+      const bar = ctx.measureText(label).width;
+      ctx.fillStyle = "rgba(242,242,242,0.22)";
+      ctx.fillRect(W - 16 - bar, 32, bar, 1);
+      ctx.fillStyle = SIGNAL;
+      ctx.fillRect(W - 16 - bar, 32, (bar * found) / N, 1);
+      if (doneAt && now >= doneAt) {
+        if (!glitched && !reduced) {
+          // one RGB-split burst of the whole frame, once per round (≤ 1 flash, no white flash)
+          canvas.animate(
+            [
+              { transform: "translateX(-4px)", filter: "drop-shadow(4px 0 #F58FBA) drop-shadow(-4px 0 #F2F2F2)", clipPath: "inset(10% 0 55% 0)" },
+              { transform: "translateX(3px)", filter: "drop-shadow(-3px 0 #F58FBA) drop-shadow(3px 0 #F2F2F2)", clipPath: "inset(45% 0 20% 0)" },
+              { transform: "none", filter: "none", clipPath: "inset(0)" },
+            ],
+            { duration: 280, easing: "steps(3)" },
+          );
+        }
+        glitched = true;
         ctx.save();
         ctx.globalAlpha = Math.min(1, (now - doneAt) / 300);
-        ctx.font = `600 14px ${mono}`;
+        ctx.font = `500 14px ${mono}`;
         ctx.textAlign = "center";
-        ctx.fillStyle = OK;
-        ctx.shadowColor = OK;
-        ctx.shadowBlur = 12;
+        ctx.fillStyle = SIGNAL;
         ctx.fillText(labels.allFixed, W / 2, H / 2);
         ctx.restore();
       }
@@ -196,16 +234,8 @@ export function BugHunt({ labels, className = "" }: { labels: BugHuntLabels; cla
     const onMove = (e: PointerEvent) => Object.assign(pointer, local(e));
     const onLeave = () => Object.assign(pointer, { x: -1e4, y: -1e4 });
     const onDown = (e: PointerEvent) => {
-      const p = local(e);
-      const reach = coarse ? 40 : 28;
-      let best: Bug | undefined, bd = reach;
-      for (const b of bugs) {
-        const d = Math.hypot(b.x - p.x, b.y - p.y);
-        if (!b.caught && d < bd) {
-          best = b;
-          bd = d;
-        }
-      }
+      Object.assign(pointer, local(e));
+      const best = target();
       if (!best) return;
       const now = performance.now();
       best.caught = now;

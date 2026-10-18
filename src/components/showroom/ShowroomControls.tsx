@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { Tooltip } from "@/components/ui/Tooltip";
 import { useRovingRadio } from "@/hooks/useRovingRadio";
 
-/** Segmented radiogroup in the EN/RU gizmo style (pass switcher, backdrop, project). */
+/** Pill segmented radiogroup — one look site-wide (docs/REDESIGN_UX_SPEC.md 3.3): checked = white pill. */
 export function Segmented<T extends string>({
   label,
   options,
@@ -21,14 +21,14 @@ export function Segmented<T extends string>({
   const selected = Math.max(0, options.findIndex((o) => o.value === value));
   const radio = useRovingRadio(options.length, selected, (i) => onChange(options[i].value));
   return (
-    <div {...radio.group} aria-label={label} className={`flex flex-wrap items-stretch rounded-qa border border-line ${className}`}>
+    <div {...radio.group} aria-label={label} className={`inline-flex flex-wrap items-center gap-1 rounded-3xl border border-ui-border p-1 ${className}`}>
       {options.map((o, i) => (
         <button
           key={o.value}
           type="button"
           {...radio.item(i)}
-          className={`hud relative min-h-11 px-3 text-mono-xs md:min-h-8 ${
-            i === selected ? "text-text outline-1 -outline-offset-1 outline-qa-accent" : "text-text-2 hover:text-text"
+          className={`hud relative h-9 cursor-pointer rounded-full px-4 text-mono-xs transition-colors duration-150 before:absolute before:-inset-y-1 before:inset-x-0 ${
+            i === selected ? "bg-text text-bg" : "text-text-2 hover:text-text"
           }`}
         >
           {o.label}
@@ -59,7 +59,7 @@ export function IconButton({
         aria-label={label}
         aria-pressed={pressed}
         onClick={onClick}
-        className="grid size-11 place-items-center rounded-qa-panel border border-text-3 bg-bg/70 text-text hover:border-qa-accent"
+        className="grid size-11 cursor-pointer place-items-center rounded-full border border-ui-border bg-bg/70 text-text transition-colors duration-150 hover:border-text aria-pressed:border-text aria-pressed:bg-text aria-pressed:text-bg"
       >
         <span aria-hidden="true">{children}</span>
       </button>

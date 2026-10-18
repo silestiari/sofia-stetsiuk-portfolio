@@ -42,6 +42,8 @@
     "hero": {
       "title": "Sofia Stetsiuk",
       "subtitle": "QA Engineer × Game Designer",
+      "roleA": "QA Engineer",
+      "roleB": "Game Designer",
       "hud": "00 / HERO",
       "firstName": "SOFIA",
       "lastName": "STETSIUK",
@@ -258,8 +260,8 @@
     "notConfirmed": "Not confirmed",
     "noLink": "Public link not available",
     "caseCounter": "Case {current} / {total}",
-    "prev": "Previous: {title}",
-    "next": "Next: {title}",
+    "prevLabel": "Previous",
+    "nextLabel": "Next",
     "status": {
       "released": "Released",
       "in-development": "In development",
@@ -291,5 +293,6 @@
     "builtWith": "Built with Next.js, React Three Fiber and a team of AI agents — tasks and QA by Sofia.",
     "disclaimer": "Projects shown are personal or demo work, not commercial client orders.",
     "backToTop": "Back to top"
-  }
+  },
+  "marquee": "QA × Game design × 3D × AI"
 }

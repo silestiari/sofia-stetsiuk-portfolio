@@ -99,7 +99,7 @@ export default function PetStage({
     >
       <StudioLights envIntensity={0.7} />
       <Pet parts={parts} reduced={reduced} still={still} />
-      <BlobShadow size={1.1} opacity={0.3} color="#3A2E40" />
+      <BlobShadow size={1.1} opacity={0.5} color="#000000" />
       {draggable && (
         <OrbitControls
           makeDefault

@@ -36,7 +36,7 @@ export function CopyEmailButton({ email, targetId, className = "" }: { email: st
   };
 
   return (
-    <button type="button" onClick={copy} className={`btn btn-secondary h-12 px-6 ${className}`}>
+    <button type="button" onClick={copy} className={`btn btn-secondary min-h-12 px-6 py-2 ${className}`}>
       <span aria-hidden="true" className="w-4 text-center">
         {done ? "✓" : "⧉"}
       </span>

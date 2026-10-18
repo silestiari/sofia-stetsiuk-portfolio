@@ -3,6 +3,7 @@
 import { Fragment, useLayoutEffect, useRef, useState, type KeyboardEvent } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { aiLabNodes } from "@/content/ai-lab";
+import { Crosshair } from "@/components/ui/Crosshair";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { Link } from "@/i18n/navigation";
 
@@ -135,10 +136,11 @@ export function WorkflowGraph({ projectTitles }: { projectTitles: Record<string,
               data-testid={`ai-node-${n.id}`}
               onClick={() => setSelected(i)}
               onKeyDown={(e) => onNodeKey(e, i)}
-              className={`group relative grid cursor-pointer content-start gap-1 rounded-qa-panel border bg-surface-1 p-4 text-left transition-colors duration-150 ease-precise hover:border-qa-accent ${place[i]} ${
-                i === selected ? "border-qa-accent outline-1 outline-qa-accent" : "border-line"
+              className={`group relative grid cursor-pointer content-start gap-1 border bg-surface-1 p-4 text-left transition-colors duration-150 ease-precise hover:border-text-3 ${place[i]} ${
+                i === selected ? "border-text-3" : "border-line"
               }`}
             >
+              <Crosshair active={i === selected} />
               {/* trunk port (mobile) */}
               <span
                 aria-hidden="true"
@@ -146,8 +148,8 @@ export function WorkflowGraph({ projectTitles }: { projectTitles: Record<string,
                   i === selected ? "border-qa-accent bg-qa-accent" : "border-grid-strong bg-bg"
                 }`}
               />
-              <span className="hud text-mono-xs text-text-3">{String(i + 1).padStart(2, "0")}</span>
-              <span className={`hud text-mono font-medium ${i === selected ? "text-qa-accent" : "text-text"}`}>{n.title[locale]}</span>
+              <span className={`hud text-mono-xs ${i === selected ? "text-qa-accent" : "text-text-3"}`}>{String(i + 1).padStart(2, "0")}</span>
+              <span className="hud text-mono font-medium text-text">{n.title[locale]}</span>
               <span className="text-small text-text-2">{n.summary[locale]}</span>
             </button>
 
@@ -156,10 +158,10 @@ export function WorkflowGraph({ projectTitles }: { projectTitles: Record<string,
                 id="ai-lab-details"
                 aria-labelledby="ai-lab-details-title"
                 data-testid="ai-lab-details"
-                className="min-w-0 rounded-qa-panel border border-line bg-surface-1 p-5 lg:col-span-4 lg:row-start-3 xl:col-span-1 xl:col-start-5 xl:row-span-3 xl:row-start-1 xl:self-start"
+                className="min-w-0 border border-line border-t-2 border-t-qa-accent bg-surface-1 p-5 lg:col-span-4 lg:row-start-3 xl:col-span-1 xl:col-start-5 xl:row-span-3 xl:row-start-1 xl:self-start"
               >
                 <p className="hud text-mono-xs text-text-3">{t("step", { current: i + 1, total })}</p>
-                <h3 id="ai-lab-details-title" className="hud mt-2 text-h3 font-medium text-qa-accent">
+                <h3 id="ai-lab-details-title" className="mt-2 font-display text-h3 font-semibold uppercase">
                   {node.title[locale]}
                 </h3>
                 <p className="mt-1 text-small text-text-2">{node.summary[locale]}</p>
@@ -174,7 +176,7 @@ export function WorkflowGraph({ projectTitles }: { projectTitles: Record<string,
                   ))}
                 </ul>
 
-                <div role="tablist" aria-label={t("rolesLabel")} onKeyDown={onRoleKey} className="mt-5 inline-flex rounded-qa border border-text-3 p-0.5">
+                <div role="tablist" aria-label={t("rolesLabel")} onKeyDown={onRoleKey} className="mt-5 inline-flex gap-1 rounded-full border border-ui-border p-1">
                   {roles.map((r, ri) => (
                     <button
                       key={r}
@@ -188,7 +190,7 @@ export function WorkflowGraph({ projectTitles }: { projectTitles: Record<string,
                       aria-controls="ai-role-panel"
                       tabIndex={role === r ? 0 : -1}
                       onClick={() => setRole(r)}
-                      className="hud text-mono-xs min-h-11 cursor-pointer rounded-qa px-4 text-text-2 aria-selected:bg-qa-accent-fill aria-selected:text-on-accent"
+                      className="hud relative h-9 cursor-pointer rounded-full px-4 text-mono-xs text-text-2 before:absolute before:-inset-y-1 before:inset-x-0 hover:text-text aria-selected:bg-text aria-selected:text-bg"
                     >
                       {t(r)}
                     </button>
@@ -222,13 +224,13 @@ export function WorkflowGraph({ projectTitles }: { projectTitles: Record<string,
 
                 <div className="mt-5 flex flex-wrap gap-2">
                   {i > 0 && (
-                    <button type="button" onClick={() => select(i - 1)} className="hud text-mono-xs min-h-11 cursor-pointer rounded-qa border border-text-3 px-3 text-text-2 hover:border-qa-accent">
+                    <button type="button" onClick={() => select(i - 1)} className="btn btn-secondary min-h-11 px-5 py-2">
                       <span aria-hidden="true">← </span>
                       {t("prev")}
                     </button>
                   )}
                   {i < total - 1 && (
-                    <button type="button" onClick={() => select(i + 1)} className="hud text-mono-xs min-h-11 cursor-pointer rounded-qa border border-text-3 px-3 text-text-2 hover:border-qa-accent">
+                    <button type="button" onClick={() => select(i + 1)} className="btn btn-secondary min-h-11 px-5 py-2">
                       {t("next")}
                       <span aria-hidden="true"> →</span>
                     </button>

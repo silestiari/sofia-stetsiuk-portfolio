@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
-import { DrawFrame } from "@/components/ui/DrawFrame";
+import { Crosshair } from "@/components/ui/Crosshair";
 import { HudLabel } from "@/components/ui/HudLabel";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { TechChip } from "@/components/ui/TechChip";
@@ -11,8 +11,7 @@ import { MediaItem, previewOf } from "./MediaItem";
 
 export type InspectorVariant = "web" | "roblox";
 
-export const variantOf = (p: Project): InspectorVariant =>
-  p.category === "roblox" ? "roblox" : "web";
+export const variantOf = (p: Project): InspectorVariant => (p.category === "roblox" ? "roblox" : "web");
 
 const VISIBLE_TECH = 6;
 
@@ -21,14 +20,15 @@ interface Props {
   locale: Locale;
   /** Alternates media left/right in the home list */
   flip?: boolean;
-  /** "case": h1 title, all chips, external links; "home": h3 title linked to the case */
+  /** "case": the case-page header (h1, all chips, external links, full-width media); "home": card linked to the case */
   mode?: "home" | "case";
-  /** Roblox accent, alternated by the list */
-  accent?: "pink" | "sky";
 }
 
-/** DESIGN_SYSTEM.md 4.6: web (QA properties panel), roblox (tilted game preview). */
-export function ProjectInspector({ project, locale, flip = false, mode = "home", accent = "pink" }: Props) {
+/**
+ * Project card (docs/REDESIGN_UX_SPEC.md 3.7): web = editorial row with a crosshair media frame,
+ * roblox = straight bento card with a pink top edge. Case mode = the case-page header, one layout for both.
+ */
+export function ProjectInspector({ project, locale, flip = false, mode = "home" }: Props) {
   const t = useTranslations("sections.projects");
   const tp = useTranslations("project");
   const variant = variantOf(project);
@@ -37,43 +37,23 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
   const title = project.title[locale];
   const caseHref = `/projects/${project.slug}`;
 
-  const heading = isCase ? (
-    <h1 id="case-title" className={`${variant === "roblox" ? "font-display" : ""} text-h1 font-semibold`}>
-      {title}
-    </h1>
-  ) : (
-    <h3 className={`${variant === "web" ? "" : "font-display"} text-h2 font-semibold`}>
-      <Link href={caseHref} className="hover:underline hover:underline-offset-4">
-        {title}
-      </Link>
-    </h3>
-  );
-
   const shown = isCase ? project.tech : project.tech.slice(0, VISIBLE_TECH);
   const hidden = isCase ? [] : project.tech.slice(VISIBLE_TECH);
   const chips = (
     <div className="flex flex-wrap items-start gap-2">
       {shown.map((tech) => (
-        <TechChip key={tech}>
-          {tech}
-        </TechChip>
+        <TechChip key={tech}>{tech}</TechChip>
       ))}
       {hidden.length > 0 && (
-        // Native disclosure: works without JS; summary is the "+N" button.
+        // Native disclosure: works without JS; summary is the "+N" pill (it is clickable → ui-border).
         <details className="max-w-full [&[open]>summary]:hidden">
-          <summary
-            className={`hud text-mono-xs inline-flex h-6 cursor-pointer list-none items-center rounded-qa border px-2 ${
-              "border-text-3 text-text-2 hover:border-qa-accent"
-            }`}
-          >
+          <summary className="hud text-mono-xs relative inline-flex h-7 cursor-pointer list-none items-center rounded-full border border-ui-border px-3 text-text-2 before:absolute before:-inset-y-2 before:inset-x-0 hover:border-text hover:text-text">
             {t("moreTech", { count: hidden.length })}
             <span className="sr-only"> — {t("showAllTech")}</span>
           </summary>
           <div className="flex flex-wrap gap-2">
             {hidden.map((tech) => (
-              <TechChip key={tech}>
-                {tech}
-              </TechChip>
+              <TechChip key={tech}>{tech}</TechChip>
             ))}
           </div>
         </details>
@@ -82,36 +62,28 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
   );
 
   const links = project.links.map((l) => (
-    <Button key={l.href} variant="secondary" href={l.href}>
+    <Button key={l.href} variant="secondary" href={l.href} className="w-full min-[30rem]:w-auto">
       {l.label[locale]}
     </Button>
   ));
   const actions = (
-    <div className="flex flex-wrap items-center gap-x-4 gap-y-2">
+    <div className="flex flex-wrap items-center gap-2">
       {!isCase && (
-        <Button
-          href={caseHref}
-         
-          aria-label={`${t("openCase")}: ${title}`}
-        >
+        <Button href={caseHref} variant="secondary" aria-label={`${t("openCase")}: ${title}`} className="w-full min-[30rem]:w-auto">
           {t("openCase")} <span aria-hidden="true">→</span>
         </Button>
       )}
       {links}
-      {isCase && links.length === 0 && (
-        <span className={`text-mono-xs font-mono ${"text-text-3"}`}>— {tp("noLink")}</span>
-      )}
+      {isCase && links.length === 0 && <span className="font-mono text-mono-xs text-text-3">— {tp("noLink")}</span>}
     </div>
   );
 
-  const note = project.note && (
-    <p className={`text-small ${"text-text-3"}`}>{project.note[locale]}</p>
-  );
+  const note = project.note && <p className="text-small text-text-3">{project.note[locale]}</p>;
   const subtitle = project.subtitle && (
-    <p className={`text-small ${"text-text-2"}`}>{project.subtitle[locale]}</p>
+    <p className={`${isCase ? "text-lead" : "text-small"} font-light text-text`}>{project.subtitle[locale]}</p>
   );
   const summary = <p className="max-w-prose text-text-2">{project.summary[locale]}</p>;
-  const sizes = "(min-width: 1024px) 60vw, 100vw";
+  const sizes = isCase ? "(min-width: 1440px) 1312px, 100vw" : "(min-width: 1024px) 60vw, 100vw";
   // Home card: a live interactive (Sakhli's koi pond) goes under the screenshot; the case page has it in its gallery.
   const live = !isCase && media?.type !== "interactive" ? project.media.find((m) => m.type === "interactive") : undefined;
   const mediaEl = media ? (
@@ -124,6 +96,56 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
       <HudLabel>{t("previewUnavailable")}</HudLabel>
     </div>
   );
+  const callout = media?.width && (
+    <figcaption className="absolute -top-6 right-0 flex items-center gap-2" aria-hidden="true">
+      <span className="size-[3px] bg-grid-strong opacity-(--hud-opacity)" />
+      <span className="callout-line -ml-2 h-px w-10 origin-left bg-grid-strong opacity-(--hud-opacity)" />
+      <HudLabel className="callout-label">
+        [ W {media.width} × H {media.height} ]
+      </HudLabel>
+    </figcaption>
+  );
+  const status = <StatusBadge status={project.status} />;
+  const platform = tp(`category.${project.category}`);
+
+  if (isCase) {
+    return (
+      <header className="group">
+        <HudLabel>{t("inspect", { slug: project.slug })}</HudLabel>
+        <div className="mt-4 grid gap-8 lg:grid-cols-12 lg:gap-(--gutter)">
+          <div className="lg:col-span-7">
+            <h1 id="case-title" className="font-display text-h1 font-extrabold uppercase">
+              {title}
+            </h1>
+            {subtitle && <div className="mt-6">{subtitle}</div>}
+            <div className="mt-6">{summary}</div>
+            {note && <div className="mt-4">{note}</div>}
+          </div>
+          <div className="flex flex-col gap-4 lg:col-span-5 lg:items-end lg:text-right">
+            <div className="flex flex-wrap items-center gap-2 lg:justify-end">
+              {status}
+              <TechChip>{platform}</TechChip>
+            </div>
+            <div className="lg:[&>div]:justify-end">{chips}</div>
+            <div className="lg:[&>div]:justify-end">{actions}</div>
+          </div>
+        </div>
+        <figure className="relative mt-12 border border-line bg-surface-1 p-2">
+          {mediaEl}
+          {variant === "web" && <Crosshair cols={1} rows={1} className="group-focus-within:text-qa-accent group-hover:text-qa-accent" />}
+          {callout}
+        </figure>
+      </header>
+    );
+  }
+
+  const heading = (
+    <h3 className="font-display text-h2 font-semibold uppercase">
+      <Link href={caseHref} className="decoration-1 underline-offset-8 hover:underline">
+        {title}
+      </Link>
+    </h3>
+  );
 
   if (variant === "web") {
     const kv = "grid gap-x-6 gap-y-3 md:grid-cols-[max-content_1fr]";
@@ -131,25 +153,16 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
     return (
       <article className="group grid gap-6 lg:grid-cols-12 lg:gap-(--gutter)">
         <figure
-          className={`relative row-start-1 self-start border border-transparent bg-surface-1 p-2 text-line transition-colors duration-300 group-focus-within:text-qa-accent group-hover:text-qa-accent lg:col-span-7 ${
+          className={`relative row-start-1 self-start border border-line bg-surface-1 p-2 lg:col-span-7 ${
             flip ? "lg:col-start-6" : "lg:col-start-1"
           }`}
         >
           {mediaEl}
-          <DrawFrame />
-          {media?.width && (
-            <figcaption className="absolute -top-6 right-0 flex items-center gap-2" aria-hidden="true">
-              {/* callout: anchor dot + line drawn towards the label (DESIGN_SYSTEM.md 4.5) */}
-              <span className="size-[3px] bg-grid-strong opacity-(--hud-opacity)" />
-              <span className="callout-line -ml-2 h-px w-10 origin-left bg-grid-strong opacity-(--hud-opacity)" />
-              <HudLabel className="callout-label">
-                [ W {media.width} × H {media.height} ]
-              </HudLabel>
-            </figcaption>
-          )}
+          <Crosshair cols={1} rows={1} className="group-focus-within:text-qa-accent group-hover:text-qa-accent" />
+          {callout}
         </figure>
         <div
-          className={`flex flex-col gap-4 border-line lg:row-start-1 lg:col-span-5 lg:border-l lg:pl-6 ${
+          className={`flex flex-col gap-4 border-line lg:col-span-5 lg:row-start-1 lg:border-l lg:pl-6 ${
             flip ? "lg:col-start-1 lg:border-r lg:border-l-0 lg:pr-6 lg:pl-0" : "lg:col-start-8"
           }`}
         >
@@ -158,11 +171,9 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
           {subtitle}
           <dl className={kv}>
             <dt className={key}>{t("keyStatus")}</dt>
-            <dd>
-              <StatusBadge status={project.status} />
-            </dd>
+            <dd>{status}</dd>
             <dt className={key}>{t("keyPlatform")}</dt>
-            <dd>{tp(`category.${project.category}`)}</dd>
+            <dd>{platform}</dd>
             {project.tech.length > 0 && (
               <>
                 <dt className={key}>{t("keyStack")}</dt>
@@ -178,26 +189,25 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
     );
   }
 
-  const accentCls = accent === "pink" ? "border-t-game-pink" : "border-t-game-sky";
   return (
     <article className="group grid gap-6 lg:grid-cols-12 lg:gap-(--gutter)">
       <div
-        className={`row-start-1 overflow-hidden rounded-game bg-surface-1 shadow-game transition-transform duration-240 ease-soft rotate-[-1deg] group-hover:-translate-y-1 group-hover:-rotate-2 lg:col-span-8 lg:rotate-0 ${
+        className={`row-start-1 overflow-hidden bg-surface-1 lg:col-span-8 [&>*]:transition-transform [&>*]:duration-300 [&>*]:ease-out motion-safe:group-hover:[&>*]:scale-[1.02] ${
           flip ? "lg:col-start-5" : "lg:col-start-1"
         }`}
       >
         {mediaEl}
       </div>
       <div
-        className={`relative z-(--z-raised) flex flex-col gap-4 rounded-game border border-line border-t-2 bg-surface-1 p-6 lg:row-start-1 lg:col-span-5 lg:self-end lg:-mb-12 ${accentCls} ${
+        className={`relative z-(--z-raised) flex flex-col gap-4 border border-t-2 border-line border-t-qa-accent bg-surface-1 p-6 lg:col-span-5 lg:row-start-1 lg:-mb-12 lg:self-end ${
           flip ? "lg:col-start-1" : "lg:col-start-8"
         }`}
       >
         {heading}
         {subtitle}
-        <div className="flex flex-wrap items-center gap-3">
-          <StatusBadge status={project.status} />
-          <span className="text-small text-text-2">{tp(`category.${project.category}`)}</span>
+        <div className="flex flex-wrap items-center gap-2">
+          {status}
+          <TechChip>{platform}</TechChip>
         </div>
         {summary}
         {note}
@@ -206,5 +216,4 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
       </div>
     </article>
   );
-
 }

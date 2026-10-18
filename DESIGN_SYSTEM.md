@@ -2,6 +2,14 @@
 
 > Концепция: **TWO WORLDS, ONE MIND**. Разделы 2+ (токены компонентов, UI-паттерны, a11y) дописывает UX/UI-дизайнер.
 
+> **Редизайн «Mono Editorial / Pink Signal» внедрён.** Палитра, типографика, радиусы, кнопки, теги, сегменты,
+> карточки проектов, Showroom, Pet Builder и motion теперь описаны в `docs/REDESIGN_ART_DIRECTION.md`,
+> `docs/REDESIGN_UX_SPEC.md`, `docs/REDESIGN_MOTION_SPEC.md`; при расхождении с разделами 1.2–1.4, 1.6, 4.4–4.9 ниже
+> действуют они. Итоговые решения владельца: primary-CTA розовый; лайм `#C5F25A` — только сигнал состояния (пойманный
+> баг, точка «open to», статус released); форма: прямоугольник = контент, таблетка = действие/тег/навигация,
+> круг = персона/иконка; Pet Builder перекрашен в тёмную тему (пастельный остров убран); glitch — только BugHunt
+> «all fixed» и 404; одна marquee-лента между Showroom и About. Токены — в `src/app/globals.css`.
+
 ---
 
 ## 1. Art Direction

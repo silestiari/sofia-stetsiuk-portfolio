@@ -50,7 +50,7 @@ export function Tooltip({
         id={id}
         role="tooltip"
         hidden={!open}
-        className="tooltip absolute bottom-[calc(100%+8px)] left-1/2 z-(--z-tooltip) w-max max-w-60 -translate-x-1/2 rounded-qa border border-line bg-surface-2 px-2 py-1 text-small text-text shadow-popover"
+        className="tooltip absolute bottom-[calc(100%+8px)] left-1/2 z-(--z-tooltip) w-max max-w-60 -translate-x-1/2 border border-line bg-surface-2 px-2 py-1 text-small text-text shadow-popover"
       >
         {content}
         {shortcut && <kbd className="hud text-mono-xs ml-2 text-text-2">[{shortcut}]</kbd>}

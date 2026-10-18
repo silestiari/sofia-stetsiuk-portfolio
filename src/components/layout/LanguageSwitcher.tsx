@@ -1,9 +1,7 @@
 "use client";
 
-import { useId, useState, useSyncExternalStore } from "react";
-import { motion } from "motion/react";
+import { useState, useSyncExternalStore } from "react";
 import { useLocale, useTranslations } from "next-intl";
-import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { Link, usePathname } from "@/i18n/navigation";
 import { routing, type Locale } from "@/i18n/routing";
 import { RERENDER_KEY } from "./MotionObserver";
@@ -14,11 +12,9 @@ const subscribeHash = (onChange: () => void) => {
 };
 const useLocationHash = () => useSyncExternalStore(subscribeHash, () => window.location.hash, () => "");
 
-const EASE_PRECISE = [0.2, 0, 0, 1] as const;
-
 /**
- * EN/RU links with a "selection gizmo" (DESIGN_SYSTEM.md 4.2). Keeps the current path and the anchor:
- * the section in view on the home page (activeId), otherwise location.hash.
+ * EN/RU pill segment (docs/REDESIGN_UX_SPEC.md 3.3): the current locale is the white pill. Keeps the current path
+ * and the anchor: the section in view on the home page (activeId), otherwise location.hash.
  * next-intl Link writes the NEXT_LOCALE cookie and sets hreflang.
  */
 export function LanguageSwitcher({ activeId, className = "" }: { activeId?: string | null; className?: string }) {
@@ -26,17 +22,13 @@ export function LanguageSwitcher({ activeId, className = "" }: { activeId?: stri
   const locale = useLocale();
   const pathname = usePathname();
   const locationHash = useLocationHash();
-  const reduced = usePrefersReducedMotion();
-  const gizmoId = useId();
-  // Optimistic: the gizmo moves on click, before the new locale arrives.
+  // Optimistic: the pill moves on click, before the new locale arrives.
   const [pending, setPending] = useState<{ from: Locale; to: Locale } | null>(null);
   const selected = pending?.from === locale ? pending.to : locale;
-
   const hash = activeId ? (activeId === "hero" ? "" : `#${activeId}`) : locationHash;
-  const frame = { duration: reduced ? 0 : 0.18, ease: EASE_PRECISE };
 
   return (
-    <nav aria-label={t("label")} className={`flex h-8 items-stretch rounded-qa border border-line ${className}`}>
+    <nav aria-label={t("label")} className={`flex items-center gap-1 rounded-full border border-ui-border p-1 ${className}`}>
       {routing.locales.map((l) => {
         const current = l === locale;
         return (
@@ -56,35 +48,11 @@ export function LanguageSwitcher({ activeId, className = "" }: { activeId?: stri
                 } catch {}
               }
             }}
-            className={`hud relative grid place-items-center px-2.5 text-mono font-medium before:absolute before:-inset-y-1.5 before:inset-x-0 ${
-              selected === l
-                ? "cursor-default text-text"
-                : "text-text-3 after:absolute after:inset-0.5 after:border after:border-dashed after:border-transparent hover:text-text-2 hover:after:border-text-3"
+            className={`hud relative grid h-9 place-items-center rounded-full px-3 text-mono-xs transition-colors duration-150 before:absolute before:-inset-y-1 before:inset-x-0 ${
+              selected === l ? "cursor-default bg-text text-bg" : "text-text-2 hover:text-text"
             }`}
           >
-            {selected === l && (
-              <>
-                <motion.span
-                  layoutId={`${gizmoId}-frame`}
-                  transition={frame}
-                  aria-hidden="true"
-                  className="absolute -inset-px border border-qa-accent"
-                />
-                {/* corner handles trail the frame by 60ms, like dragging a selection */}
-                <motion.span
-                  layoutId={`${gizmoId}-handles`}
-                  transition={{ ...frame, delay: reduced ? 0 : 0.06 }}
-                  aria-hidden="true"
-                  className="absolute -inset-px [&>i]:absolute [&>i]:size-[3px] [&>i]:bg-qa-accent"
-                >
-                  <i className="-top-px -left-px" />
-                  <i className="-top-px -right-px" />
-                  <i className="-bottom-px -left-px" />
-                  <i className="-right-px -bottom-px" />
-                </motion.span>
-              </>
-            )}
-            <span className="relative">
+            <span>
               {l}
               {/* visible code first, so voice control ("click EN") matches the accessible name */}
               <span className="sr-only normal-case"> — {t(l)}</span>

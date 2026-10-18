@@ -7,21 +7,10 @@ export interface PickerTab {
   id: string;
   label: string;
   value: string;
-  options: { value: string; label: string; swatch: string }[];
+  options: { value: string; label: string }[];
 }
 
-// Pastels are fills only; the text on them is always --pet-ink (DESIGN_SYSTEM.md 1.2).
-const SWATCH: Record<string, string> = {
-  AIR: "bg-pet-sky",
-  FIRE: "bg-pet-surface",
-  WATER: "bg-pet-mint",
-  NONE: "bg-pet-bg",
-  RARE: "bg-pet-sky",
-  EPIC: "bg-pet-lilac",
-  LEGENDARY: "bg-pet-butter",
-};
-
-/** Slot tabs (role="tablist" pills) + option circles (role="radiogroup"), DESIGN_SYSTEM.md 4.12. */
+/** Slot tabs (role="tablist" pills, active = white) + option circles (role="radiogroup"). */
 export function PartPicker({
   tabs,
   label,
@@ -50,9 +39,9 @@ export function PartPicker({
             id={`${uid}-tab-${i}`}
             aria-controls={`${uid}-panel`}
             {...tabList.item(i)}
-            className={`min-h-11 rounded-full border-2 px-4 text-small font-semibold text-pet-ink focus-visible:[outline:var(--ring-pet)] ${
-              i === active ? "border-pet-lilac bg-pet-lilac" : "border-pet-lilac bg-pet-bg hover:scale-103"
-            } transition-transform duration-(--dur-micro) ease-(--ease-soft)`}
+            className={`hud min-h-11 cursor-pointer rounded-full border px-4 text-mono-xs transition-colors duration-150 ${
+              i === active ? "border-text bg-text text-bg" : "border-ui-border text-text-2 hover:border-text hover:text-text"
+            }`}
           >
             {x.label}
           </button>
@@ -66,12 +55,12 @@ export function PartPicker({
               key={o.value || "none"}
               type="button"
               {...radio.item(i)}
-              className="group flex w-20 flex-col items-center gap-2 text-center text-small text-pet-ink focus-visible:[outline:var(--ring-pet)]"
+              className="group flex w-20 cursor-pointer flex-col items-center gap-2 text-center text-small text-text-2 aria-checked:text-text"
             >
               <span
-                className={`relative grid size-14 place-items-center rounded-full shadow-pet transition-transform duration-(--dur-micro) ease-(--ease-soft) group-hover:scale-106 md:size-16 ${
-                  SWATCH[o.swatch] ?? "bg-pet-bg"
-                } ${i === selected ? "border-2 border-pet-ink" : "border border-pet-lilac"}`}
+                className={`relative grid size-14 place-items-center rounded-full bg-surface-1 transition-colors duration-150 md:size-16 ${
+                  i === selected ? "border-2 border-text text-text" : "border border-ui-border group-hover:border-text"
+                }`}
               >
                 <span aria-hidden="true" className="font-display text-lead font-medium">
                   {o.label.slice(0, 1)}
@@ -79,7 +68,7 @@ export function PartPicker({
                 {i === selected && (
                   <span
                     aria-hidden="true"
-                    className="absolute -top-1 -right-1 grid size-6 place-items-center rounded-full bg-pet-ink text-mono-xs text-pet-bg"
+                    className="absolute -top-1 -right-1 grid size-6 place-items-center rounded-full bg-text text-mono-xs text-bg"
                   >
                     ✓
                   </span>

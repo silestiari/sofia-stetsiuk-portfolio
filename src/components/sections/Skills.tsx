@@ -10,7 +10,7 @@ export function Skills() {
 
   return (
     <SectionShell id="skills" title={t("title")}>
-      <p className="mt-6 max-w-prose text-lead text-text-2">{t("intro")}</p>
+      <p className="mt-8 max-w-prose text-lead font-light text-text">{t("intro")}</p>
       <SkillsMatrix
         columns={projects.map((p) => ({ slug: p.slug, short: p.short, title: p.title[locale] }))}
         groups={skillGroups.map((g) => ({

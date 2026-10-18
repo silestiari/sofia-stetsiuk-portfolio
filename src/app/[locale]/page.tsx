@@ -6,14 +6,17 @@ import { Hero } from "@/components/sections/Hero";
 import { Projects } from "@/components/sections/Projects";
 import { Showroom } from "@/components/sections/Showroom";
 import { Skills } from "@/components/sections/Skills";
+import { MarqueeBand } from "@/components/ui/MarqueeBand";
 
-// One line per section, in the order of src/content/sections.ts.
+// One line per section, in the order of src/content/sections.ts (+ the decorative marquee band).
 export default function HomePage() {
   return (
     <>
       <Hero />
       <Projects />
       <Showroom />
+      {/* the one giant-type band: the seam between the work and the person (not a section, not in the nav) */}
+      <MarqueeBand />
       <About />
       <Skills />
       <AiLab />
