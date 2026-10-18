@@ -219,40 +219,67 @@ export const projects: Project[] = [
     category: "web",
     status: "prototype",
     title: { en: "Sotka", ru: "Сотка" },
-    subtitle: { en: "Unified State Exam (ЕГЭ) prep app", ru: "Приложение для подготовки к ЕГЭ" },
+    subtitle: { en: "Unified State Exam (ЕГЭ) prep app", ru: "Тренажёр для подготовки к ЕГЭ" },
     summary: {
-      en: "A multi-subject prep platform for Russia’s university entrance exam (ЕГЭ) with a game mode, flashcards, quizzes and progress tracking — to make exam prep engaging instead of a chore.",
-      ru: "Платформа подготовки к ЕГЭ по нескольким предметам: игровой режим, карточки, тесты и отслеживание прогресса — чтобы готовиться было удобно и интересно, а не скучно.",
+      en: "A prep app for Russia’s university entrance exam (ЕГЭ) in six subjects: endless task variants by exam number, mock exams, AI-checked long answers, flashcards, a 60-second blitz and a weekly leaderboard — to make exam prep engaging instead of a chore.",
+      ru: "Тренажёр ЕГЭ по шести предметам: бесконечные варианты заданий по номерам, пробники, проверка развёрнутых ответов ИИ, карточки, блиц на 60 секунд и рейтинг недели — чтобы готовиться было интересно, а не скучно.",
     },
     role: {
-      en: "Founder: product idea, scope and design decisions.",
-      ru: "Основательница: идея продукта, объём и дизайн-решения.",
+      en: "Founder: product idea, exam content structure and design decisions; built with AI agents under my direction.",
+      ru: "Основательница: идея продукта, структура экзаменационного контента и дизайн-решения; создано с помощью AI-агентов под моим руководством.",
     },
-    tech: [],
+    tech: ["HTML", "CSS", "JavaScript", "Claude Artifacts (shared data, AI checking)"],
     features: {
-      en: ["Several exam subjects in one place", "Game mode", "Flashcards and quizzes", "Progress tracking"],
-      ru: ["Несколько предметов ЕГЭ в одном месте", "Игровой режим", "Карточки и тесты", "Отслеживание прогресса"],
+      en: [
+        "Six subjects: profile maths (part 1), Russian, history, physics, computer science, social studies",
+        "Task generators by exam number: every attempt is a new variant with a worked explanation",
+        "Mock exams with a timer, an answer sheet and a review at the end",
+        "Part 2: an AI examiner scores long answers and the essay (criteria K1–K7) and explains the mistakes; a photo of a handwritten answer can be attached",
+        "Flashcards with five spaced-repetition levels and a 60-second blitz",
+        "XP, levels, day streaks, achievements and a weekly leaderboard",
+        "“Exercise-book” design with light and dark themes",
+      ],
+      ru: [
+        "Шесть предметов: профильная математика (часть 1), русский, история, физика, информатика, обществознание",
+        "Генераторы заданий по номерам ЕГЭ: каждая попытка — новый вариант с разбором решения",
+        "Пробники с таймером, бланком ответов и разбором в конце",
+        "Часть 2: ИИ-эксперт оценивает развёрнутые ответы и сочинение (критерии К1–К7) и объясняет ошибки; можно приложить фото решения с листа",
+        "Карточки с пятью уровнями интервального повторения и блиц на 60 секунд",
+        "Опыт, уровни, серии дней, достижения и рейтинг недели",
+        "Дизайн «тетрадь в клетку» со светлой и тёмной темой",
+      ],
     },
     challenges: { en: [], ru: [] },
     caseStudy: caseStudy(
       {
         overview:
-          "Sotka («a hundred», the top ЕГЭ score) is a prep platform for Russia’s national university entrance exam. It combines a game mode, flashcards and quizzes with progress tracking, so preparing feels like a habit rather than a chore.",
-        process: "The project is at the prototype stage. Screens, the stack and a link will be added here once there is a public build.",
-        qa: "There is no public build yet, so there are no test results to report.",
-        ai: "Being built with AI agents under my direction, like my other projects.",
+          "Sotka («a hundred», the top ЕГЭ score) is a prep app for Russia’s national university entrance exam. Instead of a fixed bank of questions, each exam task number has a generator, so practice never runs out, and a game layer — XP, levels, streaks, a blitz and a weekly leaderboard — turns preparation into a habit.",
+        process:
+          "The prototype is a single web app in the style of an exercise book: training by task number, mock exams on an answer sheet, part 2 with long answers, flashcards, a blitz, a leaderboard and a progress page with weak spots to work on first.",
+        qa: "A prototype: every generated task carries its own worked explanation, and progress is kept on the device. There are no automated tests yet.",
+        ai: "Built with AI agents under my direction. Inside the app, Claude acts as the part 2 examiner: it scores answers against the official criteria and explains what to fix.",
       },
       {
         overview:
-          "Сотка — платформа подготовки к ЕГЭ. Игровой режим, карточки и тесты вместе с отслеживанием прогресса, чтобы подготовка стала привычкой, а не повинностью.",
-        process: "Проект на стадии прототипа. Экраны, стек и ссылка появятся здесь, когда будет публичная версия.",
-        qa: "Публичной версии пока нет, поэтому и результатов тестирования, о которых можно рассказать, тоже нет.",
-        ai: "Создаётся с помощью AI-агентов под моим руководством, как и другие мои проекты.",
+          "Сотка — тренажёр ЕГЭ. Вместо фиксированного банка вопросов у каждого номера задания есть генератор, поэтому задачи не заканчиваются, а игровой слой — опыт, уровни, серии дней, блиц и рейтинг недели — превращает подготовку в привычку.",
+        process:
+          "Прототип — одно веб-приложение в стиле тетради в клетку: тренировка по номерам, пробники на бланке, часть 2 с развёрнутыми ответами, карточки, блиц, рейтинг и страница прогресса со слабыми местами, которые стоит подтянуть в первую очередь.",
+        qa: "Это прототип: у каждого сгенерированного задания есть свой разбор решения, прогресс хранится на устройстве. Автотестов пока нет.",
+        ai: "Создано с помощью AI-агентов под моим руководством. Внутри приложения Claude работает экспертом части 2: оценивает ответы по критериям ФИПИ и объясняет, что исправить.",
       },
     ),
-    metrics: [],
+    metrics: [
+      { value: "6", label: { en: "exam subjects", ru: "предметов ЕГЭ" } },
+      { value: "8", label: { en: "modes: training, mock exam, part 2, cards, blitz, rating, progress, home", ru: "режимов: тренировка, пробник, часть 2, карточки, блиц, рейтинг, прогресс, главная" } },
+    ],
     media: mediaFor("sotka"),
-    links: [],
+    links: [
+      {
+        kind: "live",
+        href: "https://claude.ai/artifact/7XccEcN3ejMwpetZetWbBy",
+        label: { en: "Open the prototype", ru: "Открыть прототип" },
+      },
+    ],
   },
   {
     slug: "woodcutter-vs-zombies",

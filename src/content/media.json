@@ -541,5 +541,67 @@
       "source": "C:\\Users\\tolik\\Documents\\питомцы\\blender\\previews\\PARTS_GRID.png",
       "notes": "Blender render of the first-version parts set; it illustrates the 6-slot modular system."
     }
+  ],
+  "sotka": [
+    {
+      "type": "image",
+      "src": "/media/sotka/home.webp",
+      "alt": {
+        "en": "Sotka home: level, today’s answers, weekly rating, task of the day and a mock exam",
+        "ru": "Главная Сотки: уровень, ответы за сегодня, рейтинг недели, задание дня и пробный вариант"
+      },
+      "width": 1280,
+      "height": 800,
+      "source": "https://claude.ai/artifact/7XccEcN3ejMwpetZetWbBy (rendered locally, light theme)",
+      "notes": "Prototype screen, fresh profile (no personal data). The Progress screen was skipped: it shows demo numbers."
+    },
+    {
+      "type": "image",
+      "src": "/media/sotka/train.webp",
+      "alt": {
+        "en": "Training by exam task number: subject and task filters, answer typed into the answer-sheet cells",
+        "ru": "Тренировка по номерам заданий: фильтры предметов и номеров, ответ вписывается в клеточки бланка"
+      },
+      "width": 1280,
+      "height": 800,
+      "source": "https://claude.ai/artifact/7XccEcN3ejMwpetZetWbBy (rendered locally, light theme)",
+      "notes": "Prototype screen, fresh profile (no personal data). The Progress screen was skipped: it shows demo numbers."
+    },
+    {
+      "type": "image",
+      "src": "/media/sotka/exam.webp",
+      "alt": {
+        "en": "Mock exams in six subjects with the real time limits",
+        "ru": "Пробные варианты по шести предметам с реальным временем экзамена"
+      },
+      "width": 1280,
+      "height": 800,
+      "source": "https://claude.ai/artifact/7XccEcN3ejMwpetZetWbBy (rendered locally, light theme)",
+      "notes": "Prototype screen, fresh profile (no personal data). The Progress screen was skipped: it shows demo numbers."
+    },
+    {
+      "type": "image",
+      "src": "/media/sotka/part2.webp",
+      "alt": {
+        "en": "Part 2: long answers checked by an AI examiner against the official criteria",
+        "ru": "Часть 2: развёрнутые ответы, которые ИИ-эксперт проверяет по критериям ФИПИ"
+      },
+      "width": 1280,
+      "height": 800,
+      "source": "https://claude.ai/artifact/7XccEcN3ejMwpetZetWbBy (rendered locally, light theme)",
+      "notes": "Prototype screen, fresh profile (no personal data). The Progress screen was skipped: it shows demo numbers."
+    },
+    {
+      "type": "image",
+      "src": "/media/sotka/cards.webp",
+      "alt": {
+        "en": "Flashcards with spaced repetition: “remember” moves a card up a level",
+        "ru": "Карточки с интервальным повторением: «Помню» поднимает карточку на уровень выше"
+      },
+      "width": 1280,
+      "height": 800,
+      "source": "https://claude.ai/artifact/7XccEcN3ejMwpetZetWbBy (rendered locally, light theme)",
+      "notes": "Prototype screen, fresh profile (no personal data). The Progress screen was skipped: it shows demo numbers."
+    }
   ]
 }
