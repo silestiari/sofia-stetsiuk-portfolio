@@ -744,7 +744,7 @@
     "sizeKB": 64.4,
     "decimated": false,
     "animations": [],
-    "notes": "Draco, scaled to 2 m; original PBR materials incl. emission; poster with bloom"
+    "notes": "Draco, scaled to 2 m; original PBR materials incl. emission; hidden __Marker__ helper meshes dropped; poster with bloom"
   },
   {
     "id": "wc-treasure-chest",
@@ -765,7 +765,7 @@
     "sizeKB": 192.9,
     "decimated": false,
     "animations": [],
-    "notes": "Draco, scaled to 2 m; original PBR materials incl. emission; poster with bloom"
+    "notes": "Draco, scaled to 2 m; original PBR materials incl. emission; hidden __Marker__ helper meshes dropped; poster with bloom"
   },
   {
     "id": "wc-mimic",
@@ -786,7 +786,7 @@
     "sizeKB": 93.2,
     "decimated": false,
     "animations": [],
-    "notes": "Draco, scaled to 2 m; original PBR materials incl. emission; poster with bloom"
+    "notes": "Draco, scaled to 2 m; original PBR materials incl. emission; hidden __Marker__ helper meshes dropped; poster with bloom"
   },
   {
     "id": "wc-shop-weapons",
@@ -803,11 +803,11 @@
       "ru": "Здание магазина в стиле dark fantasy, где игроки покупают оружие."
     },
     "source": "../woodcutter/woodcutter/blender/shopWeapons.fbx",
-    "triangles": 46684,
-    "sizeKB": 324.0,
+    "triangles": 46636,
+    "sizeKB": 323.0,
     "decimated": false,
     "animations": [],
-    "notes": "Draco, scaled to 2 m; original PBR materials incl. emission; poster with bloom"
+    "notes": "Draco, scaled to 2 m; original PBR materials incl. emission; hidden __Marker__ helper meshes dropped; poster with bloom"
   },
   {
     "id": "wc-gold-axe",
@@ -824,11 +824,11 @@
       "ru": "Один из топоров, до которых лесоруб прокачивается."
     },
     "source": "../woodcutter/woodcutter/blender/goldAxe.fbx",
-    "triangles": 15588,
-    "sizeKB": 45.3,
+    "triangles": 15552,
+    "sizeKB": 44.2,
     "decimated": false,
     "animations": [],
-    "notes": "Draco, scaled to 2 m; original PBR materials incl. emission; poster with bloom"
+    "notes": "Draco, scaled to 2 m; original PBR materials incl. emission; hidden __Marker__ helper meshes dropped; poster with bloom"
   },
   {
     "id": "wc-zombie-outfit",
@@ -845,10 +845,10 @@
       "ru": "Зомби из ночных волн, которые атакуют замок."
     },
     "source": "../woodcutter/woodcutter/blender/zombieOutfit.fbx",
-    "triangles": 38776,
-    "sizeKB": 248.3,
+    "triangles": 38560,
+    "sizeKB": 246.0,
     "decimated": false,
     "animations": [],
-    "notes": "Draco, scaled to 2 m; original PBR materials incl. emission; poster with bloom"
+    "notes": "Draco, scaled to 2 m; original PBR materials incl. emission; hidden __Marker__ helper meshes dropped; poster with bloom"
   }
 ]
