@@ -8,7 +8,6 @@ export const sections = [
   { id: "about", pass: "debug-light", grid: 0.4, hud: 0.6 },
   { id: "skills", pass: "debug-light", grid: 0.4, hud: 0.6 },
   { id: "ai-lab", pass: "debug-light", grid: 0.6, hud: 0.8 },
-  { id: "qa-playground", pass: "debug", grid: 1, hud: 1 },
   { id: "game-playground", pass: "pastel", grid: 0, hud: 0 },
   { id: "contact", pass: "beauty", grid: 0, hud: 0 },
 ] as const;

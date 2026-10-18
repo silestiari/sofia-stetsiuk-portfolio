@@ -40,13 +40,6 @@ test("cookie remembers the choice; unprefixed paths redirect to it", async ({ pa
   await expect(page).toHaveURL(/\/ru\/projects\/sakhli$/);
 });
 
-test("RU: QA Playground widget tabs are translated", async ({ page }) => {
-  await page.goto("/ru#qa-playground");
-  const labels = await page.locator("#qa-playground [role=tab]").allInnerTexts();
-  expect(labels).toHaveLength(5);
-  for (const l of labels) expect(l, `untranslated tab "${l}"`).toMatch(/[А-Яа-яЁё]/);
-});
-
 test("without cookie / redirects to /en regardless of Accept-Language", async ({ browser }) => {
   const ctx = await browser.newContext({ locale: "ru-RU" });
   const page = await ctx.newPage();

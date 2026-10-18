@@ -14,7 +14,8 @@ export interface CaseStudySection {
 }
 
 export interface ProjectMedia {
-  type: "image" | "video";
+  /** "interactive": a live component keyed by `src` (e.g. "koi-pond"); `poster` is its still frame */
+  type: "image" | "video" | "interactive";
   /** Path under /public, e.g. /projects/<slug>/cover.webp */
   src: string;
   alt: Localized;

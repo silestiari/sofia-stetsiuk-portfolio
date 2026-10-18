@@ -1,6 +1,7 @@
 import Image from "next/image";
 import type { Locale } from "@/i18n/routing";
 import type { ProjectMedia } from "@/content/types";
+import { KoiPond } from "@/components/sakhli/KoiPond";
 
 /** One screenshot (next/image) or clip (<video>, nothing downloads before play). Natural aspect ratio, never cropped. */
 export function MediaItem({
@@ -18,6 +19,8 @@ export function MediaItem({
 }) {
   const alt = item.alt[locale];
   const cls = `block h-auto max-w-full ${className}`;
+
+  if (item.type === "interactive") return <KoiPond poster={item.poster!} label={alt} className={className} />;
 
   if (item.type === "video") {
     return (
@@ -53,8 +56,8 @@ export function MediaItem({
 /** Items for this locale: untagged ones plus those tagged with it. */
 export const mediaIn = (media: ProjectMedia[], locale: Locale) => media.filter((m) => !m.locale || m.locale === locale);
 
-/** Card preview: prefer a landscape screenshot, then any media. */
+/** Card preview: a live interactive first, then a landscape screenshot, then any media. */
 export const previewOf = (media: ProjectMedia[], locale: Locale) => {
   const own = mediaIn(media, locale);
-  return own.find((m) => m.type === "image" && (m.width ?? 0) >= (m.height ?? 0)) ?? own[0];
+  return own.find((m) => m.type === "interactive") ?? own.find((m) => m.type === "image" && (m.width ?? 0) >= (m.height ?? 0)) ?? own[0];
 };

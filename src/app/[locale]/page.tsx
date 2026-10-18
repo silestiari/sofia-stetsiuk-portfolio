@@ -4,7 +4,6 @@ import { Contact } from "@/components/sections/Contact";
 import { GamePlayground } from "@/components/sections/GamePlayground";
 import { Hero } from "@/components/sections/Hero";
 import { Projects } from "@/components/sections/Projects";
-import { QaPlayground } from "@/components/sections/QaPlayground";
 import { Showroom } from "@/components/sections/Showroom";
 import { Skills } from "@/components/sections/Skills";
 
@@ -18,7 +17,6 @@ export default function HomePage() {
       <About />
       <Skills />
       <AiLab />
-      <QaPlayground />
       <GamePlayground />
       <Contact />
     </>

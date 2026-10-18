@@ -89,17 +89,17 @@
   ],
   "sakhli": [
     {
-      "type": "video",
-      "src": "/media/sakhli/pond-koi.mp4",
+      "type": "interactive",
+      "src": "koi-pond",
       "poster": "/media/sakhli/pond-koi-poster.webp",
       "alt": {
-        "en": "Interactive koi pond: the fish swim away from the cursor and a click sends ripples across the water",
-        "ru": "Интерактивный пруд с карпами кои: рыбки уплывают от курсора, а клик пускает круги по воде"
+        "en": "Live koi pond from the Sakhli site: move the cursor over the water and the koi swim away, click to drop ripples",
+        "ru": "Живой пруд с карпами кои с сайта Sakhli: проведите курсором по воде — рыбки уплывут, клик пускает круги"
       },
       "width": 1200,
-      "height": 436,
-      "source": "components/pond-sim.ts, recorded from the existing production build (next start)",
-      "notes": "10 s, no audio, H.264. Canvas 2D simulation, no dependencies."
+      "height": 400,
+      "source": "sakhli/components/pond-sim.ts (copied as src/components/sakhli/pond-sim.ts)",
+      "notes": "The real canvas simulation, not a recording. Poster = still frame for reduced motion."
     },
     {
       "type": "image",
@@ -545,62 +545,62 @@
   "sotka": [
     {
       "type": "image",
-      "src": "/media/sotka/home.webp",
+      "src": "/media/sotka/home-dark.webp",
       "alt": {
         "en": "Sotka home: level, today’s answers, weekly rating, task of the day and a mock exam",
         "ru": "Главная Сотки: уровень, ответы за сегодня, рейтинг недели, задание дня и пробный вариант"
       },
       "width": 1280,
       "height": 800,
-      "source": "https://claude.ai/artifact/7XccEcN3ejMwpetZetWbBy (rendered locally, light theme)",
+      "source": "https://claude.ai/artifact/7XccEcN3ejMwpetZetWbBy (rendered locally, dark theme)",
       "notes": "Prototype screen, fresh profile (no personal data). The Progress screen was skipped: it shows demo numbers."
     },
     {
       "type": "image",
-      "src": "/media/sotka/train.webp",
+      "src": "/media/sotka/train-dark.webp",
       "alt": {
         "en": "Training by exam task number: subject and task filters, answer typed into the answer-sheet cells",
         "ru": "Тренировка по номерам заданий: фильтры предметов и номеров, ответ вписывается в клеточки бланка"
       },
       "width": 1280,
       "height": 800,
-      "source": "https://claude.ai/artifact/7XccEcN3ejMwpetZetWbBy (rendered locally, light theme)",
+      "source": "https://claude.ai/artifact/7XccEcN3ejMwpetZetWbBy (rendered locally, dark theme)",
       "notes": "Prototype screen, fresh profile (no personal data). The Progress screen was skipped: it shows demo numbers."
     },
     {
       "type": "image",
-      "src": "/media/sotka/exam.webp",
+      "src": "/media/sotka/exam-dark.webp",
       "alt": {
         "en": "Mock exams in six subjects with the real time limits",
         "ru": "Пробные варианты по шести предметам с реальным временем экзамена"
       },
       "width": 1280,
       "height": 800,
-      "source": "https://claude.ai/artifact/7XccEcN3ejMwpetZetWbBy (rendered locally, light theme)",
+      "source": "https://claude.ai/artifact/7XccEcN3ejMwpetZetWbBy (rendered locally, dark theme)",
       "notes": "Prototype screen, fresh profile (no personal data). The Progress screen was skipped: it shows demo numbers."
     },
     {
       "type": "image",
-      "src": "/media/sotka/part2.webp",
+      "src": "/media/sotka/part2-dark.webp",
       "alt": {
         "en": "Part 2: long answers checked by an AI examiner against the official criteria",
         "ru": "Часть 2: развёрнутые ответы, которые ИИ-эксперт проверяет по критериям ФИПИ"
       },
       "width": 1280,
       "height": 800,
-      "source": "https://claude.ai/artifact/7XccEcN3ejMwpetZetWbBy (rendered locally, light theme)",
+      "source": "https://claude.ai/artifact/7XccEcN3ejMwpetZetWbBy (rendered locally, dark theme)",
       "notes": "Prototype screen, fresh profile (no personal data). The Progress screen was skipped: it shows demo numbers."
     },
     {
       "type": "image",
-      "src": "/media/sotka/cards.webp",
+      "src": "/media/sotka/cards-dark.webp",
       "alt": {
         "en": "Flashcards with spaced repetition: “remember” moves a card up a level",
         "ru": "Карточки с интервальным повторением: «Помню» поднимает карточку на уровень выше"
       },
       "width": 1280,
       "height": 800,
-      "source": "https://claude.ai/artifact/7XccEcN3ejMwpetZetWbBy (rendered locally, light theme)",
+      "source": "https://claude.ai/artifact/7XccEcN3ejMwpetZetWbBy (rendered locally, dark theme)",
       "notes": "Prototype screen, fresh profile (no personal data). The Progress screen was skipped: it shows demo numbers."
     }
   ]

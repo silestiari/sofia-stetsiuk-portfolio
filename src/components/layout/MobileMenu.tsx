@@ -15,7 +15,7 @@ const setScrollLock = (on: boolean) => {
 
 /**
  * Full-screen menu (DESIGN_SYSTEM.md 4.3) on native <dialog showModal>: the page behind is inert
- * (focus stays inside), Esc closes, focus returns to the burger. Lists all 9 anchors.
+ * (focus stays inside), Esc closes, focus returns to the burger. Lists all 8 anchors.
  */
 export function MobileMenu({ activeId, className = "" }: { activeId: SectionId | null; className?: string }) {
   const t = useTranslations("nav");
