@@ -2,7 +2,7 @@
 
 import { useRef, useState, type KeyboardEvent } from "react";
 
-type Filter = "all" | "web" | "roblox";
+type Filter = "all" | "web" | "roblox" | "ai";
 
 /**
  * radiogroup with roving tabindex. Sets data-filter on the enclosing section; CSS hides the other groups,

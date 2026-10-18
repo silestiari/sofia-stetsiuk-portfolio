@@ -12,7 +12,7 @@ import { MediaItem, previewOf } from "./MediaItem";
 export type InspectorVariant = "web" | "roblox";
 
 export const variantOf = (p: Project): InspectorVariant =>
-  p.category === "web" ? "web" : "roblox";
+  p.category === "roblox" ? "roblox" : "web";
 
 const VISIBLE_TECH = 6;
 
@@ -158,8 +158,12 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home",
             </dd>
             <dt className={key}>{t("keyPlatform")}</dt>
             <dd>{tp(`category.${project.category}`)}</dd>
-            <dt className={key}>{t("keyStack")}</dt>
-            <dd>{chips}</dd>
+            {project.tech.length > 0 && (
+              <>
+                <dt className={key}>{t("keyStack")}</dt>
+                <dd>{chips}</dd>
+              </>
+            )}
           </dl>
           {summary}
           {note}

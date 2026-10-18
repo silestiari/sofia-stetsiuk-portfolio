@@ -58,14 +58,16 @@
     "projects": {
       "title": "Projects",
       "hud": "01 / PROJECTS",
-      "intro": "Six projects: two websites where QA was part of the process from day one, and four Roblox games where I design the systems and test every build.",
+      "intro": "Eight projects: three web projects where QA was part of the process from day one, four Roblox games where I design the systems and test every build, and a system of AI agents that edits VALORANT videos.",
       "disclaimer": "All projects are personal or demo projects, not commercial client work.",
       "filterLabel": "Filter projects",
       "filterAll": "All",
       "filterWeb": "Web",
       "filterRoblox": "Roblox",
+      "filterAi": "AI",
       "groupWeb": "Web · QA view",
       "groupRoblox": "Roblox · Game view",
+      "groupAi": "AI · Automation",
       "inspect": "> inspect {slug}",
       "keyRole": "Role",
       "keyPlatform": "Platform",
@@ -342,7 +344,8 @@
     },
     "category": {
       "web": "Web",
-      "roblox": "Roblox"
+      "roblox": "Roblox",
+      "ai": "AI automation"
     }
   },
   "errors": {

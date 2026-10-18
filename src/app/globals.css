@@ -368,7 +368,8 @@
 
 /* ===== Projects filter: JS sets data-filter on the section; without JS everything stays visible ===== */
 [data-filter="web"] [data-group]:not([data-group="web"]),
-[data-filter="roblox"] [data-group="web"] { display: none; }
+[data-filter="roblox"] [data-group]:not([data-group="roblox"]),
+[data-filter="ai"] [data-group]:not([data-group="ai"]) { display: none; }
 
 /* ===== Hero scene slot: decorative wireframe grid until the 3D scene mounts ===== */
 .hero-slot-grid {

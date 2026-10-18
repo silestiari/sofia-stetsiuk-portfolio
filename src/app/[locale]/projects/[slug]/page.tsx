@@ -22,16 +22,13 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/projects
   const path = `/projects/${slug}`;
   const title = t("projectTitle", { title: project.title[locale] });
   const description = t("projectDescription", { summary: project.summary[locale] });
-  // OG: first screenshot, else a video poster.
+  // OG: first screenshot, else a video poster, else the site card from ../../opengraph-image.tsx.
   const media = mediaIn(project.media, locale);
   const image = media.find((m) => m.type === "image") ?? media.find((m) => m.poster);
   const url = image?.type === "image" ? image.src : image?.poster;
-  const og = image && url && {
-    url,
-    width: image.width,
-    height: image.height,
-    alt: image.alt[locale],
-  };
+  const og = image && url
+    ? { url, width: image.width, height: image.height, alt: image.alt[locale] }
+    : { url: `/${locale}/opengraph-image/home`, width: 1200, height: 630, alt: t("ogImageAlt") };
 
   return {
     title,
@@ -43,7 +40,7 @@ export async function generateMetadata({ params }: PageProps<"/[locale]/projects
       description,
       locale: t("ogLocale"),
       url: `/${locale}${path}`,
-      images: og ? [og] : undefined,
+      images: [og],
     },
   };
 }

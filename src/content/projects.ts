@@ -214,6 +214,47 @@ export const projects: Project[] = [
     links: [],
   },
   {
+    slug: "sotka",
+    short: "Sotka",
+    category: "web",
+    status: "prototype",
+    title: { en: "Sotka", ru: "Сотка" },
+    subtitle: { en: "Unified State Exam (ЕГЭ) prep app", ru: "Приложение для подготовки к ЕГЭ" },
+    summary: {
+      en: "A multi-subject prep platform for Russia’s university entrance exam (ЕГЭ) with a game mode, flashcards, quizzes and progress tracking — to make exam prep engaging instead of a chore.",
+      ru: "Платформа подготовки к ЕГЭ по нескольким предметам: игровой режим, карточки, тесты и отслеживание прогресса — чтобы готовиться было удобно и интересно, а не скучно.",
+    },
+    role: {
+      en: "Founder: product idea, scope and design decisions.",
+      ru: "Основательница: идея продукта, объём и дизайн-решения.",
+    },
+    tech: [],
+    features: {
+      en: ["Several exam subjects in one place", "Game mode", "Flashcards and quizzes", "Progress tracking"],
+      ru: ["Несколько предметов ЕГЭ в одном месте", "Игровой режим", "Карточки и тесты", "Отслеживание прогресса"],
+    },
+    challenges: { en: [], ru: [] },
+    caseStudy: caseStudy(
+      {
+        overview:
+          "Sotka («a hundred», the top ЕГЭ score) is a prep platform for Russia’s national university entrance exam. It combines a game mode, flashcards and quizzes with progress tracking, so preparing feels like a habit rather than a chore.",
+        process: "The project is at the prototype stage. Screens, the stack and a link will be added here once there is a public build.",
+        qa: "There is no public build yet, so there are no test results to report.",
+        ai: "Being built with AI agents under my direction, like my other projects.",
+      },
+      {
+        overview:
+          "Сотка — платформа подготовки к ЕГЭ. Игровой режим, карточки и тесты вместе с отслеживанием прогресса, чтобы подготовка стала привычкой, а не повинностью.",
+        process: "Проект на стадии прототипа. Экраны, стек и ссылка появятся здесь, когда будет публичная версия.",
+        qa: "Публичной версии пока нет, поэтому и результатов тестирования, о которых можно рассказать, тоже нет.",
+        ai: "Создаётся с помощью AI-агентов под моим руководством, как и другие мои проекты.",
+      },
+    ),
+    metrics: [],
+    media: mediaFor("sotka"),
+    links: [],
+  },
+  {
     slug: "woodcutter-vs-zombies",
     short: "WvZ",
     category: "roblox",
@@ -540,6 +581,81 @@ export const projects: Project[] = [
         label: { en: "Play on Roblox", ru: "Играть в Roblox" },
       },
     ],
+  },
+  {
+    slug: "valorant-content-factory",
+    short: "VCF",
+    category: "ai",
+    status: "in-development",
+    title: { en: "VALORANT Content Factory", ru: "VALORANT Content Factory" },
+    subtitle: {
+      en: "AI agents that review match recordings and edit Shorts",
+      ru: "ИИ-агенты, которые разбирают записи матчей и монтируют шортсы",
+    },
+    summary: {
+      en: "Drop a VALORANT match recording into a folder and get vertical TikTok and YouTube Shorts in Russian and English: an analyst agent finds the moments, the edit, subtitles, covers and descriptions are produced automatically, and every video is checked before it goes out.",
+      ru: "Кладёшь запись матча VALORANT в папку и получаешь вертикальные ролики для TikTok и YouTube Shorts на русском и английском: агент-аналитик находит моменты, монтаж, субтитры, обложки и описания собираются автоматически, а каждый ролик проверяется перед выходом.",
+    },
+    role: {
+      en: "My own system: I designed the pipeline, the agent roles and the honesty rules (no invented ranks or events), and checked every stage.",
+      ru: "Моя система: я спроектировала конвейер, роли агентов и правила честности (никаких выдуманных рангов и событий) и проверяла каждый этап.",
+    },
+    tech: ["Claude Code (headless)", "Python", "FFmpeg + libass", "faster-whisper", "OpenCV", "Pillow", "Chatterbox TTS", "YouTube Data API v3", "PowerShell"],
+    features: {
+      en: [
+        "Folder watch: ingest with hashing, ffprobe and duplicate protection; the original is never changed",
+        "A gameplay analyst agent reads frame sheets and marks each moment confirmed / likely / uncertain",
+        "RU and EN are separate videos written natively, not translated; an automatic check keeps Cyrillic out of EN",
+        "Deterministic render: 1080×1920, subtitles inside both platforms’ safe zones, slow-mo and freeze frames, −14 LUFS",
+        "Local voice-over (Chatterbox, MIT): Whisper checks every line, failed lines are re-synthesised up to 3 times",
+        "YouTube Shorts auto-publishing through the official API; a TikTok queue for manual posting",
+      ],
+      ru: [
+        "Слежение за папкой: приём с хэшем, ffprobe и защитой от дублей; оригинал никогда не меняется",
+        "Агент-аналитик смотрит листы кадров и помечает каждый момент: подтверждён / вероятно / не уверен",
+        "RU и EN — разные ролики, написанные с нуля, а не перевод; автоматическая проверка не пускает кириллицу в EN",
+        "Детерминированный рендер: 1080×1920, субтитры в безопасных зонах обеих платформ, замедление и стоп-кадр, −14 LUFS",
+        "Локальная озвучка (Chatterbox, MIT): Whisper проверяет каждую фразу, неудачные пересинтезируются до 3 раз",
+        "Автопубликация в YouTube Shorts через официальный API; очередь TikTok для ручной публикации",
+      ],
+    },
+    challenges: {
+      en: [
+        "The model can’t see every frame → overview frames plus dense windows around audio peaks; unsure facts are labelled and sent to review",
+        "Agents must not invent ranks or match events → a single brand.md source of truth; nothing beyond it may be stated",
+        "Personal data on screen (Discord, nicknames, chat) → detected and sent to human review instead of being published",
+      ],
+      ru: [
+        "Модель не видит каждый кадр → обзорные кадры плюс плотные окна вокруг всплесков звука; неуверенные выводы помечаются и уходят на проверку",
+        "Агенты не должны выдумывать ранги и события матча → единственный источник фактов brand.md, сверх него ничего утверждать нельзя",
+        "Личные данные на экране (Discord, ники, чат) → обнаруживаются, и ролик уходит на проверку человеку, а не в публикацию",
+      ],
+    },
+    caseStudy: caseStudy(
+      {
+        overview:
+          "A content factory for VALORANT tutorial channels on TikTok and YouTube: it turns raw match recordings into finished vertical videos in two languages, with covers, captions, hashtags and a publishing calendar. So far the whole pipeline has been run end to end on synthetic test recordings; the first videos are waiting in human review and nothing has been published yet.",
+        process:
+          "Ingest (hash, ffprobe, ID, duplicate guard) → mechanical analysis in Python and FFmpeg: loudness peaks, speech recognition with faster-whisper, timecoded frame sheets → the gameplay analyst agent → content director: concepts and RU versions → English copywriter and localisation specialist: native EN versions from the same facts → a separate render per language (FFmpeg + libass) → checks → output for TikTok and YouTube Shorts, or the review folder.",
+        qa: "Every language version gets two independent checks: a technical one (loudness, length, safe zones, no Cyrillic in EN) and a multilingual quality reviewer that watches the preview. A failed video goes to output/review with a note listing the reasons — the first test video, for example, was held back for −10.7 LUFS loudness. A built-in test command pushes a synthetic clip through the whole pipeline.",
+        ai: "26 Claude Code agents live in .claude/agents; the pipeline uses seven of them (gameplay analyst, content director, English gaming copywriter, localisation specialist, multilingual and general quality reviewers, international growth strategist). Claude runs headless (claude -p) and failed calls are retried up to 3 times. The editing itself is deterministic code, not AI improvising on every frame.",
+      },
+      {
+        overview:
+          "Контент-фабрика для каналов с туториалами по VALORANT в TikTok и YouTube: превращает сырые записи матчей в готовые вертикальные ролики на двух языках с обложками, подписями, хэштегами и календарём публикаций. Пока весь конвейер прогнан целиком на синтетических тестовых записях: первые ролики ждут проверки человеком, ничего ещё не опубликовано.",
+        process:
+          "Приём (хэш, ffprobe, ID, защита от дублей) → механический анализ на Python и FFmpeg: пики громкости, распознавание речи faster-whisper, листы кадров с таймкодами → агент-аналитик геймплея → контент-директор: концепты и RU-версии → англоязычный копирайтер и специалист по локализации: EN-версии с нуля по тем же фактам → отдельный рендер для каждого языка (FFmpeg + libass) → проверки → выдача для TikTok и YouTube Shorts или папка на проверку.",
+        qa: "Каждая языковая версия проходит две независимые проверки: техническую (громкость, длина, безопасные зоны, нет кириллицы в EN) и многоязычного ревьюера качества, который смотрит превью. Не прошедший ролик уходит в output/review с заметкой о причинах — например, первый тестовый ролик задержан из-за громкости −10,7 LUFS. Встроенная команда «тест» прогоняет синтетический клип через весь конвейер.",
+        ai: "В .claude/agents 26 агентов Claude Code, конвейер использует семь из них (аналитик геймплея, контент-директор, англоязычный копирайтер, специалист по локализации, многоязычный и общий ревьюеры качества, стратег международного роста). Claude работает в фоне (claude -p), неудачные вызовы повторяются до 3 раз. Сам монтаж делает детерминированный код, а не ИИ, импровизирующий на каждом кадре.",
+      },
+    ),
+    metrics: [
+      { value: "26", label: { en: "Claude Code agents, 7 of them in the pipeline", ru: "агентов Claude Code, 7 из них в конвейере" } },
+      { value: "2 × 2", label: { en: "languages × platforms: RU/EN, TikTok/Shorts", ru: "языка × платформы: RU/EN, TikTok/Shorts" } },
+      { value: "−14 LUFS", label: { en: "loudness target, checked automatically", ru: "целевая громкость, проверяется автоматически" } },
+    ],
+    media: mediaFor("valorant-content-factory"),
+    links: [],
   },
 ];
 

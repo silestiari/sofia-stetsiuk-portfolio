@@ -3,7 +3,7 @@ import type { Locale } from "@/i18n/routing";
 /** A value provided for every supported locale. */
 export type Localized<T = string> = Record<Locale, T>;
 
-export type ProjectCategory = "web" | "roblox";
+export type ProjectCategory = "web" | "roblox" | "ai";
 
 /** "unconfirmed" = status not verified by sources; never guess. */
 export type ProjectStatus = "released" | "in-development" | "prototype" | "unconfirmed";

@@ -1,13 +1,15 @@
 import { useLocale, useTranslations } from "next-intl";
 import { ProjectFilter } from "@/components/project/ProjectFilter";
-import { ProjectInspector, variantOf, type InspectorVariant } from "@/components/project/ProjectInspector";
+import { ProjectInspector } from "@/components/project/ProjectInspector";
 import { HudLabel } from "@/components/ui/HudLabel";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { projects, projectsDisclaimer } from "@/content/projects";
+import type { ProjectCategory } from "@/content/types";
 
-const groups: { id: InspectorVariant; key: "groupWeb" | "groupRoblox" }[] = [
+const groups: { id: ProjectCategory; key: "groupWeb" | "groupRoblox" | "groupAi" }[] = [
   { id: "web", key: "groupWeb" },
   { id: "roblox", key: "groupRoblox" },
+  { id: "ai", key: "groupAi" },
 ];
 
 export function Projects() {
@@ -24,6 +26,7 @@ export function Projects() {
             { id: "all", label: t("filterAll") },
             { id: "web", label: t("filterWeb") },
             { id: "roblox", label: t("filterRoblox") },
+            { id: "ai", label: t("filterAi") },
           ]}
         />
       </div>
@@ -35,7 +38,7 @@ export function Projects() {
       </p>
 
       {groups.map((g) => {
-        const list = projects.filter((p) => variantOf(p) === g.id);
+        const list = projects.filter((p) => p.category === g.id);
         if (list.length === 0) return null;
         return (
           <div key={g.id} data-group={g.id} className={`mt-20 lg:mt-28 ${g.id === "roblox" ? "roblox-pass" : ""}`}>
