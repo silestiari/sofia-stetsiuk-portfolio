@@ -51,8 +51,11 @@
       "ctaWork": "Explore My Work",
       "ctaGallery": "View 3D Gallery",
       "ctaContact": "Contact Me",
-      "scrollHint": "Scroll to render",
-      "placeholder": "Interactive hero is loading."
+      "placeholder": "Interactive hero is loading.",
+      "gameHint": "Catch the bugs: click them",
+      "gameCounter": "BUGS {found}/{total}",
+      "gameFixed": "fixed",
+      "gameAllFixed": "All bugs fixed — release ready ✓"
     },
     "projects": {
       "title": "Projects",

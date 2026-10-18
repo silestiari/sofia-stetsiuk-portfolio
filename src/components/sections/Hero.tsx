@@ -1,16 +1,9 @@
-import { existsSync } from "node:fs";
-import { join } from "node:path";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 import { DrawFrame } from "@/components/ui/DrawFrame";
 import { HudLabel } from "@/components/ui/HudLabel";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { HeroSceneSlot } from "./HeroSceneSlot";
-
-// Same path as HERO_POSTER in components/three/HeroScene.tsx (a "use client" export can't be read here).
-// Checked at build time so a missing poster never turns into a 404.
-const POSTER = "/posters/hero-scene.webp";
-const poster = existsSync(join(process.cwd(), "public", POSTER)) ? POSTER : null;
 
 const handle = "hero-handle absolute size-1.5 bg-qa-accent opacity-(--hud-opacity)";
 
@@ -58,10 +51,10 @@ export function Hero() {
         <span>{t("location")}</span>
         <span>{t("formats")}</span>
       </p>
-      <HudLabel className="mt-6 hidden lg:block">{t("scrollHint")} ↓</HudLabel>
+      <HudLabel className="mt-6 hidden lg:block">{t("gameHint")} →</HudLabel>
 
       <div className="relative -z-1 mt-10 h-[40svh] lg:absolute lg:inset-y-0 lg:right-0 lg:mt-0 lg:h-auto lg:w-1/2">
-        <HeroSceneSlot poster={poster} />
+        <HeroSceneSlot labels={{ counter: t("gameCounter"), fixed: t("gameFixed"), allFixed: t("gameAllFixed") }} />
       </div>
     </SectionShell>
   );
