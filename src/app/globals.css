@@ -88,6 +88,7 @@
   --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
   --ease-wipe: cubic-bezier(0.65, 0, 0.35, 1);
+  --ease-elastic: cubic-bezier(0.34, 1.56, 0.64, 1); /* overshoot: magnetic buttons */
 
   /* ---------- Breakpoints (mobile-first) ---------- */
   --breakpoint-*: initial;
@@ -166,16 +167,14 @@
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
-  *, *::before, *::after {
+  /* buttons are excluded: their motion only answers the user's own hover/click */
+  :not(.btn, .btn *), :not(.btn, .btn *)::before, :not(.btn, .btn *)::after {
     animation-duration: 1ms !important;
     animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 1ms !important;
     transition-delay: 0ms !important;
   }
-  /* Button hover is small and user-started: keep the fill and the shine, no arrow flight (magnet is off in JS) */
-  .btn.btn, .btn.btn::before, .btn.btn::after { transition-duration: 300ms !important; animation-duration: 700ms !important; }
-  .btn.btn > [aria-hidden="true"] { animation: none !important; }
 }
 
 /* ===== Utilities ===== */
@@ -287,54 +286,63 @@ main > .pass-section + .pass-section { border-top: 1px solid var(--color-line); 
   transition: background-color var(--dur-micro) var(--ease-precise), border-color var(--dur-micro) var(--ease-precise),
     color var(--dur-micro) var(--ease-precise), transform 80ms var(--ease-precise);
 }
-/* Motion: --mx/--my = magnetic pull (MotionObserver), --press = tap squash */
+/* ===== Button motion =====
+   --mx/--my: magnetic pull, --x/--y: pointer inside the button (both set by MotionObserver), --press: tap squash */
 .btn {
   isolation: isolate;
   transform: translate(var(--mx, 0px), var(--my, 0px)) scale(var(--press, 1));
   transition-property: background-color, border-color, color, transform;
-  transition-duration: var(--dur-micro), var(--dur-micro), 300ms, 400ms;
-  transition-timing-function: var(--ease-precise), var(--ease-precise), var(--ease-precise), var(--ease-expo);
+  transition-duration: var(--dur-micro), var(--dur-micro), 250ms, 600ms;
+  transition-timing-function: var(--ease-precise), var(--ease-precise), var(--ease-precise), var(--ease-elastic);
 }
-.btn:active:not([aria-disabled="true"], :disabled) { --press: 0.95; transition-duration: var(--dur-micro), var(--dur-micro), 300ms, 80ms; }
+.btn:active:not([aria-disabled="true"], :disabled) { --press: 0.93; transition-duration: var(--dur-micro), var(--dur-micro), 250ms, 90ms; }
+/* the content floats a bit further than the pill: parallax */
+.btn > * { transform: translate(calc(var(--mx, 0px) * 0.6), calc(var(--my, 0px) * 0.6)); transition: transform 600ms var(--ease-elastic); }
 
-/* Arrow: flies out right, comes back in from the left */
-@keyframes btn-arrow { 45% { transform: translateX(10px); opacity: 0; } 46% { transform: translateX(-10px); opacity: 0; } }
-@media (hover: hover) {
-  .btn:not([aria-disabled="true"], :disabled):hover > [aria-hidden="true"]:last-of-type { animation: btn-arrow 460ms var(--ease-expo); }
-}
-
-/* Secondary: the fill rises from the bottom, text inverts */
-.btn-secondary::before {
+/* Liquid fill: a circle grows from where the cursor came in and drains to where it left */
+.btn:is(.btn-primary, .btn-secondary) { overflow: hidden; }
+.btn:is(.btn-primary, .btn-secondary)::before {
   content: "";
   position: absolute;
-  inset: -1px;
   z-index: -1;
-  border-radius: inherit;
+  left: var(--x, 50%);
+  top: var(--y, 50%);
+  width: 260%;
+  aspect-ratio: 1;
+  border-radius: 50%;
   background: var(--color-text);
-  transform: scaleY(0);
-  transform-origin: 50% 100%;
-  transition: transform 420ms var(--ease-expo);
+  translate: -50% -50%;
+  scale: 0;
+  transition: scale 650ms var(--ease-expo);
+  pointer-events: none;
 }
-/* Primary: a light streak sweeps across */
-.btn-primary { overflow: hidden; }
-.btn-primary::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(105deg, transparent 30%, rgb(255 255 255 / 0.55) 50%, transparent 70%);
-  transform: translateX(-110%);
+
+/* Label rolls letter by letter: each glyph carries its copy below as a text-shadow (Button.tsx <RollText>) */
+.btn-roll { display: inline-flex; overflow: clip; padding-block: 0.1em; margin-block: -0.1em; }
+.btn-roll > span {
+  display: inline-block;
+  white-space: pre;
+  text-shadow: 0 1.4em currentColor;
+  transition: translate 520ms var(--ease-expo) calc(var(--i) * 18ms);
 }
-@keyframes btn-shine { to { transform: translateX(110%); } }
+
+/* Arrow: flies out diagonally, comes back in from the opposite corner */
+@keyframes btn-arrow {
+  40% { translate: 12px -12px; opacity: 0; }
+  41% { translate: -12px 12px; opacity: 0; }
+}
+
+@media (hover: hover) {
+  .btn:not([aria-disabled="true"], :disabled):hover:is(.btn-primary, .btn-secondary)::before { scale: 1; }
+  .btn:not([aria-disabled="true"], :disabled):hover .btn-roll > span { translate: 0 -1.4em; }
+  .btn:not([aria-disabled="true"], :disabled):hover > [aria-hidden="true"]:last-of-type { animation: btn-arrow 520ms var(--ease-expo) 80ms; }
+}
 .btn[aria-disabled="true"], .btn:disabled { cursor: default; }
 .btn[aria-busy="true"] { pointer-events: none; }
 
 .btn-primary { background: var(--color-qa-accent-fill); color: var(--color-on-accent); }
 @media (hover: hover) {
-  .btn-primary:not([aria-disabled="true"], :disabled):hover { background: var(--color-qa-accent-fill-hover); }
   .btn-secondary:not([aria-disabled="true"], :disabled):hover { border-color: var(--color-text); color: var(--color-bg); }
-  .btn-secondary:not([aria-disabled="true"], :disabled):hover::before { transform: scaleY(1); }
-  .btn-primary:not([aria-disabled="true"], :disabled):hover::after { animation: btn-shine 700ms var(--ease-precise); }
   .btn-ghost:not([aria-disabled="true"], :disabled):hover { text-decoration-thickness: 2px; }
 }
 .btn-primary:is([aria-disabled="true"], :disabled) { background: var(--color-surface-2); color: var(--color-text-3); }

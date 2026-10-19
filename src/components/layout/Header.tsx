@@ -6,6 +6,7 @@ import { desktopNavIds, sectionIds, sections, type SectionId } from "@/content/s
 import { usePathname } from "@/i18n/navigation";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { MobileMenu } from "./MobileMenu";
+import { RollText } from "@/components/ui/Button";
 
 /** Section crossing the line at 40% of the viewport height (DESIGN_SYSTEM.md 2.3). null off the home page. */
 function useActiveSection(pathname: string) {
@@ -77,7 +78,7 @@ export function Header() {
         <LanguageSwitcher activeId={activeId} className="ml-auto lg:ml-0" />
         {/* "Contact" pill + the adjoining arrow circle: one link, the circle is decoration */}
         <a href={isHome ? "#contact" : `/${locale}#contact`} className="group hidden items-center gap-1 lg:flex">
-          <span className="btn btn-secondary min-h-11 px-5 group-hover:border-text">{t("contact")}</span>
+          <span className="btn btn-secondary min-h-11 px-5 group-hover:border-text"><RollText text={t("contact")} /></span>
           <span
             aria-hidden="true"
             className="grid size-11 place-items-center rounded-full border border-ui-border transition-colors duration-150 group-hover:border-text"

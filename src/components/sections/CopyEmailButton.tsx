@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { useToast } from "@/components/ui/Toast";
+import { RollText } from "@/components/ui/Button";
 
 /**
  * DESIGN_SYSTEM.md 4.13: Clipboard API → toast + ✓ for 1.5s.
@@ -40,7 +41,7 @@ export function CopyEmailButton({ email, targetId, className = "" }: { email: st
       <span aria-hidden="true" className="w-4 text-center">
         {done ? "✓" : "⧉"}
       </span>
-      {t("copyEmail")}
+      <RollText text={t("copyEmail")} />
     </button>
   );
 }

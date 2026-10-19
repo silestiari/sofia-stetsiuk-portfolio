@@ -12,6 +12,7 @@ import { petParts } from "@/content/models";
 import { MOBILE_QUERY, useMediaQuery } from "@/hooks/useMediaQuery";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { useWebGLSupport } from "@/hooks/useWebGLSupport";
+import { RollText } from "@/components/ui/Button";
 
 const PetStage = dynamic(() => import("@/components/pet-builder/PetStage"), { ssr: false });
 
@@ -165,10 +166,10 @@ export function GamePlayground() {
 
           <div className="flex flex-wrap items-center gap-2">
             <button type="button" onClick={randomize} className="btn btn-primary min-h-12 px-6 py-2">
-              {t("randomize")}
+              <RollText text={t("randomize")} />
             </button>
             <button type="button" onClick={reset} className="btn btn-secondary min-h-12 px-6 py-2">
-              {t("reset")}
+              <RollText text={t("reset")} />
             </button>
           </div>
 

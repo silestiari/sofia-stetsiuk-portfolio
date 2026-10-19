@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { RollText } from "@/components/ui/Button";
 
 export interface Stage {
   id: string;
@@ -22,7 +23,7 @@ function Proof({ stage }: { stage: Stage }) {
       {stage.evidence && <span className="mr-2 text-small text-text-2">{stage.evidence}</span>}
       {stage.projects.map((p) => (
         <Link key={p.slug} href={`/projects/${p.slug}`} className="btn btn-secondary min-h-11 px-5 py-2">
-          {p.title} <span aria-hidden="true">→</span>
+          <RollText text={p.title} /> <span aria-hidden="true">→</span>
         </Link>
       ))}
     </div>
@@ -81,10 +82,10 @@ export function JourneyPath({ stages }: { stages: Stage[] }) {
           </div>
           <div className="col-span-5 flex items-start justify-end gap-2">
             <button type="button" className="btn btn-secondary min-h-12 px-6 py-2" disabled={index === 0} onClick={() => setIndex(index - 1)}>
-              <span aria-hidden="true">←</span> {t("prev")}
+              <span aria-hidden="true">←</span> <RollText text={t("prev")} />
             </button>
             <button type="button" className="btn btn-secondary min-h-12 px-6 py-2" disabled={index === last} onClick={() => setIndex(index + 1)}>
-              {t("next")} <span aria-hidden="true">→</span>
+              <RollText text={t("next")} /> <span aria-hidden="true">→</span>
             </button>
           </div>
         </div>

@@ -49,30 +49,54 @@ export function MotionObserver() {
     return () => io.disconnect();
   }, [pathname, locale]);
 
-  // 3. Magnetic buttons: a .btn leans towards the cursor (≤ 6px), springs back on leave. Mouse only.
+  // 3. Buttons (globals.css "Button motion"), not gated on reduced motion: it only answers the user's own pointer.
+  //    --x/--y: where the pointer is inside the button (the liquid fill grows from / drains to it);
+  //    --mx/--my: magnetic pull ≤ 10px, springs back on leave (mouse only); a click sends a ring out.
   useEffect(() => {
-    if (reducedMotion() || !matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const magnetic = matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const find = (e: Event) => (e.target as Element).closest?.<HTMLElement>(".btn:not(:disabled, [aria-disabled='true'])") ?? null;
     let current: HTMLElement | null = null;
     const release = () => {
       current?.style.removeProperty("--mx");
       current?.style.removeProperty("--my");
       current = null;
     };
+    const track = (btn: HTMLElement, e: PointerEvent) => {
+      const r = btn.getBoundingClientRect();
+      const [x, y] = [e.clientX - r.left, e.clientY - r.top];
+      btn.style.setProperty("--x", `${x}px`);
+      btn.style.setProperty("--y", `${y}px`);
+      return { r, x, y };
+    };
     const onMove = (e: PointerEvent) => {
-      const btn = (e.target as Element).closest<HTMLElement>(".btn:not(:disabled, [aria-disabled='true'])");
-      if (btn !== current) release();
+      const btn = find(e);
+      if (btn !== current) {
+        // last position inside is where the fill drains to
+        if (current) track(current, e);
+        release();
+      }
       if (!btn) return;
       current = btn;
-      const r = btn.getBoundingClientRect();
-      const pull = (v: number, size: number) => `${Math.max(-6, Math.min(6, (v / size) * 12)).toFixed(1)}px`;
-      btn.style.setProperty("--mx", pull(e.clientX - r.left - r.width / 2, r.width));
-      btn.style.setProperty("--my", pull(e.clientY - r.top - r.height / 2, r.height));
+      const { r, x, y } = track(btn, e);
+      if (!magnetic) return;
+      const pull = (v: number, size: number) => `${Math.max(-10, Math.min(10, (v / size) * 20)).toFixed(1)}px`;
+      btn.style.setProperty("--mx", pull(x - r.width / 2, r.width));
+      btn.style.setProperty("--my", pull(y - r.height / 2, r.height));
+    };
+    const onDown = (e: PointerEvent) => {
+      const btn = find(e);
+      if (!btn) return;
+      track(btn, e);
+      const color = btn.classList.contains("btn-primary") ? "#F58FBA" : "#F2F2F2";
+      btn.animate([{ boxShadow: `0 0 0 0 ${color}` }, { boxShadow: "0 0 0 20px transparent" }], { duration: 600, easing: "cubic-bezier(0.19, 1, 0.22, 1)" });
     };
     document.addEventListener("pointermove", onMove, { passive: true });
-    document.addEventListener("pointerleave", release);
+    document.addEventListener("pointerdown", onDown, { passive: true });
+    document.documentElement.addEventListener("pointerleave", release);
     return () => {
       document.removeEventListener("pointermove", onMove);
-      document.removeEventListener("pointerleave", release);
+      document.removeEventListener("pointerdown", onDown);
+      document.documentElement.removeEventListener("pointerleave", release);
     };
   }, []);
 
