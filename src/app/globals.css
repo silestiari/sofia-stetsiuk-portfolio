@@ -225,6 +225,9 @@
 @media (min-width: 64rem) { .pass-section::before { --cols: 12; } }
 /* full-bleed hairline between home sections */
 main > .pass-section + .pass-section { border-top: 1px solid var(--color-line); }
+/* off-screen sections skip layout and paint until scrolled near: the first full-page layout was the longest task on
+   phones. "auto" remembers each section's real size once rendered, 1200px is only the first guess. */
+main > .pass-section:not(#hero) { content-visibility: auto; contain-intrinsic-size: auto 1200px; }
 
 @keyframes render-pass {
   from { --grid-opacity: var(--grid-from); --hud-opacity: var(--hud-from); }

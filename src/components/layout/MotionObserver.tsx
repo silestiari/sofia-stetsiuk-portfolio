@@ -28,25 +28,21 @@ export function MotionObserver() {
       return;
     }
     // First load: what is on screen stays as is ("instant"). Later client navigations: it fades in ("anim").
+    // The observer's first callback says what is on screen without measuring anything ourselves: a
+    // getBoundingClientRect here would force layout of every content-visibility:auto section it touches.
     const armed = root.hasAttribute("data-motion");
-    const pending = [...document.querySelectorAll<HTMLElement>("[data-reveal]:not([data-inview])")].filter((el) => {
-      const onScreen = el.getBoundingClientRect().top < innerHeight;
-      if (onScreen) el.setAttribute("data-inview", armed ? "anim" : "instant");
-      return !onScreen;
-    });
-    root.setAttribute("data-motion", "");
+    let first = true;
     // ponytail: only server-rendered [data-reveal] are observed; add a MutationObserver if client-only ones appear
-    const io = new IntersectionObserver(
-      (entries) => {
-        for (const e of entries) {
-          if (!e.isIntersecting) continue;
-          e.target.setAttribute("data-inview", "anim");
-          io.unobserve(e.target);
-        }
-      },
-      { rootMargin: "0px 0px -10% 0px" },
-    );
-    pending.forEach((el) => io.observe(el));
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        e.target.setAttribute("data-inview", first && !armed ? "instant" : "anim");
+        io.unobserve(e.target);
+      }
+      if (first) root.setAttribute("data-motion", ""); // arms the hidden state only for what is still off screen
+      first = false;
+    });
+    document.querySelectorAll("[data-reveal]:not([data-inview])").forEach((el) => io.observe(el));
     return () => io.disconnect();
   }, [pathname, locale]);
 
