@@ -1,6 +1,5 @@
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
-import { Crosshair } from "@/components/ui/Crosshair";
 import { HudLabel } from "@/components/ui/HudLabel";
 import { StatusBadge } from "@/components/ui/StatusBadge";
 import { TechChip } from "@/components/ui/TechChip";
@@ -25,7 +24,7 @@ interface Props {
 }
 
 /**
- * Project card (docs/REDESIGN_UX_SPEC.md 3.7): web = editorial row with a crosshair media frame,
+ * Project card (docs/REDESIGN_UX_SPEC.md 3.7): web = editorial row with a framed media preview,
  * roblox = straight bento card with a pink top edge. Case mode = the case-page header, one layout for both.
  */
 export function ProjectInspector({ project, locale, flip = false, mode = "home" }: Props) {
@@ -132,7 +131,6 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home" 
         </div>
         <figure className="relative mt-12 border border-line bg-surface-1 p-2">
           {mediaEl}
-          {variant === "web" && <Crosshair cols={1} rows={1} className="group-focus-within:text-qa-accent group-hover:text-qa-accent" />}
           {callout}
         </figure>
       </header>
@@ -158,7 +156,6 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home" 
           }`}
         >
           {mediaEl}
-          <Crosshair cols={1} rows={1} className="group-focus-within:text-qa-accent group-hover:text-qa-accent" />
           {callout}
         </figure>
         <div
