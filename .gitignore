@@ -56,3 +56,6 @@ docs/reference-pinterest*
 
 .vercel
 .env*
+
+# serena
+/.serena/
