@@ -2,7 +2,6 @@
 
 import dynamic from "next/dynamic";
 import { useLocale, useTranslations } from "next-intl";
-import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { LazyMount } from "@/components/LazyMount";
 import type { Placed } from "@/components/pet-builder/PetStage";
@@ -199,20 +198,12 @@ export function GamePlayground() {
             </p>
             <div className="mt-4 border-t border-line pt-4">
               <p className="hud text-mono-xs text-text-3">{t("setBonus.label")}</p>
-              {/* stable live region; the keyed child rises in (no bounce) */}
+              {/* stable live region; the keyed child rises in */}
               <div aria-live="polite" className="mt-1 min-h-6">
-                <AnimatePresence mode="wait" initial={false}>
-                  <motion.p
-                    key={`${tier}-${top.id}-${top.n}`}
-                    className="font-semibold"
-                    initial={reduced ? { opacity: 0 } : { opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, transition: { duration: reduced ? 0 : 0.12 } }}
-                    transition={{ duration: reduced ? 0.15 : 0.24, ease: [0.19, 1, 0.22, 1] }}
-                  >
-                    {bonus}
-                  </motion.p>
-                </AnimatePresence>
+                {/* keyed: a new bonus remounts and replays the CSS rise */}
+                <p key={`${tier}-${top.id}-${top.n}`} className="rise-in font-semibold">
+                  {bonus}
+                </p>
               </div>
             </div>
           </section>

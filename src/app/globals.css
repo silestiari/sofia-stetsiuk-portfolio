@@ -436,6 +436,7 @@ main > .pass-section + .pass-section { border-top: 1px solid var(--color-line); 
 
 @keyframes intro-fade { from { opacity: 0; } }
 @keyframes intro-rise { from { opacity: 0; transform: translateY(var(--rise, 16px)); } }
+@keyframes intro-slide { from { transform: translateY(var(--rise, 16px)); } }
 @keyframes intro-scale-x { from { transform: scaleX(0); } }
 @keyframes mask-up { from { transform: translateY(105%); } }
 @keyframes burger-x { from { transform: none; } }
@@ -459,7 +460,9 @@ main > .pass-section + .pass-section { border-top: 1px solid var(--color-line); 
   #hero .mask-line > span { animation: mask-up 720ms var(--ease-expo) calc(160ms + var(--i, 0) * 90ms) backwards; }
   #hero .crosshair { animation: intro-fade 400ms var(--ease-precise) 80ms backwards; }
   #hero [data-hero-scene] { animation: intro-fade 480ms var(--ease-out) 700ms backwards; }
-  #hero .intro-rise { --rise: 8px; animation: intro-rise 400ms var(--ease-expo) calc(560ms + var(--i, 0) * 60ms) backwards; }
+  /* no opacity fade here: the tagline is the mobile LCP element and must be visible from the first paint */
+  #hero .intro-rise { --rise: 8px; animation: intro-slide 400ms var(--ease-expo) calc(560ms + var(--i, 0) * 60ms) backwards; }
+  .rise-in { --rise: 8px; animation: intro-rise 240ms var(--ease-expo); }
 
   /* ===== One-shot reveals (MotionObserver sets html[data-motion] and [data-inview]) ===== */
   [data-motion] [data-reveal="rise"]:not([data-inview]),

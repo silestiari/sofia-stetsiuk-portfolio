@@ -1,6 +1,6 @@
 "use client";
 
-import { animate } from "motion";
+import { animate } from "motion/mini"; // WAAPI-only build: keeps the full motion runtime off the hero
 import { useEffect, useRef } from "react";
 
 const GLYPHS = "ABCDEFGHIKLMNOPRSTUXZ#%&/<>";
@@ -28,7 +28,11 @@ export function HeroName({ first, last, className = "" }: { first: string; last:
       const rnd = (n: number) => (Math.random() * 2 - 1) * n * amp;
       await Promise.all(
         letters.map((el) =>
-          animate(el, { x: rnd(0.7 * em), y: rnd(0.5 * em), rotate: rnd(45), scale: 1 - Math.random() * 0.3 * amp }, { duration: 0.35, ease: [0.16, 1, 0.3, 1] }),
+          animate(
+            el,
+            { transform: `translate(${rnd(0.7 * em)}px, ${rnd(0.5 * em)}px) rotate(${rnd(45)}deg) scale(${1 - Math.random() * 0.3 * amp})` },
+            { duration: 0.35, ease: [0.16, 1, 0.3, 1] },
+          ),
         ),
       );
       await Promise.all(
@@ -43,7 +47,7 @@ export function HeroName({ first, last, className = "" }: { first: string; last:
             el.style.width = "";
           };
           setTimeout(lock, 250 + i * 45);
-          return animate(el, { x: 0, y: 0, rotate: 0, scale: 1 }, { type: "spring", stiffness: 260, damping: 14, delay: 0.1 + i * 0.03 }).then(lock);
+          return animate(el, { transform: "none" }, { type: "spring", stiffness: 260, damping: 14, delay: 0.1 + i * 0.03 }).then(lock);
         }),
       );
       delete h1.dataset.scatter;
