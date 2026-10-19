@@ -38,7 +38,7 @@ export function KoiPond({ poster, label, className = "" }: { poster: string; lab
       {/* the canvas is transparent (koi, pads, ripples only): the still frame hides once it is live */}
       <canvas className="peer absolute inset-0 size-full opacity-0 transition-opacity duration-500 data-[live]:opacity-100" />
       {/* eslint-disable-next-line @next/next/no-img-element -- still frame of the same pond */}
-      <img src={poster} alt="" className="absolute inset-0 size-full scale-[1.06] object-cover peer-data-[live]:hidden" />
+      <img src={poster} alt="" loading="lazy" className="absolute inset-0 size-full scale-[1.06] object-cover peer-data-[live]:hidden" />
     </div>
   );
 }

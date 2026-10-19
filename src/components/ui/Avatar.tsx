@@ -11,7 +11,7 @@ export function Avatar({ alt, className = "" }: { alt: string; className?: strin
     <span className={`block shrink-0 rounded-full border-2 border-text bg-bg p-1 ${className}`}>
       {photo ? (
         // eslint-disable-next-line @next/next/no-img-element -- pre-sized 800×800 webp, shown at ≤ 144px
-        <img src={photo} alt={alt} width={800} height={800} decoding="async" className="aspect-square size-full rounded-full object-cover" />
+        <img src={photo} alt={alt} width={800} height={800} loading="lazy" decoding="async" className="aspect-square size-full rounded-full object-cover" />
       ) : (
         <span role="img" aria-label={alt} className="grid aspect-square size-full place-items-center rounded-full bg-surface-2 font-display text-h2 font-extrabold">
           <span aria-hidden="true">SS</span>
