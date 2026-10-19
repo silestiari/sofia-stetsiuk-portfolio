@@ -3,8 +3,10 @@
 import { animate } from "motion";
 import { useEffect, useRef } from "react";
 
+const GLYPHS = "ABCDEFGHIKLMNOPRSTUXZ#%&/<>";
+
 /**
- * The hero h1. Hover (or tap) over the name: the letters fly apart and spring back together.
+ * The hero h1. Hover (or tap) over the name: the letters fly apart and spring back together, scrambling on the way.
  * The h1 stays pointer-events-none so the bugs under it can still be caught: hover is read on the whole frame
  * and checked against the h1 box. Reduced motion: a smaller scatter, same idea.
  */
@@ -30,9 +32,19 @@ export function HeroName({ first, last, className = "" }: { first: string; last:
         ),
       );
       await Promise.all(
-        letters.map((el, i) =>
-          animate(el, { x: 0, y: 0, rotate: 0, scale: 1 }, { type: "spring", stiffness: 260, damping: 14, delay: 0.1 + i * 0.03 }),
-        ),
+        letters.map((el, i) => {
+          // scramble: glyphs flicker while flying back, the real letter locks in as it lands
+          const real = el.dataset.letter!;
+          el.style.width = `${el.offsetWidth}px`; // other glyphs must not shift the line
+          const t = setInterval(() => (el.textContent = GLYPHS[(Math.random() * GLYPHS.length) | 0]), 50);
+          const lock = () => {
+            clearInterval(t);
+            el.textContent = real;
+            el.style.width = "";
+          };
+          setTimeout(lock, 250 + i * 45);
+          return animate(el, { x: 0, y: 0, rotate: 0, scale: 1 }, { type: "spring", stiffness: 260, damping: 14, delay: 0.1 + i * 0.03 }).then(lock);
+        }),
       );
       delete h1.dataset.scatter;
       busy = false;
@@ -57,7 +69,7 @@ export function HeroName({ first, last, className = "" }: { first: string; last:
 
   const word = (w: string) =>
     [...w].map((c, i) => (
-      <span key={i} data-letter="" className="inline-block will-change-transform">
+      <span key={i} data-letter={c} className="inline-block overflow-visible text-center will-change-transform">
         {c}
       </span>
     ));
