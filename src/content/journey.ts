@@ -19,7 +19,7 @@ export const journey: JourneyStage[] = [
     label: { en: "START", ru: "СТАРТ" },
     title: { en: "Games and game systems", ru: "Игры и игровые системы" },
     text: {
-      en: "It started with games — not only playing them, but taking them apart: why a loop keeps you hooked, where an economy breaks, what makes a player come back.",
+      en: "It started with games. Not only playing them, but taking them apart: why a loop keeps you hooked, where an economy breaks, what makes a player come back.",
       ru: "Всё началось с игр — не только с того, чтобы в них играть, но и разбирать их: почему цикл затягивает, где ломается экономика, что заставляет игрока вернуться.",
     },
     projects: ["woodcutter-vs-zombies"],
@@ -29,11 +29,11 @@ export const journey: JourneyStage[] = [
     label: { en: "TRAINING", ru: "ОБУЧЕНИЕ" },
     title: { en: "Learning software testing", ru: "Обучение тестированию" },
     text: {
-      en: "I turned that curiosity into a craft with the QA Engineer course at Yandex Practicum — learning to look for problems systematically, not by chance.",
+      en: "I turned that curiosity into a craft with the QA Engineer course at Yandex Practicum, learning to look for problems systematically, not by chance.",
       ru: "Это любопытство я превратила в профессию на курсе «Инженер по тестированию» в Яндекс Практикуме — училась искать проблемы системно, а не случайно.",
     },
     projects: [],
-    evidence: { en: "Yandex Practicum — QA Engineer course", ru: "Яндекс Практикум — «Инженер по тестированию»" },
+    evidence: { en: "Yandex Practicum: QA Engineer course", ru: "Яндекс Практикум — «Инженер по тестированию»" },
   },
   {
     id: "multicart",
@@ -61,7 +61,7 @@ export const journey: JourneyStage[] = [
     label: { en: "ROBLOX", ru: "ROBLOX" },
     title: { en: "Roblox games", ru: "Игры на Roblox" },
     text: {
-      en: "Four games in Roblox Studio — a tycoon, a co-op party game, multiplayer hide-and-seek and a pet builder. All four are released.",
+      en: "Four games in Roblox Studio: a tycoon, a co-op party game, multiplayer hide-and-seek and a pet builder. All four are released.",
       ru: "Четыре игры в Roblox Studio — тайкун, кооперативная party-игра, мультиплеерные прятки и конструктор питомцев. Все четыре выпущены.",
     },
     projects: ["woodcutter-vs-zombies", "cabin-chaos", "pillars", "build-your-pet"],
@@ -71,7 +71,7 @@ export const journey: JourneyStage[] = [
     label: { en: "3D ASSETS", ru: "3D-АССЕТЫ" },
     title: { en: "Blender and game assets", ru: "Blender и игровые ассеты" },
     text: {
-      en: "Blender is part of every game pipeline — and in Cabin Chaos and Build Your Own Pet, Python scripts generate whole asset kits and pet parts.",
+      en: "Blender is part of every game pipeline, and in Cabin Chaos and Build Your Own Pet, Python scripts generate whole asset kits and pet parts.",
       ru: "Blender есть в пайплайне каждой игры, а в Cabin Chaos и «Собери своего питомца» Python-скрипты генерируют целые наборы ассетов и части питомцев.",
     },
     projects: ["woodcutter-vs-zombies", "cabin-chaos", "build-your-pet"],
@@ -81,7 +81,7 @@ export const journey: JourneyStage[] = [
     label: { en: "AI AGENTS", ru: "AI-АГЕНТЫ" },
     title: { en: "Claude Code, Codex and AI agents", ru: "Claude Code, Codex и AI-агенты" },
     text: {
-      en: "I learned to run teams of AI agents: roles, file ownership, staged prompts, MCP connections to Blender and Roblox Studio. The agents write code — I own the tasks and the quality bar.",
+      en: "I learned to run teams of AI agents: roles, file ownership, staged prompts, MCP connections to Blender and Roblox Studio. The agents write code; I own the tasks and the quality bar.",
       ru: "Я научилась управлять командами AI-агентов: роли, владение файлами, поэтапные промпты, MCP-подключения к Blender и Roblox Studio. Код пишут агенты — задачи и планка качества на мне.",
     },
     projects: ["cabin-chaos", "grand-mall-batumi", "build-your-pet"],
@@ -91,7 +91,7 @@ export const journey: JourneyStage[] = [
     label: { en: "NEXT", ru: "ДАЛЬШЕ" },
     title: { en: "Growing in QA and Game Design", ru: "Рост в QA и гейм-дизайне" },
     text: {
-      en: "Now I'm looking for a team where I can grow as a QA engineer, Game QA or game designer — and bring the habit of checking everything twice.",
+      en: "Now I'm looking for a team where I can grow as a QA engineer, Game QA or game designer, and bring the habit of checking everything twice.",
       ru: "Сейчас я ищу команду, где смогу расти как QA-инженер, Game QA или гейм-дизайнер, — и привнести привычку всё перепроверять.",
     },
     projects: ["pillars", "build-your-pet"],

@@ -4,12 +4,13 @@ import { useGLTF } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
 import { useEffect, useMemo } from "react";
 import { BoxGeometry, Group, Material, Mesh, MeshBasicMaterial, MeshStandardMaterial, type Object3D, type WebGLRenderer } from "three";
+import { color } from "@/lib/tokens";
 
 /** RENDER PASS stages (DESIGN_SYSTEM.md 1.1). "debug" = wireframe + bounding boxes, drawn by the scene. */
 export type Pass = "wire" | "debug" | "clay" | "shaded" | "beauty";
 
 // Shared override materials: one instance each for the whole page.
-const wire = new MeshBasicMaterial({ color: "#F58FBA", wireframe: true, transparent: true, opacity: 0.75 });
+const wire = new MeshBasicMaterial({ color: color.accent, wireframe: true, transparent: true, opacity: 0.75 });
 const clay = new MeshStandardMaterial({ color: "#D8D2CB", roughness: 0.92, metalness: 0 });
 
 /** scene.environmentIntensity per pass: shaded keeps reflections faint, beauty gets the full studio. */

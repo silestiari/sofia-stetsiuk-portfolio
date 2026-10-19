@@ -45,7 +45,7 @@ export const projects: Project[] = [
     status: "released",
     title: { en: "Grand Mall Batumi", ru: "Grand Mall Batumi" },
     note: {
-      en: "Independent project — not the official website of the mall.",
+      en: "Independent project, not the official website of the mall.",
       ru: "Независимый проект — не официальный сайт торгового центра.",
     },
     summary: {
@@ -221,7 +221,7 @@ export const projects: Project[] = [
     title: { en: "Sotka", ru: "Сотка" },
     subtitle: { en: "Unified State Exam (ЕГЭ) prep app", ru: "Тренажёр для подготовки к ЕГЭ" },
     summary: {
-      en: "A prep app for Russia’s university entrance exam (ЕГЭ) in six subjects: endless task variants by exam number, mock exams, AI-checked long answers, flashcards, a 60-second blitz and a weekly leaderboard — to make exam prep engaging instead of a chore.",
+      en: "A prep app for Russia’s university entrance exam (ЕГЭ) in six subjects: endless task variants by exam number, mock exams, AI-checked long answers, flashcards, a 60-second blitz and a weekly leaderboard, to make exam prep engaging instead of a chore.",
       ru: "Тренажёр ЕГЭ по шести предметам: бесконечные варианты заданий по номерам, пробники, проверка развёрнутых ответов ИИ, карточки, блиц на 60 секунд и рейтинг недели — чтобы готовиться было интересно, а не скучно.",
     },
     role: {

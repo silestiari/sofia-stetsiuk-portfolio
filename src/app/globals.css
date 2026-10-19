@@ -395,7 +395,12 @@ main > .pass-section + .pass-section { border-top: 1px solid var(--color-line); 
 [data-scatter] .mask-line { overflow: visible; } /* HeroName: letters fly out of the mask */
 
 /* ===== HUD "releases" the object: callout lines shrink with the scrubbed --hud-opacity ===== */
-.hud-label { display: inline-block; translate: calc(max(0, 0.4 - var(--hud-opacity)) * -20px) 0; }
+.hud-label {
+  display: inline-block;
+  translate: calc(max(0, 0.4 - var(--hud-opacity)) * -20px) 0;
+  /* text, so it is either fully there (text-3 = 5.4:1) or gone: the 0.4–0.8 HUD dimming is left to lines and decoration */
+  opacity: min(1, calc(var(--hud-opacity) * 2.5));
+}
 .hud-line, .callout-line { scale: var(--hud-opacity) 1; }
 
 /* Callout line of the web Inspector: accent line draws over it on hover / focus */

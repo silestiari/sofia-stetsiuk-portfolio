@@ -12,7 +12,7 @@
   },
   "a11y": {
     "skipToContent": "Skip to content",
-    "logo": "Sofia Stetsiuk — back to top",
+    "logo": "Sofia Stetsiuk, back to top",
     "opensInNewTab": "(opens in new tab)",
     "menuOpen": "Open menu",
     "menuClose": "Close menu",
@@ -57,7 +57,7 @@
       "gameHint": "Catch the bugs: click them",
       "gameCounter": "BUGS {found}/{total}",
       "gameFixed": "fixed",
-      "gameAllFixed": "All bugs fixed — release ready ✓"
+      "gameAllFixed": "All bugs fixed: release ready ✓"
     },
     "projects": {
       "title": "Projects",
@@ -138,7 +138,7 @@
     "about": {
       "title": "About",
       "hud": "03 / ABOUT",
-      "intro": "From taking games apart to testing them for real — every step below is backed by a course, practice or a project you can open.",
+      "intro": "From taking games apart to testing them for real: every step below is backed by a course, practice or a project you can open.",
       "stageCounter": "Stage {current} of {total}",
       "prev": "Previous stage",
       "next": "Next stage",
@@ -184,7 +184,7 @@
     "game-playground": {
       "title": "Build a Pet",
       "hud": "06 / GAME PLAYGROUND",
-      "intro": "A taste of the part-based pet system from Build Your Own Pet. Mix parts, elements and accessories — and see what kind of creature comes out.",
+      "intro": "A taste of the part-based pet system from Build Your Own Pet. Mix parts, elements and accessories, and see what kind of creature comes out.",
       "stageLabel": "Your pet",
       "categoriesLabel": "Pet parts",
       "optionsLabel": "Options for {slot}",
@@ -196,7 +196,7 @@
       "rarity": "Rarity",
       "locked": "Locked",
       "designNoteTitle": "Design note",
-      "designNote": "Every part carries an element, and parts of the same element add up to a set bonus — so even a random build has a strategy, and the player has a reason to hunt for the next part. Rarity shows up in accessories.",
+      "designNote": "Every part carries an element, and parts of the same element add up to a set bonus, so even a random build has a strategy, and the player has a reason to hunt for the next part. Rarity shows up in accessories.",
       "accessory": "Accessory",
       "accessoryNone": "None",
       "composition": "Your combination",
@@ -227,13 +227,13 @@
       "title": "Contact",
       "hud": "07 / CONTACT",
       "heading": "Let’s build something remarkable.",
-      "intro": "Open to QA Engineer, Game QA and Game Design roles. Based in Batumi, Georgia — remote, on-site, hybrid or relocation.",
+      "intro": "Open to QA Engineer, Game QA and Game Design roles. Based in Batumi, Georgia. Remote, on-site, hybrid or relocation.",
       "openTo": "Open to",
       "formats": "Work format",
       "email": "Email",
       "copyEmail": "Copy email",
       "copied": "Email copied",
-      "copyFallback": "Couldn’t copy automatically — the address is selected, press Ctrl+C",
+      "copyFallback": "Couldn’t copy automatically. The address is selected: press Ctrl+C",
       "call": "Call",
       "github": "GitHub",
       "location": "Location",
@@ -290,7 +290,7 @@
   },
   "footer": {
     "copyright": "© {year} Sofia Stetsiuk",
-    "builtWith": "Built with Next.js, React Three Fiber and a team of AI agents — tasks and QA by Sofia.",
+    "builtWith": "Built with Next.js, React Three Fiber and a team of AI agents; tasks and QA by Sofia.",
     "disclaimer": "Projects shown are personal or demo work, not commercial client orders.",
     "backToTop": "Back to top"
   },

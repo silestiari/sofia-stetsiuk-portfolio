@@ -62,7 +62,7 @@ export function SectionShell({
             <span aria-hidden="true" className="hud-line h-px flex-1 origin-left bg-grid-strong opacity-(--hud-opacity)" />
             <span aria-hidden="true">
               <HudLabel>
-                {nn(index)}—{nn(sections.length - 1)}
+                {nn(index)}/{nn(sections.length - 1)}
               </HudLabel>
             </span>
           </div>

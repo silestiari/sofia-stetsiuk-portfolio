@@ -1,17 +1,17 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { color } from "@/lib/tokens";
 
 export type BugHuntLabels = { counter: string; fixed: string; allFixed: string };
 
 type Bug = { id: number; x: number; y: number; a: number; v: number; turn: number; step: number; caught: number };
 
 const N = 7;
-// globals.css tokens (canvas can't read Tailwind classes)
-const ACCENT = "#F58FBA"; // --color-qa-accent: the target on a bug you can catch
-const SIGNAL = "#C5F25A"; // --color-signal: caught / fixed
-const TEXT = "#F2F2F2"; // --color-text: a crawling bug
-const MUTED = "#A8A8A8"; // --color-text-2: counter
+const ACCENT = color.accent; // the target on a bug you can catch
+const SIGNAL = color.signal; // caught / fixed
+const TEXT = color.text; // a crawling bug
+const MUTED = color.text2; // counter
 const CATCH_MS = 1600; // selection frame + label, then the bug fades out
 const RESPAWN_MS = 3500; // after "all fixed"
 
@@ -185,7 +185,7 @@ export function BugHunt({ labels, className = "" }: { labels: BugHuntLabels; cla
       const label = labels.counter.replace("{found}", String(found)).replace("{total}", String(N));
       ctx.fillText(label, W - 16, 24);
       const bar = ctx.measureText(label).width;
-      ctx.fillStyle = "rgba(242,242,242,0.22)";
+      ctx.fillStyle = `${TEXT}38`; // text at 22%
       ctx.fillRect(W - 16 - bar, 32, bar, 1);
       ctx.fillStyle = SIGNAL;
       ctx.fillRect(W - 16 - bar, 32, (bar * found) / N, 1);
@@ -194,8 +194,8 @@ export function BugHunt({ labels, className = "" }: { labels: BugHuntLabels; cla
           // one RGB-split burst of the whole frame, once per round (≤ 1 flash, no white flash)
           canvas.animate(
             [
-              { transform: "translateX(-4px)", filter: "drop-shadow(4px 0 #F58FBA) drop-shadow(-4px 0 #F2F2F2)", clipPath: "inset(10% 0 55% 0)" },
-              { transform: "translateX(3px)", filter: "drop-shadow(-3px 0 #F58FBA) drop-shadow(3px 0 #F2F2F2)", clipPath: "inset(45% 0 20% 0)" },
+              { transform: "translateX(-4px)", filter: `drop-shadow(4px 0 ${ACCENT}) drop-shadow(-4px 0 ${TEXT})`, clipPath: "inset(10% 0 55% 0)" },
+              { transform: "translateX(3px)", filter: `drop-shadow(-3px 0 ${ACCENT}) drop-shadow(3px 0 ${TEXT})`, clipPath: "inset(45% 0 20% 0)" },
               { transform: "none", filter: "none", clipPath: "inset(0)" },
             ],
             { duration: 280, easing: "steps(3)" },

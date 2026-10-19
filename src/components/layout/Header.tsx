@@ -49,9 +49,9 @@ export function Header() {
       <div className="page-container flex h-full items-center gap-2 lg:gap-6">
         <a
           href={href("hero")}
-          className="font-mono text-mono font-medium tracking-[0.08em] text-text"
+          className="inline-flex min-h-11 min-w-11 items-center font-mono text-mono font-medium tracking-[0.08em] text-text"
         >
-          SS_<span className="sr-only"> — {tA11y("logo")}</span>
+          SS_<span className="sr-only">, {tA11y("logo")}</span>
         </a>
 
         {/* pill nav: links, not a radiogroup; the active section gets a filled pill (docs/REDESIGN_UX_SPEC.md 3.4) */}

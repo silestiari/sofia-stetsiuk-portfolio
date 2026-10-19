@@ -21,6 +21,7 @@ import { BlobShadow } from "@/components/three/BlobShadow";
 import { Bloom } from "@/components/three/Bloom";
 import { StudioLights } from "@/components/three/StudioLights";
 import { ThreeCanvas } from "@/components/three/ThreeCanvas";
+import { color } from "@/lib/tokens";
 
 export type StageCommand = { kind: "left" | "right" | "in" | "out" | "reset"; id: number };
 export type Backdrop = "grid" | "studio";
@@ -179,7 +180,7 @@ function Scene({
           {/* podium */}
           <mesh position={[0, -fit.radius * 0.03, 0]} receiveShadow>
             <cylinderGeometry args={[fit.footprint * 1.2, fit.footprint * 1.26, fit.radius * 0.06, 64]} />
-            <meshStandardMaterial color={backdrop === "studio" ? "#2A2E37" : "#1D2027"} roughness={0.8} metalness={0.1} />
+            <meshStandardMaterial color={backdrop === "studio" ? color.panel : color.surface2} roughness={0.8} metalness={0.1} />
           </mesh>
           {backdrop === "grid" && (
             <Grid
@@ -187,8 +188,8 @@ function Scene({
               infiniteGrid
               cellSize={fit.radius / 8}
               sectionSize={fit.radius / 2}
-              cellColor="#2A2E37"
-              sectionColor="#3A3F4B"
+              cellColor={color.line}
+              sectionColor={color.lineStrong}
               fadeDistance={fit.radius * 8}
               fadeStrength={1.5}
             />

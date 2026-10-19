@@ -179,7 +179,7 @@ export const aiLabNodes: AiLabNode[] = [
       {
         projectSlug: "build-your-pet",
         text: {
-          en: "Blender generators produce pet parts by element and rarity ornaments — 134 exported files with manifests.",
+          en: "Blender generators produce pet parts by element and rarity ornaments: 134 exported files with manifests.",
           ru: "Генераторы в Blender создают части питомцев по стихиям и орнаменты редкостей — 134 экспортированных файла с манифестами.",
         },
       },
@@ -219,7 +219,7 @@ export const aiLabNodes: AiLabNode[] = [
       {
         projectSlug: "build-your-pet",
         text: {
-          en: "78/78 Lune tests, but manual Studio checks are marked NOT RUN — honestly.",
+          en: "78/78 Lune tests, but manual Studio checks are honestly marked NOT RUN.",
           ru: "78/78 тестов Lune, но ручные проверки в Studio честно помечены NOT RUN.",
         },
       },
@@ -294,6 +294,6 @@ export const aiLabSiteAgents = [
 ] as const;
 
 export const aiLabSiteNote: Localized = {
-  en: "This portfolio was built the same way: 10 agents — creative direction, UX/UI, frontend, motion, 3D, content, QA, performance, research and release — with me setting the tasks and checking the result.",
+  en: "This portfolio was built the same way: 10 agents (creative direction, UX/UI, frontend, motion, 3D, content, QA, performance, research and release), with me setting the tasks and checking the result.",
   ru: "Это портфолио собрано так же: 10 агентов — арт-дирекшн, UX/UI, фронтенд, моушн, 3D, контент, QA, производительность, фактчек и релиз, — а задачи ставлю и результат проверяю я.",
 };

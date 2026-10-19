@@ -115,7 +115,7 @@ export function ModelShowcase({ models }: { models: Model3D[] }) {
                 {/* name = visible title first (voice control), then the action for screen readers */}
                 <span className="hud relative block truncate text-mono-xs text-text">
                   {m.title[locale]}
-                  <span className="sr-only"> — {t("open3d")}</span>
+                  <span className="sr-only">, {t("open3d")}</span>
                 </span>
                 <span aria-hidden="true" className="block truncate text-small text-text-2">
                   {groupLabel(m.group)}

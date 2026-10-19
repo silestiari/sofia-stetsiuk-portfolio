@@ -6,7 +6,7 @@ test("showroom: a card opens the model dialog, Esc closes it and focus returns",
   await showroom.scrollIntoViewIfNeeded();
   await expect(showroom.getByText("Click any model to look at it closer in 3D")).toBeVisible();
 
-  const card = showroom.getByRole("button", { name: "Bubble Lagoon Sea Dragon — open in 3D" });
+  const card = showroom.getByRole("button", { name: /^Bubble Lagoon Sea Dragon\s*, open in 3D$/ });
   await card.click();
   const dialog = page.getByRole("dialog", { name: "Bubble Lagoon Sea Dragon" });
   await expect(dialog).toBeVisible();
@@ -36,7 +36,7 @@ test("showroom: without WebGL the dialog shows the poster, no 3D controls", asyn
   await page.goto("/ru");
   const showroom = page.locator("#showroom");
   await showroom.scrollIntoViewIfNeeded();
-  await showroom.getByRole("button", { name: "Кристальное дерево, большое — открыть в 3D" }).click();
+  await showroom.getByRole("button", { name: /^Кристальное дерево, большое\s*, открыть в 3D$/ }).click();
   const dialog = page.getByRole("dialog");
   await expect(dialog.getByRole("img", { name: /Кристальное дерево, большое — статичное превью/ })).toHaveAttribute("src", "/posters/tree-crystal-l.webp");
   await expect(dialog.locator("canvas")).toHaveCount(0);

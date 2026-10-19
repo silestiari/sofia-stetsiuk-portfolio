@@ -48,14 +48,14 @@ export function LanguageSwitcher({ activeId, className = "" }: { activeId?: stri
                 } catch {}
               }
             }}
-            className={`hud relative grid h-9 place-items-center rounded-full px-3 text-mono-xs transition-colors duration-150 before:absolute before:-inset-y-1 before:inset-x-0 ${
+            className={`hud relative grid h-9 min-w-11 place-items-center rounded-full px-3 text-mono-xs transition-colors duration-150 before:absolute before:-inset-y-1 before:inset-x-0 ${
               selected === l ? "cursor-default bg-text text-bg" : "text-text-2 hover:text-text"
             }`}
           >
             <span>
               {l}
               {/* visible code first, so voice control ("click EN") matches the accessible name */}
-              <span className="sr-only normal-case"> — {t(l)}</span>
+              <span className="sr-only normal-case">, {t(l)}</span>
             </span>
           </Link>
         );

@@ -49,7 +49,7 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home" 
         <details className="max-w-full [&[open]>summary]:hidden">
           <summary className="hud text-mono-xs relative inline-flex h-7 cursor-pointer list-none items-center rounded-full border border-ui-border px-3 text-text-2 before:absolute before:-inset-y-2 before:inset-x-0 hover:border-text hover:text-text">
             {t("moreTech", { count: hidden.length })}
-            <span className="sr-only"> — {t("showAllTech")}</span>
+            <span className="sr-only">, {t("showAllTech")}</span>
           </summary>
           <div className="flex flex-wrap gap-2">
             {hidden.map((tech) => (
@@ -141,7 +141,7 @@ export function ProjectInspector({ project, locale, flip = false, mode = "home" 
 
   const heading = (
     <h3 className="font-display text-h2 font-semibold uppercase">
-      <Link href={caseHref} className="decoration-1 underline-offset-8 hover:underline">
+      <Link href={caseHref} className="relative decoration-1 underline-offset-8 before:absolute before:-inset-y-2 before:inset-x-0 hover:underline">
         {title}
       </Link>
     </h3>

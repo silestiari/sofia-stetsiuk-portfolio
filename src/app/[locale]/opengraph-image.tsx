@@ -4,6 +4,7 @@ import { ImageResponse } from "next/og";
 import { getTranslations } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { routing } from "@/i18n/routing";
+import { color } from "@/lib/tokens";
 
 // Home OG card, 1200×630, per locale. Static TTFs (OFL, Google Fonts) live in src/app/fonts so the build needs no network.
 const size = { width: 1200, height: 630 };
@@ -23,8 +24,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
     readFile(join(fonts, "Unbounded-SemiBold.ttf")),
     readFile(join(fonts, "Manrope-Medium.ttf")),
   ]);
-  // Same tokens as globals.css: bg, grid, text, text-2, text-3, qa-accent
-  const grid = "rgba(236,238,242,0.06)";
+  const grid = `${color.text}12`; // --color-grid (text at 7%)
 
   return new ImageResponse(
     (
@@ -36,14 +36,14 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
           flexDirection: "column",
           justifyContent: "space-between",
           padding: 72,
-          background: "#0D0E11",
+          background: color.bg,
           backgroundImage: `linear-gradient(${grid} 1px, transparent 1px), linear-gradient(90deg, ${grid} 1px, transparent 1px)`,
           backgroundSize: "100px 100px",
-          color: "#ECEEF2",
+          color: color.text,
           fontFamily: "Manrope",
         }}
       >
-        <div style={{ display: "flex", fontSize: 24, letterSpacing: 3, color: "#7D8390" }}>
+        <div style={{ display: "flex", fontSize: 24, letterSpacing: 3, color: color.text3 }}>
           {"00 / PORTFOLIO · SS_"}
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
@@ -53,7 +53,7 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
               flexDirection: "column",
               alignSelf: "flex-start",
               padding: "8px 16px",
-              border: "2px solid rgba(236,238,242,0.14)",
+              border: `2px solid ${color.text}24`,
               fontFamily: "Unbounded",
               fontSize: 128,
               lineHeight: 0.95,
@@ -63,8 +63,8 @@ export default async function Image({ params }: { params: Promise<{ locale: stri
             <span>{t("firstName")}</span>
             <span>{t("lastName")}</span>
           </div>
-          <div style={{ display: "flex", marginTop: 40, fontSize: 44, color: "#F58FBA" }}>{t("subtitle")}</div>
-          <div style={{ display: "flex", marginTop: 12, fontSize: 30, color: "#A4AAB5" }}>{t("tagline")}</div>
+          <div style={{ display: "flex", marginTop: 40, fontSize: 44, color: color.accent }}>{t("subtitle")}</div>
+          <div style={{ display: "flex", marginTop: 12, fontSize: 30, color: color.text2 }}>{t("tagline")}</div>
         </div>
       </div>
     ),

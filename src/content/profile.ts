@@ -37,7 +37,7 @@ export const profile: Profile = {
     ru: "Тестирую опыт. Проектирую миры. Создаю вместе с AI.",
   },
   bio: {
-    en: "I test products the way players and users actually use them, design game systems for Roblox, and build web and game projects with a team of AI agents — where I set the tasks, make the design calls and check the result.",
+    en: "I test products the way players and users actually use them, design game systems for Roblox, and build web and game projects with a team of AI agents, where I set the tasks, make the design calls and check the result.",
     ru: "Я тестирую продукты так, как ими на самом деле пользуются игроки и пользователи, проектирую игровые системы для Roblox и собираю веб- и игровые проекты с командой AI-агентов: ставлю задачи, принимаю дизайн-решения и проверяю результат.",
   },
   location: { en: "Batumi, Georgia", ru: "Батуми, Грузия" },

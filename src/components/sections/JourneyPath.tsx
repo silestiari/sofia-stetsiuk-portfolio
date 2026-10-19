@@ -37,6 +37,7 @@ export function JourneyPath({ stages }: { stages: Stage[] }) {
   const t = useTranslations("sections.about");
   const [index, setIndex] = useState(0);
   const stage = stages[index];
+  const counter = t("stageCounter", { current: index + 1, total: stages.length });
   const last = stages.length - 1;
 
   return (
@@ -74,12 +75,16 @@ export function JourneyPath({ stages }: { stages: Stage[] }) {
 
         <div className="mt-12 grid grid-cols-12 gap-(--gutter)">
           <div aria-live="polite" className="col-span-7 border-t-2 border-qa-accent pt-6">
-            <p className="hud text-mono-xs text-text-3">{t("stageCounter", { current: index + 1, total: stages.length })}</p>
-            <h3 className="mt-2 font-display text-h3 font-semibold uppercase">{stage.title}</h3>
+            <p className="sr-only">{counter}</p>
+            <h3 className="font-display text-h3 font-semibold uppercase">{stage.title}</h3>
             <p className="mt-3 max-w-prose text-text-2">{stage.text}</p>
             <Proof stage={stage} />
           </div>
-          <div className="col-span-5 flex items-start justify-end gap-2">
+          <div className="col-span-5 flex items-center justify-end gap-2">
+            {/* progress sits with the controls it answers to, not as a kicker over the heading */}
+            <p aria-hidden="true" className="hud mr-4 text-mono-xs text-text-3">
+              {counter}
+            </p>
             <button type="button" className="btn btn-secondary min-h-12 px-6 py-2" disabled={index === 0} onClick={() => setIndex(index - 1)}>
               <span aria-hidden="true">←</span> {t("prev")}
             </button>

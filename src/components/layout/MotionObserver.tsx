@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { useLocale } from "next-intl";
 import { usePathname } from "@/i18n/navigation";
+import { color } from "@/lib/tokens";
 
 /** Set by LanguageSwitcher right before a locale switch; consumed once after it. */
 export const RERENDER_KEY = "locale-rerender";
@@ -87,8 +88,8 @@ export function MotionObserver() {
       const btn = find(e);
       if (!btn) return;
       track(btn, e);
-      const color = btn.classList.contains("btn-primary") ? "#F58FBA" : "#F2F2F2";
-      btn.animate([{ boxShadow: `0 0 0 0 ${color}` }, { boxShadow: "0 0 0 20px transparent" }], { duration: 600, easing: "cubic-bezier(0.19, 1, 0.22, 1)" });
+      const ring = btn.classList.contains("btn-primary") ? color.accent : color.text;
+      btn.animate([{ boxShadow: `0 0 0 0 ${ring}` }, { boxShadow: "0 0 0 20px transparent" }], { duration: 600, easing: "cubic-bezier(0.19, 1, 0.22, 1)" });
     };
     document.addEventListener("pointermove", onMove, { passive: true });
     document.addEventListener("pointerdown", onDown, { passive: true });
