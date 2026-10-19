@@ -235,6 +235,7 @@
       "copied": "Email copied",
       "copyFallback": "Couldn’t copy automatically. The address is selected: press Ctrl+C",
       "call": "Call",
+      "telegram": "Telegram",
       "github": "GitHub",
       "location": "Location",
       "placeholder": "This section is in progress."

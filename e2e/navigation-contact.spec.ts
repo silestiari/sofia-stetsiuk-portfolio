@@ -60,11 +60,17 @@ test("mobile menu: opens as modal, lists 8 anchors, Esc returns focus, link jump
   await expect(page.locator("#contact")).toBeInViewport();
 });
 
-test("contacts: mailto, tel, GitHub in a new tab", async ({ page }) => {
+test("contacts: mailto, phone hidden until click, Telegram, GitHub in a new tab", async ({ page }) => {
   await page.goto("/en#contact");
   const contact = page.locator("#contact");
   await expect(contact.locator('a[href="mailto:sofiavipera@gmail.com"]')).toHaveCount(1);
-  await expect(contact.locator('a[href="tel:+995571247510"]')).toHaveCount(1);
+  const tel = contact.locator('a[href="tel:+995571247510"]');
+  await expect(tel).toHaveCount(0);
+  await expect(contact).not.toContainText("571 247 510");
+  await contact.getByRole("button", { name: "Call" }).click();
+  await expect(tel).toBeFocused();
+  await expect(tel).toContainText("+995 571 247 510");
+  await expect(contact.locator('a[href="https://t.me/silestiari"]')).toHaveAttribute("target", "_blank");
   const gh = contact.locator('a[href="https://github.com/silestiari"]');
   await expect(gh).toHaveAttribute("target", "_blank");
   await expect(gh).toHaveAttribute("rel", /noopener/);

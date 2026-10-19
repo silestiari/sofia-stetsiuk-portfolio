@@ -1,6 +1,7 @@
 import { useLocale, useTranslations } from "next-intl";
 import { Avatar } from "@/components/ui/Avatar";
 import { Button } from "@/components/ui/Button";
+import { PhoneReveal } from "@/components/ui/PhoneReveal";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { profile } from "@/content/profile";
 import { CopyEmailButton } from "./CopyEmailButton";
@@ -14,7 +15,7 @@ const EMAIL_ID = "contact-email";
 export function Contact() {
   const t = useTranslations("sections.contact");
   const locale = useLocale();
-  const { email, phone, github } = profile.contacts;
+  const { email, telegram, github } = profile.contacts;
   const wide = "w-full min-[30rem]:w-auto";
 
   const facts = [
@@ -42,8 +43,9 @@ export function Contact() {
               {t("email")} <span aria-hidden="true">↗</span>
             </Button>
             <CopyEmailButton email={email} targetId={EMAIL_ID} className={wide} />
-            <Button href={phone.href} variant="secondary" className={wide}>
-              {t("call")} <span className="whitespace-nowrap normal-case">{phone.display}</span>
+            <PhoneReveal className={`btn btn-secondary min-h-12 px-6 py-2 ${wide}`}>{t("call")}</PhoneReveal>
+            <Button href={telegram.href} variant="secondary" className={wide}>
+              {t("telegram")} <span className="normal-case">{telegram.handle}</span>
             </Button>
             <Button href={github.href} variant="secondary" className={wide}>
               {t("github")}

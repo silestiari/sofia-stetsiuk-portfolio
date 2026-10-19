@@ -1,11 +1,15 @@
 import type { ReactNode } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Avatar } from "@/components/ui/Avatar";
+import { PhoneReveal } from "@/components/ui/PhoneReveal";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { journey } from "@/content/journey";
 import { profile } from "@/content/profile";
 import { getProject } from "@/content/projects";
 import { JourneyPath, type Stage } from "./JourneyPath";
+
+const CIRCLE =
+  "hud grid place-items-center rounded-full border border-ui-border text-mono-xs text-text transition-colors duration-150 hover:border-text";
 
 /** Round contact icon link (circle = icon action); only contacts that exist in profile. */
 function ContactCircle({ href, label, children }: { href: string; label: string; children: ReactNode }) {
@@ -15,7 +19,7 @@ function ContactCircle({ href, label, children }: { href: string; label: string;
       href={href}
       aria-label={label}
       {...(external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-      className="hud grid size-11 place-items-center rounded-full border border-ui-border text-mono-xs text-text transition-colors duration-150 hover:border-text"
+      className={`${CIRCLE} size-11`}
     >
       <span aria-hidden="true">{children}</span>
     </a>
@@ -28,7 +32,7 @@ export function About() {
   const tContact = useTranslations("sections.contact");
   const tA11y = useTranslations("a11y");
   const locale = useLocale();
-  const { email, phone, github } = profile.contacts;
+  const { email, telegram, github } = profile.contacts;
   const name = profile.localizedName[locale];
 
   // Localized on the server so the client bundle doesn't carry the project data.
@@ -64,9 +68,16 @@ export function About() {
             <ContactCircle href={`mailto:${email}`} label={`${tContact("email")}: ${email}`}>
               @
             </ContactCircle>
-            <ContactCircle href={phone.href} label={`${tContact("call")}: ${phone.display}`}>
-              ☎
+            <ContactCircle href={telegram.href} label={`${tContact("telegram")} ${telegram.handle} ${tA11y("opensInNewTab")}`}>
+              {"✈︎"}
             </ContactCircle>
+            <PhoneReveal
+              label={tContact("call")}
+              className={`${CIRCLE} size-11`}
+              revealedClassName={`${CIRCLE} h-11 px-4`}
+            >
+              <span aria-hidden="true">☎</span>
+            </PhoneReveal>
           </div>
         </div>
         <div className="lg:col-span-6 lg:col-start-7">

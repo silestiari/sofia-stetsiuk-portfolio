@@ -18,6 +18,7 @@ export interface Profile {
   contacts: {
     email: string;
     phone: { display: string; href: string };
+    telegram: { href: string; handle: string };
     github: { href: string; handle: string };
   };
   education: { title: Localized; provider: Localized }[];
@@ -54,6 +55,7 @@ export const profile: Profile = {
   contacts: {
     email: "sofiavipera@gmail.com",
     phone: { display: "+995 571 247 510", href: "tel:+995571247510" },
+    telegram: { href: "https://t.me/silestiari", handle: "@silestiari" },
     github: { href: "https://github.com/silestiari", handle: "silestiari" },
   },
   education: [

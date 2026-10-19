@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type CSSProperties, type KeyboardEvent, type MouseEvent } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
+import { PhoneReveal } from "@/components/ui/PhoneReveal";
 import { profile } from "@/content/profile";
 import { sectionIds, type SectionId } from "@/content/sections";
 import { LanguageSwitcher } from "./LanguageSwitcher";
@@ -135,8 +136,9 @@ export function MobileMenu({ activeId, className = "" }: { activeId: SectionId |
             <Button variant="secondary" size="sm" href={`mailto:${profile.contacts.email}`}>
               {tContact("email")}
             </Button>
-            <Button variant="secondary" size="sm" href={profile.contacts.phone.href}>
-              {tContact("call")}
+            <PhoneReveal className="btn btn-secondary min-h-11 px-5 py-2">{tContact("call")}</PhoneReveal>
+            <Button variant="secondary" size="sm" href={profile.contacts.telegram.href}>
+              {tContact("telegram")}
             </Button>
             <Button variant="secondary" size="sm" href={profile.contacts.github.href}>
               {tContact("github")}

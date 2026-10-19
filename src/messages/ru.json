@@ -235,6 +235,7 @@
       "copied": "Email скопирован",
       "copyFallback": "Не удалось скопировать автоматически — адрес выделен, нажмите Ctrl+C",
       "call": "Позвонить",
+      "telegram": "Telegram",
       "github": "GitHub",
       "location": "Город",
       "placeholder": "Раздел в разработке."
