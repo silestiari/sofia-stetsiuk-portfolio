@@ -49,6 +49,33 @@ export function MotionObserver() {
     return () => io.disconnect();
   }, [pathname, locale]);
 
+  // 3. Magnetic buttons: a .btn leans towards the cursor (≤ 6px), springs back on leave. Mouse only.
+  useEffect(() => {
+    if (reducedMotion() || !matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    let current: HTMLElement | null = null;
+    const release = () => {
+      current?.style.removeProperty("--mx");
+      current?.style.removeProperty("--my");
+      current = null;
+    };
+    const onMove = (e: PointerEvent) => {
+      const btn = (e.target as Element).closest<HTMLElement>(".btn:not(:disabled, [aria-disabled='true'])");
+      if (btn !== current) release();
+      if (!btn) return;
+      current = btn;
+      const r = btn.getBoundingClientRect();
+      const pull = (v: number, size: number) => `${Math.max(-6, Math.min(6, (v / size) * 12)).toFixed(1)}px`;
+      btn.style.setProperty("--mx", pull(e.clientX - r.left - r.width / 2, r.width));
+      btn.style.setProperty("--my", pull(e.clientY - r.top - r.height / 2, r.height));
+    };
+    document.addEventListener("pointermove", onMove, { passive: true });
+    document.addEventListener("pointerleave", release);
+    return () => {
+      document.removeEventListener("pointermove", onMove);
+      document.removeEventListener("pointerleave", release);
+    };
+  }, []);
+
   useEffect(() => {
     let requested = false;
     try {
