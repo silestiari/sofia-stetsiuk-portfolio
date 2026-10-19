@@ -18,6 +18,8 @@ const jetbrains = JetBrains_Mono({
   subsets: ["latin", "cyrillic"],
   weight: ["400", "500"],
   display: "swap",
+  // small HUD labels only: not worth two high-priority requests competing with the first paint
+  preload: false,
   variable: "--font-jetbrains",
 });
 
