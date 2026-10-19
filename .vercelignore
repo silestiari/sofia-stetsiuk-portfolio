@@ -1,0 +1,8 @@
+.playwright-mcp
+.serena
+.claude
+test-results
+playwright-report
+docs/reference-pinterest*
+.env*
+!.env.example

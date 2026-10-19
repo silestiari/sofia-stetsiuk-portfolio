@@ -1,4 +1,5 @@
 import { useLocale, useTranslations } from "next-intl";
+import { Avatar } from "@/components/ui/Avatar";
 import { Button } from "@/components/ui/Button";
 import { SectionShell } from "@/components/ui/SectionShell";
 import { profile } from "@/content/profile";
@@ -8,7 +9,7 @@ const EMAIL_ID = "contact-email";
 
 /**
  * Contact: the thin "statement" voice for the heading, the address large, every action a pill (one pink fill).
- * The chrome orb is pure CSS decoration (art direction 4.10), no 3D, no image.
+ * The portrait sits where the chrome orb used to be: a face next to "write to me".
  */
 export function Contact() {
   const t = useTranslations("sections.contact");
@@ -49,10 +50,8 @@ export function Contact() {
             </Button>
           </div>
         </div>
-        <div aria-hidden="true" className="order-first grid place-items-center lg:order-none lg:col-span-3 lg:col-start-10">
-          <span className="relative grid aspect-square w-44 place-items-center rounded-full border border-grid-strong lg:w-full lg:max-w-72">
-            <span className="size-[calc(100%-24px)] rounded-full bg-[radial-gradient(circle_at_32%_28%,#FFFFFF_0_6%,#D9D9D9_14%,#6B6B6B_38%,#1E1E1E_62%,#8C8C8C_78%,#F2F2F2_92%,#3D3D3D_100%)]" />
-          </span>
+        <div className="order-first grid place-items-center lg:order-none lg:col-span-3 lg:col-start-10">
+          <Avatar alt={profile.name} className="w-44 lg:w-full lg:max-w-72" />
         </div>
       </div>
 

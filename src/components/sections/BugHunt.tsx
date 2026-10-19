@@ -19,7 +19,7 @@ const RESPAWN_MS = 3500; // after "all fixed"
  * Hero mini-game "catch the bug" (QA × game design): white outline bugs crawl over the grid and run from the cursor;
  * a pink target marks the one in reach; a click or tap catches it — lime selection frame, "BUG-004 · fixed ✓" — and
  * the counter goes up. When all are caught: one RGB-split glitch of the frame, "release ready", then a new round.
- * Canvas 2D, runs only while on screen; reduced motion: bugs stand still, no glitch.
+ * Canvas 2D, runs only while on screen; reduced motion: bugs crawl at half speed, no glitch.
  */
 export function BugHunt({ labels, className = "" }: { labels: BugHuntLabels; className?: string }) {
   const ref = useRef<HTMLCanvasElement>(null);
@@ -215,7 +215,7 @@ export function BugHunt({ labels, className = "" }: { labels: BugHuntLabels; cla
     const frame = (now: number) => {
       const dt = Math.min(0.05, (now - last) / 1000 || 0);
       last = now;
-      if (!reduced) update(dt);
+      update(reduced ? dt / 2 : dt); // the game needs moving bugs: reduced motion only slows them down
       if (doneAt && now - doneAt > RESPAWN_MS) spawn();
       draw(now);
       raf = visible && !document.hidden ? requestAnimationFrame(frame) : 0;

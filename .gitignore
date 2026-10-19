@@ -53,3 +53,6 @@ next-env.d.ts
 
 # design reference (someone else's work, not for the repo)
 docs/reference-pinterest*
+
+.vercel
+.env*

@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/Button";
 import { Crosshair } from "@/components/ui/Crosshair";
 import { HudLabel } from "@/components/ui/HudLabel";
 import { passStyle } from "@/components/ui/SectionShell";
+import { HeroName } from "./HeroName";
 import { HeroSceneSlot } from "./HeroSceneSlot";
 
 const role = "hud text-mono-xs inline-flex h-7 items-center rounded-full border border-line-strong bg-bg px-3 text-text-2";
@@ -53,18 +54,11 @@ export function Hero() {
               <span aria-hidden="true" className="absolute top-3 left-4 max-w-[55%] lg:hidden">
                 <HudLabel>{hint}</HudLabel>
               </span>
-              <h1
-                id="hero-title"
-                tabIndex={-1}
+              <HeroName
+                first={t("firstName")}
+                last={t("lastName")}
                 className="pointer-events-none absolute bottom-4 left-4 font-display text-hero font-extrabold uppercase md:bottom-6 md:left-6 lg:bottom-8 lg:left-8 lg:text-[clamp(5.5rem,15.4vw-4.35rem,10rem)]"
-              >
-                <span className="mask-line">
-                  <span>{t("firstName")}</span>
-                </span>{" "}
-                <span className="mask-line [--i:1]">
-                  <span>{t("lastName")}</span>
-                </span>
-              </h1>
+              />
             </div>
           </div>
 

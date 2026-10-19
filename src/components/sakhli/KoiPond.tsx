@@ -14,13 +14,14 @@ const palette = {
 
 /**
  * The live koi pond from Sakhli: koi swim away from the cursor or finger, a click drops ripples.
- * The poster frame shows until the canvas starts, and stays for reduced motion.
+ * The poster frame shows until the canvas starts.
  */
 export function KoiPond({ poster, label, className = "" }: { poster: string; label: string; className?: string }) {
   const ref = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const el = ref.current;
-    if (!el || matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    // Not gated on reduced motion: the pond is the project demo itself (Windows "animation effects off" froze it).
+    if (!el) return;
     let stop: VoidFunction | undefined;
     let dead = false;
     import("./pond-sim").then((m) => {
