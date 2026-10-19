@@ -6,7 +6,6 @@ import { aiLabNodes } from "@/content/ai-lab";
 import { Crosshair } from "@/components/ui/Crosshair";
 import { usePrefersReducedMotion } from "@/hooks/usePrefersReducedMotion";
 import { Link } from "@/i18n/navigation";
-import { RollText } from "@/components/ui/Button";
 
 // Desktop (lg+): snake graph, row 1 = steps 1–4 left→right, row 2 = steps 5–7 right→left; details on the right (xl) or below (lg).
 // Mobile: vertical list with a trunk line, details right under the selected step.
@@ -227,12 +226,12 @@ export function WorkflowGraph({ projectTitles }: { projectTitles: Record<string,
                   {i > 0 && (
                     <button type="button" onClick={() => select(i - 1)} className="btn btn-secondary min-h-11 px-5 py-2">
                       <span aria-hidden="true">← </span>
-                      <RollText text={t("prev")} />
+                      {t("prev")}
                     </button>
                   )}
                   {i < total - 1 && (
                     <button type="button" onClick={() => select(i + 1)} className="btn btn-secondary min-h-11 px-5 py-2">
-                      <RollText text={t("next")} />
+                      {t("next")}
                       <span aria-hidden="true"> →</span>
                     </button>
                   )}

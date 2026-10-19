@@ -1,5 +1,5 @@
 import { useTranslations } from "next-intl";
-import { Button, RollText } from "@/components/ui/Button";
+import { Button } from "@/components/ui/Button";
 import { Crosshair } from "@/components/ui/Crosshair";
 import { HudLabel } from "@/components/ui/HudLabel";
 import { passStyle } from "@/components/ui/SectionShell";
@@ -73,7 +73,7 @@ export function Hero() {
               href="#showroom"
               className="intro-rise btn btn-secondary group min-h-12 bg-bg/60 px-6 py-2 [--i:2] lg:absolute lg:top-1/2 lg:right-12 lg:z-(--z-raised) lg:size-36 lg:-translate-y-1/2 lg:flex-col lg:gap-1 lg:p-4 lg:hud lg:text-mono-xs"
             >
-              <RollText text={t("ctaGallery")} /> <span aria-hidden="true">↘</span>
+              {t("ctaGallery")} <span aria-hidden="true">↘</span>
             </a>
             <Button
               href="#contact"

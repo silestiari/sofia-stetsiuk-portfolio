@@ -317,15 +317,6 @@ main > .pass-section + .pass-section { border-top: 1px solid var(--color-line); 
   pointer-events: none;
 }
 
-/* Label rolls letter by letter: each glyph carries its copy below as a text-shadow (Button.tsx <RollText>) */
-.btn-roll { display: inline-flex; overflow: clip; padding-block: 0.1em; margin-block: -0.1em; }
-.btn-roll > span {
-  display: inline-block;
-  white-space: pre;
-  text-shadow: 0 1.4em currentColor;
-  transition: translate 520ms var(--ease-expo) calc(var(--i) * 18ms);
-}
-
 /* Arrow: flies out diagonally, comes back in from the opposite corner */
 @keyframes btn-arrow {
   40% { translate: 12px -12px; opacity: 0; }
@@ -334,7 +325,6 @@ main > .pass-section + .pass-section { border-top: 1px solid var(--color-line); 
 
 @media (hover: hover) {
   .btn:not([aria-disabled="true"], :disabled):hover:is(.btn-primary, .btn-secondary)::before { scale: 1; }
-  .btn:not([aria-disabled="true"], :disabled):hover .btn-roll > span { translate: 0 -1.4em; }
   .btn:not([aria-disabled="true"], :disabled):hover > [aria-hidden="true"]:last-of-type { animation: btn-arrow 520ms var(--ease-expo) 80ms; }
 }
 .btn[aria-disabled="true"], .btn:disabled { cursor: default; }

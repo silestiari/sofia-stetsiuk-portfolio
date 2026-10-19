@@ -1,4 +1,4 @@
-import { Children, type AnchorHTMLAttributes, type ButtonHTMLAttributes, type CSSProperties, type ReactNode } from "react";
+import type { AnchorHTMLAttributes, ButtonHTMLAttributes, ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 
@@ -18,23 +18,7 @@ type LinkProps = CommonProps & { href: string } & Omit<AnchorHTMLAttributes<HTML
 type NativeButtonProps = CommonProps & { href?: undefined } & Omit<ButtonHTMLAttributes<HTMLButtonElement>, "className">;
 export type ButtonProps = LinkProps | NativeButtonProps;
 
-/** Button label that rolls up letter by letter on hover (globals.css .btn-roll). Screen readers get the plain text. */
-export function RollText({ text }: { text: string }) {
-  return (
-    <span>
-      <span className="sr-only">{text}</span>
-      <span aria-hidden="true" className="btn-roll">
-        {[...text].map((c, i) => (
-          <span key={i} style={{ "--i": i } as CSSProperties}>
-            {c}
-          </span>
-        ))}
-      </span>
-    </span>
-  );
-}
-
-const isExternal =(href: string) => /^(https?:)?\/\//.test(href);
+const isExternal = (href: string) => /^(https?:)?\/\//.test(href);
 const isLocalePath = (href: string) => href.startsWith("/") && !href.startsWith("//");
 
 /** Pill button (docs/REDESIGN_UX_SPEC.md 3.1): primary = the pink fill, secondary = outline, ghost = inline link. Renders <a>/<Link> when `href` is given, otherwise <button>. */
@@ -50,7 +34,7 @@ export function Button(props: ButtonProps) {
   const content = (
     <>
       {loading && <span aria-hidden="true">···</span>}
-      {Children.map(children, (c) => (typeof c === "string" && c.trim() ? <RollText text={c} /> : c))}
+      {children}
     </>
   );
 

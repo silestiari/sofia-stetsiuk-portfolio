@@ -3,7 +3,6 @@
 import { Fragment, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { RollText } from "@/components/ui/Button";
 
 export interface MatrixColumn {
   slug: string;
@@ -33,7 +32,7 @@ export function SkillsMatrix({ columns, groups }: { columns: MatrixColumn[]; gro
       <span className="mt-2 flex flex-wrap gap-2">
         {projects.map((slug) => (
           <Link key={slug} href={`/projects/${slug}`} className="btn btn-secondary min-h-11 px-5 py-2">
-            <RollText text={titleOf(slug)} />
+            {titleOf(slug)}
           </Link>
         ))}
       </span>
