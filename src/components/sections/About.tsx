@@ -32,7 +32,7 @@ export function About() {
   const tContact = useTranslations("sections.contact");
   const tA11y = useTranslations("a11y");
   const locale = useLocale();
-  const { email, telegram, github } = profile.contacts;
+  const { email, telegram, github, steam } = profile.contacts;
   const name = profile.localizedName[locale];
 
   // Localized on the server so the client bundle doesn't carry the project data.
@@ -70,6 +70,9 @@ export function About() {
             </ContactCircle>
             <ContactCircle href={telegram.href} label={`${tContact("telegram")} ${telegram.handle} ${tA11y("opensInNewTab")}`}>
               {"✈︎"}
+            </ContactCircle>
+            <ContactCircle href={steam.href} label={`${tContact("steam")} ${tA11y("opensInNewTab")}`}>
+              {"🎮︎"}
             </ContactCircle>
             <PhoneReveal
               label={tContact("call")}

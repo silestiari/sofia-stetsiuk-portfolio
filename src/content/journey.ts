@@ -19,8 +19,8 @@ export const journey: JourneyStage[] = [
     label: { en: "START", ru: "СТАРТ" },
     title: { en: "Games and game systems", ru: "Игры и игровые системы" },
     text: {
-      en: "It started with games. Not only playing them, but taking them apart: why a loop keeps you hooked, where an economy breaks, what makes a player come back.",
-      ru: "Всё началось с игр — не только с того, чтобы в них играть, но и разбирать их: почему цикл затягивает, где ломается экономика, что заставляет игрока вернуться.",
+      en: "It started with games, and I still play a lot. Not just playing, but taking them apart: why a loop keeps you hooked, where an economy breaks, what makes a player come back.",
+      ru: "Всё началось с игр, и я до сих пор много играю. Причём не просто играю, а разбираю их: почему цикл затягивает, где ломается экономика, что заставляет игрока вернуться.",
     },
     projects: ["woodcutter-vs-zombies"],
   },

@@ -62,7 +62,7 @@
     "projects": {
       "title": "Projects",
       "hud": "01 / PROJECTS",
-      "intro": "Eight projects: three web projects where QA was part of the process from day one, four Roblox games where I design the systems and test every build, and a system of AI agents that edits VALORANT videos.",
+      "intro": "Seven projects: three web projects where QA was part of the process from day one, and four Roblox games where I design the systems and test every build.",
       "disclaimer": "All projects are personal or demo projects, not commercial client work.",
       "filterLabel": "Filter projects",
       "filterAll": "All",
@@ -237,6 +237,7 @@
       "call": "Call",
       "telegram": "Telegram",
       "github": "GitHub",
+      "steam": "Steam",
       "location": "Location",
       "placeholder": "This section is in progress."
     }

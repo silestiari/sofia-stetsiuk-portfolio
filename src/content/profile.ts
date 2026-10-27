@@ -20,6 +20,7 @@ export interface Profile {
     phone: { display: string; href: string };
     telegram: { href: string; handle: string };
     github: { href: string; handle: string };
+    steam: { href: string; handle: string };
   };
   education: { title: Localized; provider: Localized }[];
   experience: { title: Localized; context: Localized; points: Localized<string[]> }[];
@@ -57,6 +58,7 @@ export const profile: Profile = {
     phone: { display: "+995 571 247 510", href: "tel:+995571247510" },
     telegram: { href: "https://t.me/silestiari", handle: "@silestiari" },
     github: { href: "https://github.com/silestiari", handle: "silestiari" },
+    steam: { href: "https://steamcommunity.com/id/silestiari/", handle: "silestiari" },
   },
   education: [
     {

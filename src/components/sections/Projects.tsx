@@ -26,7 +26,6 @@ export function Projects() {
             { id: "all", label: t("filterAll") },
             { id: "web", label: t("filterWeb") },
             { id: "roblox", label: t("filterRoblox") },
-            { id: "ai", label: t("filterAi") },
           ]}
         />
       </div>
