@@ -1,6 +1,5 @@
 import { Suspense } from "react";
 import { About } from "@/components/sections/About";
-import { AiLab } from "@/components/sections/AiLab";
 import { Contact } from "@/components/sections/Contact";
 import { GamePlayground } from "@/components/sections/GamePlayground";
 import { Hero } from "@/components/sections/Hero";
@@ -29,9 +28,6 @@ export default function HomePage() {
       </Suspense>
       <Suspense>
         <Skills />
-      </Suspense>
-      <Suspense>
-        <AiLab />
       </Suspense>
       <Suspense>
         <GamePlayground />

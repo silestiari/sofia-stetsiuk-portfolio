@@ -25,7 +25,7 @@ export function Footer() {
             {desktopNavIds.map((id) => (
               <li key={id}>
                 <a href={`/${locale}#${id}`} className={link}>
-                  {tNav(id === "ai-lab" ? "labs" : id)}
+                  {tNav(id)}
                 </a>
               </li>
             ))}

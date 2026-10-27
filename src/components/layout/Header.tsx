@@ -67,7 +67,7 @@ export function Header() {
                   <span className="hidden text-text-3 group-aria-[current=true]:text-qa-accent xl:inline">
                     {String(sections.findIndex((s) => s.id === id)).padStart(2, "0")}
                   </span>
-                  {t(id === "ai-lab" ? "labs" : id)}
+                  {t(id)}
                 </a>
               </li>
             ))}

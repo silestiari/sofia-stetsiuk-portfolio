@@ -27,9 +27,9 @@ const labData: Localized = {
   ru: "Lab-данные Lighthouse, локальная prod-сборка",
 };
 
-const aiDirectedRole: Localized = {
-  en: "Built with AI agents under my direction: I framed the tasks, made the design decisions and checked the quality of every iteration.",
-  ru: "Проект создан с помощью AI-агентов под моим руководством: постановка задач, дизайн-решения, проверка качества каждой итерации.",
+const ownRole: Localized = {
+  en: "My project from idea to release: I framed the tasks, made the design decisions and checked the quality of every iteration.",
+  ru: "Мой проект от идеи до релиза: постановка задач, дизайн-решения, проверка качества каждой итерации.",
 };
 
 export const projectsDisclaimer: Localized = {
@@ -53,8 +53,8 @@ export const projects: Project[] = [
       ru: "Сайт торгового центра на трёх языках (EN/RU/KA): каталог магазинов с поиском, интерактивная карта и задокументированный QA-прогон.",
     },
     role: {
-      en: `${aiDirectedRole.en} The project's QA case study lists my role as "website development and QA project contributor".`,
-      ru: `${aiDirectedRole.ru} В QA-кейсе проекта моя роль указана как «участник разработки сайта и QA».`,
+      en: `${ownRole.en} The project's QA case study lists my role as "website development and QA project contributor".`,
+      ru: `${ownRole.ru} В QA-кейсе проекта моя роль указана как «участник разработки сайта и QA».`,
     },
     tech: [
       "Next.js 16.3.8",
@@ -152,7 +152,7 @@ export const projects: Project[] = [
       en: "A one-page restaurant landing in KA/EN/RU with a living pond animation, a time-of-day hero and 100 accessibility scores in Lighthouse.",
       ru: "Одностраничный лендинг ресторана на KA/EN/RU с живым прудом, hero по времени суток и 100 баллами доступности в Lighthouse.",
     },
-    role: aiDirectedRole,
+    role: ownRole,
     tech: ["Next.js 16.4", "React 19.3", "TypeScript 7", "Tailwind CSS 4.3.3", "next-intl 4.14.9", "Motion 14.2", "sharp", "Lighthouse 13.5"],
     features: {
       en: [
@@ -225,8 +225,8 @@ export const projects: Project[] = [
       ru: "Тренажёр ЕГЭ по шести предметам: бесконечные варианты заданий по номерам, пробники, проверка развёрнутых ответов ИИ, карточки, блиц на 60 секунд и рейтинг недели — чтобы готовиться было интересно, а не скучно.",
     },
     role: {
-      en: "Founder: product idea, exam content structure and design decisions; built with AI agents under my direction.",
-      ru: "Основательница: идея продукта, структура экзаменационного контента и дизайн-решения; создано с помощью AI-агентов под моим руководством.",
+      en: "Founder: product idea, exam content structure and design decisions.",
+      ru: "Основательница: идея продукта, структура экзаменационного контента и дизайн-решения.",
     },
     tech: ["HTML", "CSS", "JavaScript", "Claude Artifacts (shared data, AI checking)"],
     features: {
@@ -292,8 +292,8 @@ export const projects: Project[] = [
       ru: "Roblox-тайкун в стиле dark fantasy: руби лес, прокачивай топор, строй замок и защищай его от ночных волн зомби.",
     },
     role: {
-      en: "Product owner, game designer, QA and AI orchestration. Claude writes the code; I set the tasks, design the mechanics, put the scripts into Roblox Studio and test every change myself. Many mechanics in the project log are marked as my idea or tested by me.",
-      ru: "Product owner, гейм-дизайн, QA и управление AI-агентами. Код пишет Claude, а я ставлю задачи, придумываю механики, переношу скрипты в Roblox Studio и сама тестирую каждое изменение. Многие механики в журнале проекта отмечены как моя идея или проверены мной.",
+      en: "Product owner, game designer and QA. I set the tasks, design the mechanics, put the scripts into Roblox Studio and test every change myself. Many mechanics in the project log are marked as my idea or tested by me.",
+      ru: "Product owner, гейм-дизайн и QA. Ставлю задачи, придумываю механики, переношу скрипты в Roblox Studio и сама тестирую каждое изменение. Многие механики в журнале проекта отмечены как моя идея или проверены мной.",
     },
     tech: ["Luau", "Rojo 7.7.0", "Aftman", "Roblox Studio", "Blender", "Blender MCP", "graphify", "Claude Code"],
     features: {
@@ -378,8 +378,8 @@ export const projects: Project[] = [
       ru: "Мультяшная кооперативная party-игра для 1–4 бортпроводников: разноси кофе, колу и еду, следи за терпением пассажиров и переживи хаос.",
     },
     role: {
-      en: "My own game, built with a multi-agent team under my direction: game concept and task framing in staged prompts, design decisions, and quality checks of every stage.",
-      ru: "Моя игра, собранная мультиагентной командой под моим руководством: концепция и постановка задач поэтапными промптами, дизайн-решения и проверка качества каждого этапа.",
+      en: "My own game: game concept and task framing in stages, design decisions, and quality checks of every stage.",
+      ru: "Моя игра: концепция и поэтапная постановка задач, дизайн-решения и проверка качества каждого этапа.",
     },
     tech: ["Luau", "Rojo 7.7.1", "Roblox Studio MCP", "Blender 5.2 (Python)", "Blender MCP", "Codex", "Claude Code", "Python", "Remotion 4", "FFmpeg"],
     features: {
@@ -462,8 +462,8 @@ export const projects: Project[] = [
       ru: "Мультиплеерные прятки с блоками: спрячь свои 15 блоков, найди чужие и построй самый высокий столб.",
     },
     role: {
-      en: "My own game, built with AI agents under my direction: game concept and task framing, design decisions and quality checks.",
-      ru: "Моя игра, созданная с помощью AI-агентов под моим руководством: концепция и постановка задач, дизайн-решения и проверка качества.",
+      en: "My own game: game concept and task framing, design decisions and quality checks.",
+      ru: "Моя игра: концепция и постановка задач, дизайн-решения и проверка качества.",
     },
     tech: ["Luau", "Rojo 7.7.1", "Lune 0.11", "luau-lsp 1.70.1", "run-in-roblox 0.3", "Claude Code"],
     features: {
@@ -542,8 +542,8 @@ export const projects: Project[] = [
       ru: "Собери питомца из шести частей со стихиями и редкостью, добывай новые части в мини-играх и гонках и отправляй его в авто-PvP.",
     },
     role: {
-      en: "My own game, built with an 11-agent team under my direction: game concept and task framing in a master prompt, design and balance decisions, and quality checks.",
-      ru: "Моя игра, собранная командой из 11 агентов под моим руководством: концепция и постановка задач в мастер-промпте, решения по дизайну и балансу, проверка качества.",
+      en: "My own game: game concept and task framing, design and balance decisions, and quality checks.",
+      ru: "Моя игра: концепция и постановка задач, решения по дизайну и балансу, проверка качества.",
     },
     tech: ["Luau", "Rojo 7.7.1", "Lune 0.11", "Blender (Python)", "Claude Code"],
     features: {

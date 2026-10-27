@@ -2,10 +2,10 @@
   "meta": {
     "siteName": "Sofia Stetsiuk — Portfolio",
     "title": "Sofia Stetsiuk — QA Engineer × Game Designer",
-    "description": "Portfolio of Sofia Stetsiuk, QA Engineer and Game Designer based in Batumi, Georgia: web projects, Roblox games, QA case studies and an AI-assisted multi-agent workflow. Open to QA, Game QA and Game Design roles.",
+    "description": "Portfolio of Sofia Stetsiuk, QA Engineer and Game Designer based in Batumi, Georgia: web projects, Roblox games and QA case studies. Open to QA, Game QA and Game Design roles.",
     "ogLocale": "en_US",
     "ogTitle": "Sofia Stetsiuk — QA Engineer × Game Designer",
-    "ogDescription": "Testing experiences. Designing worlds. Building with AI. Web projects, Roblox games and real QA numbers.",
+    "ogDescription": "Testing experiences. Designing worlds. Playing for real. Web projects, Roblox games and real QA numbers.",
     "ogImageAlt": "Sofia Stetsiuk — QA Engineer × Game Designer portfolio",
     "projectTitle": "{title} — case study",
     "projectDescription": "{summary}"
@@ -28,10 +28,8 @@
     "showroom": "3D Showroom",
     "about": "About",
     "skills": "Skills",
-    "ai-lab": "AI Lab",
     "game-playground": "Pet Builder",
-    "contact": "Contact",
-    "labs": "Labs"
+    "contact": "Contact"
   },
   "languageSwitcher": {
     "label": "Language",
@@ -47,7 +45,7 @@
       "hud": "00 / HERO",
       "firstName": "SOFIA",
       "lastName": "STETSIUK",
-      "tagline": "Testing experiences. Designing worlds. Building with AI.",
+      "tagline": "Testing experiences. Designing worlds. Playing for real.",
       "location": "Batumi, Georgia",
       "formats": "Remote · On-site · Hybrid · Relocation",
       "ctaWork": "Explore My Work",
@@ -162,28 +160,9 @@
       "fromTraining": "From training",
       "placeholder": "This section is in progress."
     },
-    "ai-lab": {
-      "title": "AI Workflow Lab",
-      "hud": "05 / AI WORKFLOW LAB",
-      "intro": "How my projects are actually made: a team of AI agents writes the code, and I own the idea, the tasks and the quality bar. Pick a step to see who does what.",
-      "graphLabel": "Workflow steps",
-      "tasks": "Tasks",
-      "human": "Sofia",
-      "agents": "Agents",
-      "examples": "Real examples",
-      "prev": "Previous step",
-      "next": "Next step",
-      "done": "Done",
-      "step": "Step {current} / {total}",
-      "rolesLabel": "Who does what",
-      "keyboardHint": "← → to move between steps",
-      "siteTitle": "This site",
-      "siteAgents": "Agent roles in .claude/agents",
-      "placeholder": "This section is in progress."
-    },
     "game-playground": {
       "title": "Build a Pet",
-      "hud": "06 / GAME PLAYGROUND",
+      "hud": "05 / GAME PLAYGROUND",
       "intro": "A taste of the part-based pet system from Build Your Own Pet. Mix parts, elements and accessories, and see what kind of creature comes out.",
       "stageLabel": "Your pet",
       "categoriesLabel": "Pet parts",
@@ -225,7 +204,7 @@
     },
     "contact": {
       "title": "Contact",
-      "hud": "07 / CONTACT",
+      "hud": "06 / CONTACT",
       "heading": "Let’s build something remarkable.",
       "intro": "Open to QA Engineer, Game QA and Game Design roles. Based in Batumi, Georgia. Remote, on-site, hybrid or relocation.",
       "openTo": "Open to",
@@ -292,9 +271,9 @@
   },
   "footer": {
     "copyright": "© {year} Sofia Stetsiuk",
-    "builtWith": "Built with Next.js, React Three Fiber and a team of AI agents; tasks and QA by Sofia.",
+    "builtWith": "Built with Next.js and React Three Fiber; design, tasks and QA by Sofia.",
     "disclaimer": "Projects shown are personal or demo work, not commercial client orders.",
     "backToTop": "Back to top"
   },
-  "marquee": "QA × Game design × 3D × AI"
+  "marquee": "QA × Game design × 3D × Roblox"
 }

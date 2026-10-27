@@ -77,16 +77,6 @@ export const journey: JourneyStage[] = [
     projects: ["woodcutter-vs-zombies", "cabin-chaos", "build-your-pet"],
   },
   {
-    id: "ai-agents",
-    label: { en: "AI AGENTS", ru: "AI-АГЕНТЫ" },
-    title: { en: "Claude Code, Codex and AI agents", ru: "Claude Code, Codex и AI-агенты" },
-    text: {
-      en: "I learned to run teams of AI agents: roles, file ownership, staged prompts, MCP connections to Blender and Roblox Studio. The agents write code; I own the tasks and the quality bar.",
-      ru: "Я научилась управлять командами AI-агентов: роли, владение файлами, поэтапные промпты, MCP-подключения к Blender и Roblox Studio. Код пишут агенты — задачи и планка качества на мне.",
-    },
-    projects: ["cabin-chaos", "grand-mall-batumi", "build-your-pet"],
-  },
-  {
     id: "next",
     label: { en: "NEXT", ru: "ДАЛЬШЕ" },
     title: { en: "Growing in QA and Game Design", ru: "Рост в QA и гейм-дизайне" },

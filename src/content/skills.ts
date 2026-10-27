@@ -14,7 +14,7 @@ export interface Skill {
 }
 
 export interface SkillGroup {
-  id: "qa" | "game-design" | "dev-tools" | "ai";
+  id: "qa" | "game-design" | "dev-tools";
   title: Localized;
   skills: Skill[];
 }
@@ -95,8 +95,8 @@ export const skillGroups: SkillGroup[] = [
         label: { en: "Test automation with Playwright", ru: "Автотесты на Playwright" },
         projects: ["grand-mall-batumi"],
         how: {
-          en: "AI-assisted E2E suites: 11 journeys in Grand Mall.",
-          ru: "E2E-наборы, написанные с AI: 11 сценариев в Grand Mall.",
+          en: "E2E suites: 11 user journeys in Grand Mall.",
+          ru: "E2E-наборы: 11 пользовательских сценариев в Grand Mall.",
         },
       },
       {
@@ -203,8 +203,8 @@ export const skillGroups: SkillGroup[] = [
         label: { en: "Next.js, React & TypeScript", ru: "Next.js, React и TypeScript" },
         projects: web,
         how: {
-          en: "Three multilingual websites built with AI agents, plus this portfolio.",
-          ru: "Три многоязычных сайта, собранных с AI-агентами, и это портфолио.",
+          en: "Three multilingual websites, plus this portfolio.",
+          ru: "Три многоязычных сайта и это портфолио.",
         },
       },
       {
@@ -231,64 +231,13 @@ export const skillGroups: SkillGroup[] = [
         projects: [],
         how: { en: "My code editor.", ru: "Мой редактор кода." },
       },
-    ],
-  },
-  {
-    id: "ai",
-    title: { en: "AI & Automation", ru: "AI и автоматизация" },
-    skills: [
       {
-        id: "claude-code",
-        label: { en: "Claude Code", ru: "Claude Code" },
+        id: "ai-tools",
+        label: { en: "AI tools: Claude Code, Codex", ru: "AI-инструменты: Claude Code, Codex" },
         projects: [...web, ...roblox],
         how: {
-          en: "Main development environment for all six projects.",
-          ru: "Основная среда разработки во всех шести проектах.",
-        },
-      },
-      {
-        id: "codex",
-        label: { en: "Codex", ru: "Codex" },
-        projects: ["cabin-chaos", "grand-mall-batumi"],
-        how: {
-          en: "7 TOML agents with MCP in Cabin Chaos; Grand Mall started in Codex before moving to Claude Code.",
-          ru: "7 TOML-агентов с MCP в Cabin Chaos; Grand Mall начинался в Codex, потом переехал в Claude Code.",
-        },
-      },
-      {
-        id: "multi-agent",
-        label: { en: "Multi-agent workflows", ru: "Мультиагентная разработка" },
-        projects: [...web, ...roblox],
-        how: {
-          en: "From 3 agents in Woodcutter to 18 in Cabin Chaos (7 Codex + 11 Claude Code), with roles and file-ownership rules.",
-          ru: "От 3 агентов в Woodcutter до 18 в Cabin Chaos (7 Codex + 11 Claude Code) — с ролями и правилами владения файлами.",
-        },
-      },
-      {
-        id: "mcp",
-        label: { en: "MCP integrations", ru: "MCP-интеграции" },
-        projects: ["cabin-chaos", "woodcutter-vs-zombies", "grand-mall-batumi"],
-        how: {
-          en: "Blender and Roblox Studio MCP in Cabin Chaos, Blender MCP in Woodcutter, Playwright MCP in Grand Mall.",
-          ru: "MCP для Blender и Roblox Studio в Cabin Chaos, Blender MCP в Woodcutter, Playwright MCP в Grand Mall.",
-        },
-      },
-      {
-        id: "prompting",
-        label: { en: "Staged prompts & task specs", ru: "Поэтапные промпты и ТЗ" },
-        projects: ["cabin-chaos", "build-your-pet"],
-        how: {
-          en: "Prompt24–Prompt30 stages in Cabin Chaos; a master prompt with per-agent task files in Build Your Own Pet.",
-          ru: "Этапы Prompt24–Prompt30 в Cabin Chaos; мастер-промпт и задания для каждого агента в «Собери своего питомца».",
-        },
-      },
-      {
-        id: "ai-review",
-        label: { en: "AI-assisted code review", ru: "Ревью кода с AI" },
-        projects: ["woodcutter-vs-zombies", "pillars", "grand-mall-batumi"],
-        how: {
-          en: "Reviewer, tester and security agents; their findings were checked and fixed.",
-          ru: "Агенты-ревьюеры, тестировщики и security-агенты; их находки проверены и исправлены.",
+          en: "A tool for code and routine work; the tasks, design and checks are mine.",
+          ru: "Инструмент для кода и рутины; задачи, дизайн и проверка — мои.",
         },
       },
     ],

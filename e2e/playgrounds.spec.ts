@@ -37,21 +37,6 @@ test("Pet Builder: Reset clicked right after Randomize is not overwritten by the
   }
 });
 
-test("AI Lab: every workflow node opens its details", async ({ page }) => {
-  await page.goto("/en#ai-lab");
-  const section = page.locator("#ai-lab");
-  const nodes = section.locator("[data-testid^=ai-node-]");
-  const n = await nodes.count();
-  expect(n).toBe(7);
-  const titles = new Set<string>();
-  for (let i = 0; i < n; i++) {
-    await nodes.nth(i).click();
-    await expect(nodes.nth(i)).toHaveAttribute("aria-pressed", "true");
-    titles.add((await section.getByTestId("ai-lab-details").getByRole("heading", { level: 3 }).innerText()).trim());
-  }
-  expect(titles.size).toBe(7);
-});
-
 test("Showroom: every model opens in the dialog", async ({ page }) => {
   // Opening only: posters instead of WebGL, so 39 models don't each load into software GL.
   await page.addInitScript(() => {

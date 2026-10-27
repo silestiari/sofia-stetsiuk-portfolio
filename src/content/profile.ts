@@ -30,17 +30,17 @@ export const profile: Profile = {
   name: "Sofia Stetsiuk",
   localizedName: { en: "Sofia Stetsiuk", ru: "София Стецюк" },
   roles: {
-    en: ["QA Engineer", "Game QA", "Game Designer", "AI-Assisted Development"],
-    ru: ["QA-инженер", "Game QA", "Гейм-дизайнер", "Разработка с AI"],
+    en: ["QA Engineer", "Game QA", "Game Designer"],
+    ru: ["QA-инженер", "Game QA", "Гейм-дизайнер"],
   },
   headline: { en: "QA Engineer × Game Designer", ru: "QA-инженер × гейм-дизайнер" },
   tagline: {
-    en: "Testing experiences. Designing worlds. Building with AI.",
-    ru: "Тестирую опыт. Проектирую миры. Создаю вместе с AI.",
+    en: "Testing experiences. Designing worlds. Playing for real.",
+    ru: "Тестирую опыт. Проектирую миры. Играю всерьёз.",
   },
   bio: {
-    en: "I test products the way players and users actually use them, design game systems for Roblox, and build web and game projects with a team of AI agents, where I set the tasks, make the design calls and check the result.",
-    ru: "Я тестирую продукты так, как ими на самом деле пользуются игроки и пользователи, проектирую игровые системы для Roblox и собираю веб- и игровые проекты с командой AI-агентов: ставлю задачи, принимаю дизайн-решения и проверяю результат.",
+    en: "I test products the way players and users actually use them, design game systems for Roblox, and take web and game projects from idea to release: I set the tasks, make the design calls and check the result.",
+    ru: "Я тестирую продукты так, как ими на самом деле пользуются игроки и пользователи, проектирую игровые системы для Roblox и довожу веб- и игровые проекты от идеи до релиза: ставлю задачи, принимаю дизайн-решения и проверяю результат.",
   },
   location: { en: "Batumi, Georgia", ru: "Батуми, Грузия" },
   workFormats: [

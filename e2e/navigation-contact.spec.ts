@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-const sections = ["hero", "projects", "showroom", "about", "skills", "ai-lab", "game-playground", "contact"];
+const sections = ["hero", "projects", "showroom", "about", "skills", "game-playground", "contact"];
 
 test("skip link is the first Tab stop and moves focus to main content", async ({ page }) => {
   await page.goto("/en");
@@ -39,14 +39,14 @@ test("Tab walks the whole page without traps and every stop shows a focus ring",
   expect(stops.length).toBeLessThan(300);
 });
 
-test("mobile menu: opens as modal, lists 8 anchors, Esc returns focus, link jumps", async ({ page }) => {
+test("mobile menu: opens as modal, lists 7 anchors, Esc returns focus, link jumps", async ({ page }) => {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto("/ru");
   const burger = page.getByRole("button", { name: "Открыть меню" });
   await burger.click();
   const dialog = page.locator("dialog#mobile-menu");
   await expect(dialog).toBeVisible();
-  await expect(dialog.locator("ol a")).toHaveCount(8);
+  await expect(dialog.locator("ol a")).toHaveCount(7);
   await expect(page.getByRole("button", { name: "Закрыть меню" })).toBeFocused();
   await page.keyboard.press("Escape");
   await expect(dialog).toBeHidden();
