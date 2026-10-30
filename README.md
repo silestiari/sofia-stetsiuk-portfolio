@@ -1,6 +1,6 @@
 <div align="center">
 
-<img src="docs/readme/banner.svg" width="100%" alt="Sofia Stetsiuk — portfolio"/>
+<img src="docs/readme/banner.jpg" width="100%" alt="Sofia Stetsiuk — portfolio"/>
 
 <a href="https://sofia-stetsiuk-portfolio.vercel.app/en"><img src="https://img.shields.io/badge/Open_portfolio-FF5FA2?style=for-the-badge&logo=vercel&logoColor=white"/></a>
 <a href="https://sofia-stetsiuk-portfolio.vercel.app/en#showroom"><img src="https://img.shields.io/badge/3D_Showroom-E0307E?style=for-the-badge&logo=threedotjs&logoColor=white"/></a>
